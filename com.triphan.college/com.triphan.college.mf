@@ -1,0 +1,2 @@
+Main-Class: com.triphan.college.ShowStudentDatabase
+Class-Path: mssql-jdbc-9.4.0.jre16.jar

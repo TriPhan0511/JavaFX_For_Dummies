@@ -1,0 +1,3 @@
+Main-Class: com.triphan.testing.Main
+Class-Path: mssql-jdbc-9.4.0.jre16.jar
+
