@@ -1,8 +1,6 @@
-package com.lowewriter.addsubtract3;
+package com.lowewriter.addsubtract4;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-// Handling Events with Anonymous Inner Classes
-public class AddSubtract3 extends Application
+// Using Lambda Expressions to Handle Events
+public class AddSubtract4 extends Application
 {
   public static void main(String[] args)
   {
@@ -31,24 +29,14 @@ public class AddSubtract3 extends Application
     displayLabel = new Label(Integer.toString(counter));
 //    Create the buttons
     addButton = new Button("Add");
-    addButton.setOnAction(new EventHandler<ActionEvent>()
-    {
-      @Override
-      public void handle(ActionEvent e)
-      {
-        counter++;
-        displayLabel.setText(Integer.toString(counter));
-      }
+    addButton.setOnAction(e -> {
+      counter++;
+      displayLabel.setText(Integer.toString(counter));
     });
     subtractButton = new Button("Subtract");
-    subtractButton.setOnAction(new EventHandler<ActionEvent>()
-    {
-      @Override
-      public void handle(ActionEvent e)
-      {
-        counter--;
-        displayLabel.setText(Integer.toString(counter));
-      }
+    subtractButton.setOnAction(e -> {
+      counter--;
+      displayLabel.setText(Integer.toString(counter));
     });
 //    Add the label and the buttons to a HBox pane
     HBox root = new HBox(10, displayLabel, addButton, subtractButton);
@@ -56,7 +44,7 @@ public class AddSubtract3 extends Application
 //    Finish
     Scene scene = new Scene(root, 250, 75);
     primaryStage.setScene(scene);
-    primaryStage.setTitle("Add/Subtract 3");
+    primaryStage.setTitle("Add/Subtract 4");
     primaryStage.show();
   }
 }
