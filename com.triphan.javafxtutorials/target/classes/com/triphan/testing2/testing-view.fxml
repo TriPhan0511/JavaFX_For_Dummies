@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="500.0" maxWidth="300.0" minHeight="150.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triphan.testing2.TestingController">
+   <children>
+      <Label fx:id="displayLabel1" text="You have not clicked the button!" />
+      <Button id="clickMeButton" mnemonicParsing="false" onAction="#clickMeButton_Click" text="Click me please!" />
+      <Button id="switchScene1" mnemonicParsing="false" text="Button" />
+   </children>
+</VBox>

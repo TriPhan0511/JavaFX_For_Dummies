@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox spacing="10.0"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.triphan.clickme.AddSubtractController">
+   <children>
+      <Label fx:id="displayLabel2" prefWidth="20.0" text="Label" />
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButton_Click" text="Add" />
+      <Button fx:id="subtractButton" mnemonicParsing="false" onAction="#subtractButton_Click" text="Subtract" />
+      <Button fx:id="switchToScene1Button" mnemonicParsing="false" onAction="#switchToScene1Button_Click" text="Switch!" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>
