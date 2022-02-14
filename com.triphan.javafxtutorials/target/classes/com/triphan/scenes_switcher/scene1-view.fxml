@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triphan.scenes_switcher.Scene1Controller">
+   <children>
+      <Label fx:id="displayLabel" layoutX="40.0" layoutY="41.0" text="Label" />
+      <Button fx:id="clickMeButton" layoutX="34.0" layoutY="79.0" mnemonicParsing="false" onAction="#clickMeButton_Click" text="Click Me Please!" />
+      <Button fx:id="switchSceneButton" layoutX="34.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchSceneButton_Click" text="Switch to Scene 2" />
+   </children>
+</AnchorPane>
