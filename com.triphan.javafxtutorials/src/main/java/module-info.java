@@ -13,4 +13,7 @@ module com.triphan.javafxtutorials {
   opens com.triphan.scenes_switcher to javafx.fxml;
   exports com.triphan.scenes_switcher;
 
+  opens com.triphan.scenes_communication to javafx.fxml;
+  exports com.triphan.scenes_communication;
+
 }

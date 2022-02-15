@@ -13,7 +13,9 @@ module com.lowewriter.clickme
   exports com.lowewriter.scenesswitcher;
   exports com.lowewriter.clickcounteralert;
   exports com.lowewriter.clickcounterexit;
+  exports com.lowewriter.layoutpane_samples;
 
   exports com.triphan.stageandscene;
+
 
 }

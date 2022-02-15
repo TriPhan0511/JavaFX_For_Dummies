@@ -24,4 +24,36 @@ public class Employee
   {
     this.age = age;
   }
+
+  @Override
+  public String toString()
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Name: ");
+    builder.append(name);
+    builder.append(" - Age: ");
+    builder.append(age);
+    return builder.toString();
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
