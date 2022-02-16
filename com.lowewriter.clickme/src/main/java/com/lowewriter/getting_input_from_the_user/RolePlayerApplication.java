@@ -1,4 +1,4 @@
-package com.triphan.pizzaorder;
+package com.lowewriter.getting_input_from_the_user;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public class PizzaOrderApplication extends Application
+public class RolePlayerApplication extends Application
 {
   public static void main(String[] args)
   {
@@ -19,15 +18,32 @@ public class PizzaOrderApplication extends Application
   @Override
   public void start(Stage stage) throws IOException
   {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("pizza-order-view.fxml"));
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("role-player-view.fxml"));
     Parent root = loader.load();
+    Scene scene = new Scene(root);
 
 //    Finish
-    Scene scene = new Scene(root);
     stage.setScene(scene);
-    stage.setTitle("Pizza Order");
-    stage.setMinWidth(500);
-    stage.setMaxWidth(800);
+    stage.setTitle("Role Player");
     stage.show();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

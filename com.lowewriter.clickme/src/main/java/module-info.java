@@ -1,6 +1,7 @@
 module com.lowewriter.clickme
 {
   requires javafx.controls;
+  requires javafx.fxml;
 
   exports com.lowewriter.clickme;
   exports com.lowewriter.clickcounter;
@@ -17,5 +18,16 @@ module com.lowewriter.clickme
 
   exports com.triphan.stageandscene;
 
+  opens com.triphan.pizzaorder to javafx.fxml;
+  exports com.triphan.pizzaorder;
+
+  opens com.lowewriter.getting_input_from_the_user to javafx.fxml;
+  exports com.lowewriter.getting_input_from_the_user;
+
+  opens com.lowewriter.getting_input_from_the_user.player to javafx.fxml;
+  exports com.lowewriter.getting_input_from_the_user.player;
+
+  opens com.lowewriter.validating_numeric_data to javafx.fxml;
+  exports com.lowewriter.validating_numeric_data;
 
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lowewriter.validating_numeric_data.ValidatingNumericDataController">
+   <children>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="10.0">
+         <children>
+            <Label fx:id="nameErrorLabel" textFill="#cd1414" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="-20.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" spacing="10.0">
+         <children>
+            <Label alignment="BOTTOM_RIGHT" minWidth="100.0" text="Name" />
+            <TextField fx:id="nameTextField" maxWidth="200.0" minWidth="200.0" promptText="Enter your name here." />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="10.0">
+         <children>
+            <Label fx:id="ageErrorLabel" textFill="#cd1414" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="-20.0" top="-20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0">
+         <children>
+            <Label alignment="BOTTOM_RIGHT" minWidth="100.0" text="Age" />
+            <TextField fx:id="ageTextField" maxWidth="200.0" minWidth="200.0" promptText="Enter your age here." />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="72.0" spacing="10.0">
+         <children>
+            <Label fx:id="dateOfBirthErrorLabel" textFill="#cd1414" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="-20.0" top="-20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="99.0" spacing="10.0">
+         <children>
+            <Label alignment="BOTTOM_RIGHT" minWidth="100.0" text="Date Of Birth" />
+            <TextField fx:id="dateOfBirthTextField" maxWidth="200.0" minWidth="200.0" promptText="yyyy-mm-dd" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="65.0" spacing="10.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <Button minWidth="75.0" mnemonicParsing="false" onAction="#okButton_Click" text="OK" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
