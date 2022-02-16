@@ -1,10 +1,14 @@
-package com.lowewriter.getting_input_from_the_user;
+package com.lowewriter.getting_input_from_the_user.textfield_sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+
+/**
+ * This sample demonstrates how to use TextField
+ */
 public class RolePlayerController
 {
   @FXML

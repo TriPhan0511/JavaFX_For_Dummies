@@ -1,4 +1,4 @@
-package com.lowewriter.getting_input_from_the_user;
+package com.lowewriter.getting_input_from_the_user.textfield_sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This sample demonstrates how to use TextField
+ */
 public class RolePlayerApplication extends Application
 {
   public static void main(String[] args)

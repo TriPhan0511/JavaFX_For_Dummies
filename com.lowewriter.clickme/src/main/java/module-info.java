@@ -21,13 +21,16 @@ module com.lowewriter.clickme
   opens com.triphan.pizzaorder to javafx.fxml;
   exports com.triphan.pizzaorder;
 
-  opens com.lowewriter.getting_input_from_the_user to javafx.fxml;
-  exports com.lowewriter.getting_input_from_the_user;
-
-  opens com.lowewriter.getting_input_from_the_user.player to javafx.fxml;
-  exports com.lowewriter.getting_input_from_the_user.player;
-
   opens com.lowewriter.validating_numeric_data to javafx.fxml;
   exports com.lowewriter.validating_numeric_data;
+
+  opens com.lowewriter.getting_input_from_the_user.textfield_sample to javafx.fxml;
+  exports com.lowewriter.getting_input_from_the_user.textfield_sample;
+
+  opens com.lowewriter.getting_input_from_the_user.checkboxes_sample to javafx.fxml;
+  exports com.lowewriter.getting_input_from_the_user.checkboxes_sample;
+
+  opens com.lowewriter.getting_input_from_the_user.radiobuttons_sample to javafx.fxml;
+  exports com.lowewriter.getting_input_from_the_user.radiobuttons_sample;
 
 }
