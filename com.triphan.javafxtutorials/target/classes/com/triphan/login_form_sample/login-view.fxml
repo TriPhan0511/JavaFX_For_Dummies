@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: #ECECE7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triphan.login_form_sample.LoginController">
+   <left>
+      <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="407.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/year2020.jpg" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="130.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lock_login.png" />
+               </image></ImageView>
+            <Label layoutX="14.0" layoutY="105.0" text="Username">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameTextField" layoutX="88.0" layoutY="102.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter the username here." />
+            <Label layoutX="14.0" layoutY="151.0" text="Password">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField layoutX="88.0" layoutY="148.0" prefHeight="26.0" prefWidth="173.0" />
+            <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="148.0" onAction="#cancelButton_Click" prefHeight="26.0" prefWidth="173.0" promptText="Enter the password here." />
+            <Button fx:id="loginButton" layoutX="14.0" layoutY="234.0" mnemonicParsing="false" onAction="#loginButton_Click" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #E96151;" text="Login" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="12.0" layoutY="273.0" mnemonicParsing="false" onAction="#cancelButton_Click" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #E96151;" text="Cancel" textFill="WHITE" />
+            <Label alignment="CENTER" layoutX="5.0" layoutY="204.0" prefHeight="19.0" prefWidth="261.0" text="Invalid login. Please try again." textFill="#fc0f0f">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </right>
+</BorderPane>
