@@ -39,4 +39,7 @@ module com.lowewriter.clickme
   opens com.lowewriter.choosing_from_a_list.combobox_samples to javafx.fxml;
   exports com.lowewriter.choosing_from_a_list.combobox_samples;
 
+  opens com.lowewriter.choosing_from_a_list.listview_samples to javafx.fxml;
+  exports com.lowewriter.choosing_from_a_list.listview_samples;
+
 }
