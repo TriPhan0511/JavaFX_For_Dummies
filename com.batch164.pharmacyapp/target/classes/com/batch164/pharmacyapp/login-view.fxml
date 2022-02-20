@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.LoginController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <left>
+            <AnchorPane prefHeight="400.0" prefWidth="280.0" style="-fx-background-color: #e96151;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" layoutX="31.0" layoutY="117.0" prefHeight="17.0" prefWidth="225.0" text="Get Well" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="24.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="30.0" layoutY="158.0" prefHeight="17.0" prefWidth="225.0" text="Pharmacy" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="22.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+                  <Line endX="82.33332824707031" layoutX="144.0" layoutY="152.0" startX="-69.66667175292969" stroke="WHITE" strokeWidth="2.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Line>
+                  <Circle fill="#ff1f1f00" layoutX="146.0" layoutY="151.0" radius="100.0" stroke="#ccc0c03c" strokeType="INSIDE" />
+                  <Circle fill="#e2e6e9" layoutX="72.0" layoutY="87.0" radius="15.0" stroke="#928d8d" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="308.0" prefHeight="17.0" prefWidth="248.0" text="Developed by Batch 164 - Aptech Danang." textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="400.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="51.0" prefHeight="26.0" prefWidth="288.0" text="Secure Login">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="26.0" layoutY="127.0" prefHeight="20.0" prefWidth="58.0" text="ID">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="175.0" text="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idTextField" layoutX="105.0" layoutY="125.0" prefHeight="25.0" prefWidth="192.0" promptText="Enter the username here.">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="passwordField" layoutX="105.0" layoutY="172.0" prefHeight="25.0" prefWidth="192.0" promptText="Enter the password here.">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
+                  <Button fx:id="loginButton" alignment="CENTER" layoutX="26.0" layoutY="232.0" mnemonicParsing="false" onAction="#loginButton_Click" prefHeight="31.0" prefWidth="274.0" style="-fx-background-color: #e96151;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="cancelButton" alignment="CENTER" layoutX="26.0" layoutY="281.0" mnemonicParsing="false" onAction="#cancelButton_Click" prefHeight="31.0" prefWidth="275.0" style="-fx-background-color: #e96151;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Label fx:id="errorMessageLabel" alignment="CENTER" layoutX="19.0" layoutY="91.0" prefHeight="17.0" prefWidth="279.0" textFill="#e94545" />
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</VBox>

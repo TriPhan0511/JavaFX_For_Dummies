@@ -33,4 +33,10 @@ module com.lowewriter.clickme
   opens com.lowewriter.getting_input_from_the_user.radiobuttons_sample to javafx.fxml;
   exports com.lowewriter.getting_input_from_the_user.radiobuttons_sample;
 
+  opens com.lowewriter.choosing_from_a_list.choicebox_samples to javafx.fxml;
+  exports com.lowewriter.choosing_from_a_list.choicebox_samples;
+
+  opens com.lowewriter.choosing_from_a_list.combobox_samples to javafx.fxml;
+  exports com.lowewriter.choosing_from_a_list.combobox_samples;
+
 }
