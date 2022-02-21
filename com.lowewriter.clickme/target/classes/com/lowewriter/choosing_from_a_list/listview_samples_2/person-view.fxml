@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triphan.master_detail_views_sample.FXMLController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lowewriter.choosing_from_a_list.listview_samples_2.PersonController">
    <children>
       <SplitPane dividerPositions="0.45484949832775917" prefHeight="400.0" prefWidth="600.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ListView fx:id="listView" prefHeight="398.0" prefWidth="269.0" />
+                  <ListView fx:id="personListView" prefHeight="398.0" prefWidth="269.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -34,6 +34,7 @@
                       <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="254.0" minHeight="10.0" prefHeight="241.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER_RIGHT" layoutX="52.0" layoutY="28.0" text="Last" GridPane.rowIndex="1" />
@@ -42,11 +43,16 @@
                         <TextField fx:id="lastnameTextField" layoutX="85.0" layoutY="24.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label alignment="CENTER_RIGHT" layoutX="54.0" layoutY="76.0" text="Notes" GridPane.rowIndex="2" />
                         <TextArea fx:id="notesTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="New" />
-                              <Button layoutX="261.0" layoutY="16.0" mnemonicParsing="false" text="Update" />
-                              <Button fx:id="removeButton" layoutX="261.0" layoutY="16.0" mnemonicParsing="false" onAction="#removeButtonAction" text="Delete" />
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButton_Click" prefHeight="25.0" prefWidth="58.0" text="Add" />
+                              <Button fx:id="updateButton" layoutX="261.0" layoutY="16.0" mnemonicParsing="false" onAction="#updateButton_Click" text="Update" />
+                              <Button fx:id="removeButton" layoutX="261.0" layoutY="16.0" mnemonicParsing="false" onAction="#removeButton_Click" text="Delete" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Label fx:id="errorMessageLabel" textFill="#cd1515" />
                            </children>
                         </HBox>
                      </children>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="429.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lowewriter.working_with_tables.ReadOnlyTableController">
+   <children>
+      <TableView fx:id="movieTable" layoutX="14.0" layoutY="71.0" prefHeight="353.0" prefWidth="664.0">
+        <columns>
+          <TableColumn fx:id="titleColumn" minWidth="300.0" prefWidth="442.0" text="Title" />
+          <TableColumn fx:id="yearColumn" minWidth="100.0" prefWidth="112.0" text="Year" />
+            <TableColumn fx:id="priceColumn" minWidth="100.0" prefWidth="109.0" text="Price" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="96.0" layoutY="24.0" prefHeight="23.0" prefWidth="533.0" text="Movie Inventory">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -42,4 +42,10 @@ module com.lowewriter.clickme
   opens com.lowewriter.choosing_from_a_list.listview_samples to javafx.fxml;
   exports com.lowewriter.choosing_from_a_list.listview_samples;
 
+  opens com.triphan.master_detail_views_sample to javafx.fxml;
+  exports com.triphan.master_detail_views_sample;
+
+  opens com.lowewriter.choosing_from_a_list.listview_samples_2 to javafx.fxml;
+  exports com.lowewriter.choosing_from_a_list.listview_samples_2;
+
 }
