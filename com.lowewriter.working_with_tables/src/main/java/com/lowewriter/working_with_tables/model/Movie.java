@@ -49,4 +49,12 @@ public class Movie
   {
     this.price = price;
   }
+
+  @Override
+  public String toString()
+  {
+    return title + " - "
+        + Integer.toString(year) + " - "
+        + Double.toString(price);
+  }
 }

@@ -1,67 +1,24 @@
-package com.batch164.pharmacyapp;
+package com.batch164.pharmacyapp.utils.dao;
 
-import com.batch164.pharmacyapp.databasehandler.DatabaseHandler;
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.model.GenderType;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class LoginController
+public class LoginDAO
 {
-  @FXML
-  private TextField idTextField;
-  @FXML
-  private PasswordField passwordField;
-  @FXML
-  private Button loginButton;
-  @FXML
-  private Button cancelButton;
-  @FXML
-  private Label errorMessageLabel;
-
-  @FXML
-  private void loginButton_Click()
-  {
-    if (idTextField.getText().isBlank()
-        || passwordField.getText().isBlank())
-    {
-      errorMessageLabel.setText("Please enter id and password.");
-    }
-    else
-    {
-      Employee employee = login(
-          idTextField.getText().trim(),
-          passwordField.getText().trim());
-      if (employee == null)
-      {
-        errorMessageLabel.setText("Login failed. Please try again.");
-      }
-      else
-      {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, employee.toString());
-        alert.show();
-        errorMessageLabel.setText("");
-        idTextField.setText("");
-        passwordField.setText("");
-      }
-    }
-
-  }
-
-  @FXML
-  private void cancelButton_Click(ActionEvent event)
-  {
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.close();
-  }
-
-  private Employee login(String username, String password)
+  /**
+   * Get all information of an employee then
+   * create an Employee object and return that object.
+   * @param id A string represents the employee's id.
+   * @param password A string represents the employee's password.
+   * @return An Employee object.
+   */
+  public static Employee login(String id, String password)
   {
     Employee tempEmployee = null;
     String tempID;
@@ -73,10 +30,10 @@ public class LoginController
     String tempPhoneNumber;
     String tempAddress;
     String sql = "{ call usp_Login(?,?) }";
-    try (Connection connection = DatabaseHandler.getConnection();
+    try (Connection connection = DatabaseConnection.getConnection();
          CallableStatement statement = connection.prepareCall(sql))
     {
-      statement.setString(1, username);
+      statement.setString(1, id);
       statement.setString(2, password);
       try (ResultSet resultSet = statement.executeQuery())
       {
@@ -114,35 +71,3 @@ public class LoginController
     return tempEmployee;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
