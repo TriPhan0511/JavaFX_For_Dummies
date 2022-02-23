@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TextFieldValidation
 {
@@ -64,7 +65,7 @@ public class TextFieldValidation
   }
 
 //  Check whether content of a text field is a LocalDate object
-  public boolean isDate(
+  public static boolean isDate(
       TextField textField,
       Label errorMessageLabel,
       String errorMessage)
@@ -80,6 +81,51 @@ public class TextFieldValidation
       return false;
     }
   }
+
+////  Check whether content of a text field is a valid ID
+//  public static boolean isValidID(
+//      TextField textField,
+//      Label errorMessageLabel,
+//      String errorMessage)
+//  {
+////    TODO
+//    return true;
+//  }
+
+  //  Check whether content of a text field is an existed email or not
+  public static boolean isExistedEmail(
+      TextField textField,
+      Label errorMessageLabel,
+      String errorMessage,
+      ArrayList<String> existedEmails)
+  {
+    if (Validation.isExistedEmail(textField.getText().trim(), existedEmails))
+    {
+      errorMessageLabel.setText(errorMessage);
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
+//  Check whether content of a text field is a valid email or not
+public static boolean isValidEmail(
+    TextField textField,
+    Label errorMessageLabel,
+    String errorMessage)
+{
+  if (!Validation.isValidEmail(textField.getText().trim()))
+  {
+    errorMessageLabel.setText(errorMessage);
+    return false;
+  }
+  else
+  {
+    return true;
+  }
+}
 }
 
 

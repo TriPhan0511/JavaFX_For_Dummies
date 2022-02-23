@@ -44,12 +44,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="_Exit" textFill="WHITE">
+            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="saveButton" layoutX="1133.0" layoutY="4.0" onAction="#saveButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #44d61c;" text="Save" textFill="WHITE">
+            <Button fx:id="saveButton" layoutX="1133.0" layoutY="4.0" mnemonicParsing="false" onAction="#saveButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #44d61c;" text="Save" textFill="WHITE">
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
                </font>
@@ -141,16 +141,16 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="535.0" prefWidth="956.0">
                      <children>
-                        <TableView fx:id="customerTableView" layoutX="14.0" layoutY="73.0" prefHeight="450.0" prefWidth="920.0">
+                        <TableView fx:id="customerTableView" editable="true" layoutX="14.0" layoutY="73.0" prefHeight="450.0" prefWidth="920.0">
                           <columns>
                             <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="firstNameColumn" prefWidth="94.0" text="First Name" />
-                              <TableColumn fx:id="lastNameColumn" prefWidth="131.0" text="Last Name" />
+                            <TableColumn fx:id="firstNameColumn" onEditCommit="#firstNameColumn_OnEditCommit" prefWidth="94.0" text="First Name" />
+                              <TableColumn fx:id="lastNameColumn" onEditCommit="#lastNameColumn_OnEditCommit" prefWidth="131.0" text="Last Name" />
                               <TableColumn fx:id="genderColumn" prefWidth="65.0" text="Gender" />
-                              <TableColumn fx:id="emailColumn" prefWidth="132.0" text="Email" />
-                              <TableColumn fx:id="phoneNumberColumn" prefWidth="117.0" text="Phone Number" />
-                              <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="204.0" text="Address" />
-                              <TableColumn fx:id="zipCodeColumn" minWidth="0.0" prefWidth="99.0" text="Zip Code" />
+                              <TableColumn fx:id="emailColumn" onEditCommit="#emailColumn_OnEditCommit" prefWidth="132.0" text="Email" />
+                              <TableColumn fx:id="phoneNumberColumn" onEditCommit="#phoneNumberNameColumn_OnEditCommit" prefWidth="117.0" text="Phone Number" />
+                              <TableColumn fx:id="addressColumn" minWidth="0.0" onEditCommit="#addressNameColumn_OnEditCommit" prefWidth="204.0" text="Address" />
+                              <TableColumn fx:id="zipCodeColumn" minWidth="0.0" onEditCommit="#zipCodeNameColumn_OnEditCommit" prefWidth="99.0" text="Zip Code" />
                           </columns>
                         </TableView>
                         <Button fx:id="deleteButton" layoutX="910.0" layoutY="23.0" maxHeight="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#deleteButton_Click" style="-fx-background-color: #d61c54;" text="Delete" textFill="WHITE">
@@ -158,6 +158,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
+                        <Button fx:id="showButton" layoutX="679.0" layoutY="550.0" mnemonicParsing="false" onAction="#showButton_Click" prefHeight="55.0" prefWidth="296.0" text="Show the Customer table's data (for testing purpose)" />
                      </children>
                   </AnchorPane>
               </items>

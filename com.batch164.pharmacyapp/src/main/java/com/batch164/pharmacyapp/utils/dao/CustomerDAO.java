@@ -34,9 +34,9 @@ public class CustomerDAO
     {
       while (result.next())
       {
-        tempID = result.getString("customer_id");
-        tempFirstName = result.getString("first_name");
-        tempLastName = result.getString("last_name");
+        tempID = result.getString("customer_id").trim();
+        tempFirstName = result.getString("first_name").trim();
+        tempLastName = result.getString("last_name").trim();
         tempGenderString = result.getString("gender");
         if (tempGenderString.equalsIgnoreCase("m"))
         {
@@ -46,10 +46,10 @@ public class CustomerDAO
         {
           tempGenderType = GenderType.FEMALE;
         }
-        tempEmail = result.getString("email");
-        tempPhoneNumber = result.getString("phone_number");
-        tempAddress = result.getString("address");
-        tempZipCode = result.getString("zip_code");
+        tempEmail = result.getString("email").trim();
+        tempPhoneNumber = result.getString("phone_number").trim();
+        tempAddress = result.getString("address").trim();
+        tempZipCode = result.getString("zip_code").trim();
         tempCustomer = new Customer(tempID, tempFirstName,
             tempLastName, tempGenderType, tempEmail,
             tempPhoneNumber, tempAddress, tempZipCode);

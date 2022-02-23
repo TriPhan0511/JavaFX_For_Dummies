@@ -4,24 +4,29 @@ import com.batch164.pharmacyapp.model.Customer;
 import com.batch164.pharmacyapp.model.GenderType;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
+import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
+import com.batch164.pharmacyapp.utils.validation.Validation;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable
 {
 
-  //  Common  fields and methods
+//  ------- Belows are the common fields and methods for every scene ----------
   @FXML
   private Button exitButton;
   @FXML
@@ -57,9 +62,9 @@ public class CustomerController implements Initializable
         getScene().getWindow();
     stage.close();
   }
-//  -------------------------------------------------------------------------------------------------------
 
-//  Individual fields and methods
+//  ------- Belows are the individual fields and methods for customer scene ----------
+
 //  Buttons
   @FXML
   Button saveButton;
@@ -127,6 +132,26 @@ public class CustomerController implements Initializable
   @FXML
   TableColumn<Customer, String> zipCodeColumn;
 
+//  ------------------------------------------------------------------------
+
+  //  Testing (will be deleted in the production phase)
+  @FXML
+  Button showButton;
+
+  @FXML
+  private void showButton_Click()
+  {
+    for (Customer item : customerTableView.getItems())
+    {
+      System.out.println(item);
+    }
+    System.out.println();
+  }
+
+//  ------------------------------------------------------------------------
+
+//  Override the initialize method which
+//  will be called after the constructor calling.
   @Override
   public void initialize(URL url,
          ResourceBundle resourceBundle)
@@ -140,25 +165,48 @@ public class CustomerController implements Initializable
 
 //    Set properties from the table's collection to the columns.
 //    And create text fields in table columns (for editing purpose)
+
+//    Note: The ID property should not be changed.
     idColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("id"));
+
     firstNameColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("firstName"));
+    firstNameColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
+
     lastNameColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("lastName"));
+    lastNameColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
+
     genderColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("gender"));
+
     emailColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("email"));
+    emailColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
+
     phoneNumberColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("phoneNumber"));
+    phoneNumberColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
+
     addressColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("address"));
+    addressColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
+
     zipCodeColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("zipCode"));
+    zipCodeColumn.setCellFactory(
+        TextFieldTableCell.forTableColumn());
   }
 
-//  Action Event Handler of the save button
+//  ----------------- Belows are Event handlers -----------------------------
+
+//  Action Event handler of the save button
   @FXML
   private void saveButton_Click()
   {
@@ -168,7 +216,7 @@ public class CustomerController implements Initializable
     alert.show();
   }
 
-//  Action Event Handler of the add button and the text fields
+//  Action Event handler of the add button and the text fields
   @FXML
   private void addButton_Click()
   {
@@ -192,7 +240,7 @@ public class CustomerController implements Initializable
     }
   }
 
-//  Action Event Handler of the delete button
+//  Action Event handler of the delete button
   @FXML
   private void deleteButton_Click()
   {
@@ -222,6 +270,63 @@ public class CustomerController implements Initializable
       }
     }
   }
+
+  @FXML
+  private void firstNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setFirstName(cellEditEvent.getNewValue());
+  }
+
+  @FXML
+  private void lastNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setLastName(cellEditEvent.getNewValue());
+  }
+
+  @FXML
+  private void emailColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setEmail(cellEditEvent.getNewValue());
+  }
+
+  @FXML
+  private void phoneNumberNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setPhoneNumber(cellEditEvent.getNewValue());
+  }
+
+  @FXML
+  private void addressNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setAddress(cellEditEvent.getNewValue());
+  }
+
+  @FXML
+  private void zipCodeNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setZipCode(cellEditEvent.getNewValue());
+  }
+
+
+//  ----------------- Belows are helper methods -----------------------------
 
 //  This method create a Customer object from user's input
   private Customer createACustomer(
@@ -281,12 +386,37 @@ public class CustomerController implements Initializable
       lastNameErrorLabel.setText("");
     }
 
-//    Validate the email text field
-    if (!TextFieldValidation.isBlank(emailTextField,
-        emailErrorLabel, blankErrorMessage))
+//    Validate the email text field:
+//    Get existing email addresses
+    ArrayList<String> existingEmails = new ArrayList<>();
+    for (Customer item : customerTableView.getItems())
+    {
+      existingEmails.add(item.getEmail());
+    }
+//    Validate
+//    if (Validation.isValidEmail(emailTextField.getText().trim()))
+//    {
+//      emailErrorLabel.setText("");
+//    }
+//    else
+//    {
+//      emailErrorLabel.setText("Oh oh");
+//    }
+
+//    if (EmailTextFieldValidation.isValidEmailTextField(emailTextField,
+//        emailErrorLabel, "Invalid email"))
+//    {
+//      emailErrorLabel.setText("");
+//    }
+
+
+
+    if (EmailTextFieldValidation.validate(emailTextField,
+        emailErrorLabel, existingEmails))
     {
       emailErrorLabel.setText("");
     }
+
 
 //    Validate the phone number text field
     if (!TextFieldValidation.isBlank(phoneNumberTextField,

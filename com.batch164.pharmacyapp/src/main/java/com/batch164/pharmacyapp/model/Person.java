@@ -141,6 +141,7 @@ public class Person
     builder.append(email);
     builder.append("-");
     builder.append(phoneNumber);
+    builder.append("-");
     builder.append(address);
     return builder.toString();
   }
