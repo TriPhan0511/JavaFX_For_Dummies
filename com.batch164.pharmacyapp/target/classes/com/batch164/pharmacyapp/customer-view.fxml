@@ -77,19 +77,19 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idTextField" layoutX="106.0" layoutY="70.0" prefHeight="25.0" prefWidth="68.0" />
+                        <TextField fx:id="idTextField" layoutX="106.0" layoutY="70.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="68.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="135.0" prefWidth="80.0" text="First name">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstNameTextField" layoutX="106.0" layoutY="131.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="firstNameTextField" layoutX="106.0" layoutY="131.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="201.0" prefWidth="80.0" text="Last name">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lastNameTextField" layoutX="102.0" layoutY="197.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="lastNameTextField" layoutX="102.0" layoutY="197.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="259.0" prefWidth="80.0" text="Gender">
                            <font>
                               <Font name="Arial" size="12.0" />
@@ -106,37 +106,37 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailTextField" layoutX="109.0" layoutY="319.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="emailTextField" layoutX="109.0" layoutY="319.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="386.0" prefWidth="80.0" text="Phone number">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="phoneNumberTextField" layoutX="110.0" layoutY="382.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="phoneNumberTextField" layoutX="110.0" layoutY="382.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="450.0" prefWidth="80.0" text="Address">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addressTextField" layoutX="111.0" layoutY="446.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="addressTextField" layoutX="111.0" layoutY="446.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="516.0" prefWidth="80.0" text="Zip code">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="zipCodeTextField" layoutX="111.0" layoutY="512.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="zipCodeTextField" layoutX="111.0" layoutY="512.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Button fx:id="addButton" layoutX="231.0" layoutY="557.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#addButton_Click" style="-fx-background-color: #297ed9;" text="Add" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Label fx:id="idErrorLabel" layoutX="105.0" layoutY="42.0" text="Error" />
-                        <Label fx:id="firstNameErrorLabel" layoutX="107.0" layoutY="106.0" text="Error" />
-                        <Label fx:id="lastNameErrorLabel" layoutX="103.0" layoutY="173.0" text="Error" />
-                        <Label fx:id="emailErrorLabel" layoutX="110.0" layoutY="294.0" text="Error" />
-                        <Label fx:id="phoneNumberErrorLabel" layoutX="111.0" layoutY="357.0" text="Error" />
-                        <Label fx:id="addressErrorLabel" layoutX="112.0" layoutY="421.0" text="Error" />
-                        <Label fx:id="zipCodeErrorLabel" layoutX="112.0" layoutY="487.0" text="Error" />
+                        <Label fx:id="idErrorLabel" layoutX="105.0" layoutY="42.0" textFill="#e15f42" />
+                        <Label fx:id="firstNameErrorLabel" layoutX="107.0" layoutY="106.0" textFill="#e15f42" />
+                        <Label fx:id="lastNameErrorLabel" layoutX="103.0" layoutY="173.0" textFill="#e15f42" />
+                        <Label fx:id="emailErrorLabel" layoutX="110.0" layoutY="294.0" textFill="#e15f42" />
+                        <Label fx:id="phoneNumberErrorLabel" layoutX="111.0" layoutY="357.0" textFill="#e15f42" />
+                        <Label fx:id="addressErrorLabel" layoutX="112.0" layoutY="421.0" textFill="#e15f42" />
+                        <Label fx:id="zipCodeErrorLabel" layoutX="112.0" layoutY="487.0" textFill="#e15f42" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="535.0" prefWidth="956.0">

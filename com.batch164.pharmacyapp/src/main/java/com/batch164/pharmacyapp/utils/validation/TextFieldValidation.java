@@ -9,8 +9,11 @@ import java.time.LocalDate;
 public class TextFieldValidation
 {
   //  Check whether a text field is blank or not
-  public boolean isBlank(TextField textField,
-            Label errorMessageLabel, String errorMessage)
+  public static boolean isBlank(
+      TextField textField,
+      Label errorMessageLabel,
+      String errorMessage)
+
   {
     if (textField.getText().isBlank())
     {
@@ -24,8 +27,11 @@ public class TextFieldValidation
   }
 
   //  Check whether content of a text field is an integer or not
-  public boolean isInteger(TextField textField,
-            Label errorMessageLabel, String errorMessage)
+  public static boolean isInteger(
+      TextField textField,
+      Label errorMessageLabel,
+      String errorMessage)
+
   {
     try
     {
@@ -40,8 +46,10 @@ public class TextFieldValidation
   }
 
   //  Check whether content of a text field is a double or not
-  public boolean isDouble(TextField textField,
-            Label errorMessageLabel, String errorMessage)
+  public static boolean isDouble(
+      TextField textField,
+      Label errorMessageLabel,
+      String errorMessage)
   {
     try
     {
@@ -56,9 +64,10 @@ public class TextFieldValidation
   }
 
 //  Check whether content of a text field is a LocalDate object
-
-  public boolean isDate(TextField textField,
-            Label errorMessageLabel, String errorMessage)
+  public boolean isDate(
+      TextField textField,
+      Label errorMessageLabel,
+      String errorMessage)
   {
     try
     {
