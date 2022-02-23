@@ -21,11 +21,12 @@ public class PharmacyApplication extends Application
   {
     try
     {
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("login-view.fxml"));
-
 //      FXMLLoader loader = new FXMLLoader(
-//          getClass().getResource("customer-view.fxml"));
+//          getClass().getResource("login-view.fxml"));
+
+      FXMLLoader loader = new FXMLLoader(
+          getClass().getResource("customer-view.fxml"));
+
       Parent root = loader.load();
       Scene scene = new Scene(root);
 
@@ -33,10 +34,10 @@ public class PharmacyApplication extends Application
       primaryStage.setScene(scene);
 
 //      Fix the dimension of the primary stage
-      primaryStage.setMinWidth(1000);
-      primaryStage.setMaxWidth(1000);
-      primaryStage.setMinHeight(700);
-      primaryStage.setMaxHeight(700);
+      primaryStage.setMinWidth(1350);
+      primaryStage.setMaxWidth(1350);
+      primaryStage.setMinHeight(800);
+      primaryStage.setMaxHeight(800);
 
       primaryStage.initStyle(StageStyle.UNDECORATED);
       primaryStage.show();
