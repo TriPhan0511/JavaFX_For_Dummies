@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="622.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.CustomerAddingController">
+   <children>
+      <Label layoutX="91.0" layoutY="27.0" text="Customer Information" textFill="#0773b8">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="84.0" prefWidth="80.0" text="ID">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idTextField" layoutX="116.0" layoutY="80.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="68.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="145.0" prefWidth="80.0" text="First name">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstNameTextField" layoutX="116.0" layoutY="141.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="211.0" prefWidth="80.0" text="Last name">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lastNameTextField" layoutX="112.0" layoutY="207.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="26.0" layoutY="269.0" prefWidth="80.0" text="Gender">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="maleRadioButton" layoutX="122.0" layoutY="269.0" mnemonicParsing="false" selected="true" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="genderToggleGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="femaleRadioButton" layoutX="196.0" layoutY="269.0" mnemonicParsing="false" text="Female" toggleGroup="$genderToggleGroup" />
+      <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="333.0" prefWidth="80.0" text="Email">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailTextField" layoutX="119.0" layoutY="329.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="29.0" layoutY="396.0" prefWidth="80.0" text="Phone number">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="phoneNumberTextField" layoutX="120.0" layoutY="392.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="460.0" prefWidth="80.0" text="Address">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="addressTextField" layoutX="121.0" layoutY="456.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="526.0" prefWidth="80.0" text="Zip code">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="zipCodeTextField" layoutX="121.0" layoutY="522.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+      <Button fx:id="addButton" layoutX="241.0" layoutY="567.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#addButton_Click" style="-fx-background-color: #297ed9;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="idErrorLabel" layoutX="115.0" layoutY="52.0" textFill="#e15f42" />
+      <Label fx:id="firstNameErrorLabel" layoutX="117.0" layoutY="116.0" textFill="#e15f42" />
+      <Label fx:id="lastNameErrorLabel" layoutX="113.0" layoutY="183.0" textFill="#e15f42" />
+      <Label fx:id="emailErrorLabel" layoutX="120.0" layoutY="304.0" textFill="#e15f42" />
+      <Label fx:id="phoneNumberErrorLabel" layoutX="121.0" layoutY="367.0" textFill="#e15f42" />
+      <Label fx:id="addressErrorLabel" layoutX="122.0" layoutY="431.0" textFill="#e15f42" />
+      <Label fx:id="zipCodeErrorLabel" layoutX="122.0" layoutY="497.0" textFill="#e15f42" />
+   </children>
+</AnchorPane>

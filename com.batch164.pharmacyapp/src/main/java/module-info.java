@@ -5,8 +5,6 @@ module com.batch164.pharmacyapp {
 
   opens com.batch164.pharmacyapp to javafx.fxml;
   exports com.batch164.pharmacyapp;
-  exports com.batch164.pharmacyapp.controller;
-  opens com.batch164.pharmacyapp.controller to javafx.fxml;
 
   opens com.batch164.pharmacyapp.model to javafx.base;
 

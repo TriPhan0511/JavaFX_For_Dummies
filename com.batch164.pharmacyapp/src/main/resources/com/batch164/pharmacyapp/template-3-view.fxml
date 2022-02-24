@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.CustomerController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #e96151;">
+         <children>
+            <Label layoutX="28.0" layoutY="5.0" prefHeight="62.0" prefWidth="267.0" text="Get Well Pharmacy" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="welcomeLabel" layoutX="663.0" layoutY="24.0" text="Welcome,  &lt;name of the employee&gt;!" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="logoutButton" layoutX="1030.0" layoutY="18.0" mnemonicParsing="false" onAction="#logoutButton_Click" style="-fx-background-color: #e96151;" text="Log out" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="profileButton" layoutX="955.0" layoutY="18.0" mnemonicParsing="false" onAction="#profileButton_Click" style="-fx-background-color: #e96151;" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveButton" layoutX="1133.0" layoutY="4.0" mnemonicParsing="false" onAction="#saveButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #44d61c;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="70.0" prefHeight="729.0" prefWidth="1350.0" />
+   </children>
+</AnchorPane>

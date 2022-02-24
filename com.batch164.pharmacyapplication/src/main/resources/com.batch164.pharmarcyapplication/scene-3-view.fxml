@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="498.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.Scene3Controller">
+   <children>
+      <Button fx:id="goToScene4" layoutX="408.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToScene4_Click" text="Go to scene 4">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <ListView fx:id="listView3" layoutX="14.0" layoutY="152.0" prefHeight="316.0" prefWidth="246.0" />
+      <Label layoutX="94.0" layoutY="122.0" text="listView3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="414.0" layoutY="122.0" text="tableView3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView3" layoutX="300.0" layoutY="152.0" prefHeight="325.0" prefWidth="403.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="62.0" text="ID" />
+          <TableColumn fx:id="firstNameColumn" minWidth="0.0" prefWidth="172.0" text="First Name" />
+            <TableColumn fx:id="lastNameColumn" minWidth="0.0" prefWidth="172.0" text="Last Name" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -6,19 +6,19 @@ import java.util.regex.Pattern;
 
 public class Validation
 {
-
 //  Check whether an email exists or not
-  public static boolean isExistedEmail(String email, ArrayList<String> existedEmails)
+public static boolean isExistedItem(
+    String itemNeedToCheck, ArrayList<String> existedItems)
+{
+  for (String item : existedItems)
   {
-    for (String item : existedEmails)
+    if (item.equalsIgnoreCase(itemNeedToCheck))
     {
-      if (item.equalsIgnoreCase(email))
-      {
-        return true;
-      }
+      return true;
     }
-    return false;
   }
+  return false;
+}
 
   //  Check whether an email is valid or not
   public static boolean isValidEmail(String email)
@@ -32,18 +32,25 @@ public class Validation
     }
     return false;
   }
-
-
-//  public static boolean isValidEmail(String email)
-//  {
-//    String pattern = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)$";
-//    if (email.matches(pattern))
-//    {
-//      return true;
-//    }
-//    else
-//    {
-//      return false;
-//    }
-//  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

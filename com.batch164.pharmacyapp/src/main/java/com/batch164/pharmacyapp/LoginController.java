@@ -1,4 +1,4 @@
-package com.batch164.pharmacyapp.controller;
+package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;

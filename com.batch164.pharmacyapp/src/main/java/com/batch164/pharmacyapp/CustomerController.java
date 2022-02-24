@@ -1,3 +1,4 @@
+
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Customer;
@@ -5,19 +6,24 @@ import com.batch164.pharmacyapp.model.GenderType;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
 import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
+import com.batch164.pharmacyapp.utils.validation.IDTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.Validation;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -112,7 +118,7 @@ public class CustomerController implements Initializable
 
   //  Tableview
   @FXML
-  TableView<Customer> customerTableView;
+  private TableView<Customer> customerTableView;
 
   //  Table Columns
   @FXML
@@ -131,24 +137,6 @@ public class CustomerController implements Initializable
   TableColumn<Customer, String> addressColumn;
   @FXML
   TableColumn<Customer, String> zipCodeColumn;
-
-//  ------------------------------------------------------------------------
-
-  //  Testing (will be deleted in the production phase)
-  @FXML
-  Button showButton;
-
-  @FXML
-  private void showButton_Click()
-  {
-    for (Customer item : customerTableView.getItems())
-    {
-      System.out.println(item);
-    }
-    System.out.println();
-  }
-
-//  ------------------------------------------------------------------------
 
 //  Override the initialize method which
 //  will be called after the constructor calling.
@@ -220,19 +208,20 @@ public class CustomerController implements Initializable
   @FXML
   private void addButton_Click()
   {
+//    First, validate all the text fields
     if (isValidTextFields())
     {
-//      Create a Customer object from user's input
+//      Next, create a Customer object from user's input
       Customer tempCustomer = createACustomer(
           idTextField, firstNameTextField,
           lastNameTextField, maleRadioButton,
           femaleRadioButton, emailTextField,
           phoneNumberTextField, addressTextField,
           zipCodeTextField);
-//      Add the newly created Customer object to
+//      Then, add the newly created Customer object to
 //      the customer table's collection list.
       customerTableView.getItems().add(tempCustomer);
-//      Clear all the text fields
+//      Finally, clear all the text fields
       TextFieldHandler.clearTextFields(idTextField,
           firstNameTextField, lastNameTextField,
           emailTextField, phoneNumberTextField,
@@ -365,21 +354,31 @@ public class CustomerController implements Initializable
   {
     String blankErrorMessage = " This field is required.";
 
-//    Validate the id text field
-    if (!TextFieldValidation.isBlank(idTextField,
-        idErrorLabel, blankErrorMessage))
+//    Validate the id text field:
+//    Get the existing IDs
+    ArrayList<String> existedIDs = new ArrayList<>();
+    for (Customer item : customerTableView.getItems())
+    {
+      existedIDs.add(item.getId());
+    }
+//    Validate
+    if (IDTextFieldValidation.validate(
+        idTextField,
+        idErrorLabel,
+        existedIDs
+    ))
     {
       idErrorLabel.setText("");
     }
 
-//    Validate the first name text field
+//    Validate the first name text field:
     if (!TextFieldValidation.isBlank(firstNameTextField,
         firstNameErrorLabel, blankErrorMessage))
     {
       firstNameErrorLabel.setText("");
     }
 
-//    Validate the last name text field
+//    Validate the last name text field:
     if (!TextFieldValidation.isBlank(lastNameTextField,
         lastNameErrorLabel, blankErrorMessage))
     {
@@ -387,30 +386,13 @@ public class CustomerController implements Initializable
     }
 
 //    Validate the email text field:
-//    Get existing email addresses
+//    Get the existing email addresses
     ArrayList<String> existingEmails = new ArrayList<>();
     for (Customer item : customerTableView.getItems())
     {
       existingEmails.add(item.getEmail());
     }
 //    Validate
-//    if (Validation.isValidEmail(emailTextField.getText().trim()))
-//    {
-//      emailErrorLabel.setText("");
-//    }
-//    else
-//    {
-//      emailErrorLabel.setText("Oh oh");
-//    }
-
-//    if (EmailTextFieldValidation.isValidEmailTextField(emailTextField,
-//        emailErrorLabel, "Invalid email"))
-//    {
-//      emailErrorLabel.setText("");
-//    }
-
-
-
     if (EmailTextFieldValidation.validate(emailTextField,
         emailErrorLabel, existingEmails))
     {
@@ -418,7 +400,7 @@ public class CustomerController implements Initializable
     }
 
 
-//    Validate the phone number text field
+//    Validate the phone number text field:
     if (!TextFieldValidation.isBlank(phoneNumberTextField,
         phoneNumberErrorLabel, blankErrorMessage)
         && TextFieldValidation.isInteger(phoneNumberTextField,
@@ -427,14 +409,14 @@ public class CustomerController implements Initializable
       phoneNumberErrorLabel.setText("");
     }
 
-//    Validate the address text field
+//    Validate the address text field:
     if (!TextFieldValidation.isBlank(addressTextField,
         addressErrorLabel, blankErrorMessage))
     {
       addressErrorLabel.setText("");
     }
 
-//    Validate the zip code text field
+//    Validate the zip code text field:
     if (!TextFieldValidation.isBlank(zipCodeTextField,
         zipCodeErrorLabel, blankErrorMessage))
     {

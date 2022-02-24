@@ -48,22 +48,19 @@ public class EmailTextFieldValidation
     return false;
   }
 
+//  -------------- Below are helper methods ---------------------------
   private static boolean isExistedEmailTextField(
       TextField emailTextField,
       Label emailErrorLabel,
       String errorMessage,
       ArrayList<String> existedEmails)
   {
-
-    if (Validation.isExistedEmail(emailTextField.getText().trim(), existedEmails))
+    if (Validation.isExistedItem(emailTextField.getText().trim(), existedEmails))
     {
       emailErrorLabel.setText(errorMessage);
       return true;
     }
-    else
-    {
-      return false;
-    }
+    return false;
   }
 
   private static boolean isValidEmailTextField(
@@ -81,24 +78,4 @@ public class EmailTextFieldValidation
       return false;
     }
   }
-
-//  private static boolean isValidEmailTextField(
-//      TextField emailTextField,
-//      Label emailErrorLabel,
-//      String errorMessage)
-//  {
-//    if (!Validation.isValidEmail(emailTextField.getText().trim()))
-//    {
-////      Testing
-//      System.out.println("HERE");
-//      emailErrorLabel.setText(errorMessage);
-//      return false;
-//    }
-//    else
-//    {
-////      tESTING
-//      System.out.println("HERE 2");
-//      return true;
-//    }
-//  }
 }

@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.LoginController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1000.0" style="-fx-background-color: #e96151;">
+      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #e96151;">
          <children>
             <Label layoutX="28.0" layoutY="5.0" prefHeight="62.0" prefWidth="267.0" text="Get Well Pharmacy" textFill="WHITE">
                <font>
@@ -24,21 +24,21 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="welcomeLabel" layoutX="372.0" layoutY="22.0" text="Welcome to Get Well Pharmacy!" textFill="WHITE">
+            <Label fx:id="welcomeLabel" layoutX="663.0" layoutY="24.0" text="Welcome, guest! Please login to the system." textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="exitButton" layoutX="908.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="86.0" text="_Exit" textFill="#0b1e54">
+            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Arial Bold Italic" size="24.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="68.0" prefHeight="632.0" prefWidth="1000.0">
+      <AnchorPane layoutY="70.0" prefHeight="729.0" prefWidth="1350.0">
          <children>
-            <BorderPane layoutX="200.0" layoutY="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <BorderPane layoutX="375.0" layoutY="165.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
                <left>
                   <AnchorPane prefHeight="400.0" prefWidth="280.0" style="-fx-background-color: #e96151;" BorderPane.alignment="CENTER">
                      <children>

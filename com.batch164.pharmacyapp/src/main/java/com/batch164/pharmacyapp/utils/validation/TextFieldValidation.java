@@ -12,16 +12,15 @@ public class TextFieldValidation
   //  Check whether a text field is blank or not
   public static boolean isBlank(
       TextField textField,
-      Label errorMessageLabel,
+      Label errorLabel,
       String errorMessage)
 
   {
     if (textField.getText().isBlank())
     {
-      errorMessageLabel.setText(errorMessage);
+      errorLabel.setText(errorMessage);
       return true;
-    }
-    else
+    } else
     {
       return false;
     }
@@ -30,7 +29,7 @@ public class TextFieldValidation
   //  Check whether content of a text field is an integer or not
   public static boolean isInteger(
       TextField textField,
-      Label errorMessageLabel,
+      Label errorLabel,
       String errorMessage)
 
   {
@@ -38,10 +37,9 @@ public class TextFieldValidation
     {
       Integer.parseInt(textField.getText().trim());
       return true;
-    }
-    catch (NumberFormatException e)
+    } catch (NumberFormatException e)
     {
-      errorMessageLabel.setText(errorMessage);
+      errorLabel.setText(errorMessage);
       return false;
     }
   }
@@ -56,28 +54,26 @@ public class TextFieldValidation
     {
       Double.parseDouble(textField.getText().trim());
       return true;
-    }
-    catch (NumberFormatException e)
+    } catch (NumberFormatException e)
     {
       errorMessageLabel.setText(errorMessage);
       return false;
     }
   }
 
-//  Check whether content of a text field is a LocalDate object
+  //  Check whether content of a text field is a LocalDate object
   public static boolean isDate(
       TextField textField,
-      Label errorMessageLabel,
+      Label errorLabel,
       String errorMessage)
   {
     try
     {
       LocalDate.parse(textField.getText().trim());
       return true;
-    }
-    catch (DateTimeException e)
+    } catch (DateTimeException e)
     {
-      errorMessageLabel.setText(errorMessage);
+      errorLabel.setText(errorMessage);
       return false;
     }
   }
@@ -95,37 +91,52 @@ public class TextFieldValidation
   //  Check whether content of a text field is an existed email or not
   public static boolean isExistedEmail(
       TextField textField,
-      Label errorMessageLabel,
+      Label errorLabel,
       String errorMessage,
       ArrayList<String> existedEmails)
   {
-    if (Validation.isExistedEmail(textField.getText().trim(), existedEmails))
+    if (Validation.isExistedItem(textField.getText().trim(), existedEmails))
     {
-      errorMessageLabel.setText(errorMessage);
+      errorLabel.setText(errorMessage);
       return false;
-    }
-    else
+    } else
     {
       return true;
     }
   }
 
-//  Check whether content of a text field is a valid email or not
-public static boolean isValidEmail(
-    TextField textField,
-    Label errorMessageLabel,
-    String errorMessage)
-{
-  if (!Validation.isValidEmail(textField.getText().trim()))
+  //  Check whether content of a text field is a valid email or not
+  public static boolean isValidEmail(
+      TextField textField,
+      Label errorLabel,
+      String errorMessage)
   {
-    errorMessageLabel.setText(errorMessage);
+    if (!Validation.isValidEmail(textField.getText().trim()))
+    {
+      errorLabel.setText(errorMessage);
+      return false;
+    } else
+    {
+      return true;
+    }
+  }
+
+//  Check whether size of content of a text field
+//  is longer than a specific number or not
+  public static boolean isTooLong(
+      TextField textField,
+      Label errorLabel,
+      String errorMessage,
+      int limitSize
+  )
+  {
+    if (textField.getText().trim().length() > limitSize)
+    {
+      errorLabel.setText(errorMessage);
+      return true;
+    }
     return false;
   }
-  else
-  {
-    return true;
-  }
-}
 }
 
 

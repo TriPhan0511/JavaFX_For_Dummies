@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.CustomerController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #e96151;">
+         <children>
+            <Label layoutX="28.0" layoutY="5.0" prefHeight="62.0" prefWidth="267.0" text="Get Well Pharmacy" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="welcomeLabel" layoutX="663.0" layoutY="24.0" text="Welcome,  &lt;name of the employee&gt;!" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="logoutButton" layoutX="1030.0" layoutY="18.0" mnemonicParsing="false" onAction="#logoutButton_Click" style="-fx-background-color: #e96151;" text="Log out" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="profileButton" layoutX="955.0" layoutY="18.0" mnemonicParsing="false" onAction="#profileButton_Click" style="-fx-background-color: #e96151;" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveButton" layoutX="1133.0" layoutY="4.0" mnemonicParsing="false" onAction="#saveButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #44d61c;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="70.0" prefHeight="725.0" prefWidth="1350.0">
+         <children>
+            <Label layoutX="466.0" layoutY="24.0" prefHeight="30.0" prefWidth="418.0" text="Manage Customer (Create, Update, Delete)" textFill="#e96151">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <SplitPane dividerPositions="0.26409495548961426" layoutY="74.0" prefHeight="622.0" prefWidth="1350.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="81.0" layoutY="17.0" text="Customer Information" textFill="#0773b8">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="74.0" prefWidth="80.0" text="ID">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="idTextField" layoutX="106.0" layoutY="70.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="68.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="135.0" prefWidth="80.0" text="First name">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="firstNameTextField" layoutX="106.0" layoutY="131.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="201.0" prefWidth="80.0" text="Last name">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="lastNameTextField" layoutX="102.0" layoutY="197.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="259.0" prefWidth="80.0" text="Gender">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="maleRadioButton" layoutX="112.0" layoutY="259.0" mnemonicParsing="false" selected="true" text="Male">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="genderToggleGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="femaleRadioButton" layoutX="186.0" layoutY="259.0" mnemonicParsing="false" text="Female" toggleGroup="$genderToggleGroup" />
+                        <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="323.0" prefWidth="80.0" text="Email">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="emailTextField" layoutX="109.0" layoutY="319.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="386.0" prefWidth="80.0" text="Phone number">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="phoneNumberTextField" layoutX="110.0" layoutY="382.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="450.0" prefWidth="80.0" text="Address">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="addressTextField" layoutX="111.0" layoutY="446.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="516.0" prefWidth="80.0" text="Zip code">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="zipCodeTextField" layoutX="111.0" layoutY="512.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <Button fx:id="addButton" layoutX="231.0" layoutY="557.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#addButton_Click" style="-fx-background-color: #297ed9;" text="Add" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="idErrorLabel" layoutX="105.0" layoutY="42.0" textFill="#e15f42" />
+                        <Label fx:id="firstNameErrorLabel" layoutX="107.0" layoutY="106.0" textFill="#e15f42" />
+                        <Label fx:id="lastNameErrorLabel" layoutX="103.0" layoutY="173.0" textFill="#e15f42" />
+                        <Label fx:id="emailErrorLabel" layoutX="110.0" layoutY="294.0" textFill="#e15f42" />
+                        <Label fx:id="phoneNumberErrorLabel" layoutX="111.0" layoutY="357.0" textFill="#e15f42" />
+                        <Label fx:id="addressErrorLabel" layoutX="112.0" layoutY="421.0" textFill="#e15f42" />
+                        <Label fx:id="zipCodeErrorLabel" layoutX="112.0" layoutY="487.0" textFill="#e15f42" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="535.0" prefWidth="956.0">
+                     <children>
+                        <TableView fx:id="customerTableView" editable="true" layoutX="14.0" layoutY="73.0" prefHeight="450.0" prefWidth="920.0">
+                          <columns>
+                            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="firstNameColumn" onEditCommit="#firstNameColumn_OnEditCommit" prefWidth="94.0" text="First Name" />
+                              <TableColumn fx:id="lastNameColumn" onEditCommit="#lastNameColumn_OnEditCommit" prefWidth="131.0" text="Last Name" />
+                              <TableColumn fx:id="genderColumn" prefWidth="65.0" text="Gender" />
+                              <TableColumn fx:id="emailColumn" onEditCommit="#emailColumn_OnEditCommit" prefWidth="132.0" text="Email" />
+                              <TableColumn fx:id="phoneNumberColumn" onEditCommit="#phoneNumberNameColumn_OnEditCommit" prefWidth="117.0" text="Phone Number" />
+                              <TableColumn fx:id="addressColumn" minWidth="0.0" onEditCommit="#addressNameColumn_OnEditCommit" prefWidth="204.0" text="Address" />
+                              <TableColumn fx:id="zipCodeColumn" minWidth="0.0" onEditCommit="#zipCodeNameColumn_OnEditCommit" prefWidth="99.0" text="Zip Code" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="deleteButton" layoutX="910.0" layoutY="23.0" maxHeight="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#deleteButton_Click" style="-fx-background-color: #d61c54;" text="Delete" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="showButton" layoutX="679.0" layoutY="550.0" mnemonicParsing="false" onAction="#showButton_Click" prefHeight="55.0" prefWidth="296.0" text="Show the Customer table's data (for testing purpose)" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
