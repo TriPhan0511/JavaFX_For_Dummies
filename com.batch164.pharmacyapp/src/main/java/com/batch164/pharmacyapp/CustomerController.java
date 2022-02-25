@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -138,6 +139,9 @@ public class CustomerController implements Initializable
   @FXML
   TableColumn<Customer, String> zipCodeColumn;
 
+  //  Database connection (Not initialize yet)
+  Connection connection;
+
 //  Override the initialize method which
 //  will be called after the constructor calling.
   @Override
@@ -145,7 +149,7 @@ public class CustomerController implements Initializable
          ResourceBundle resourceBundle)
   {
 //    Set data for the customer TableView
-    customerTableView.setItems(CustomerDAO.getCustomers());
+    customerTableView.setItems(CustomerDAO.getCustomers(connection));
 
 //    Set Multiple Selection Mode for the customer TableView
     customerTableView.getSelectionModel().
@@ -361,7 +365,7 @@ public class CustomerController implements Initializable
     {
       existedIDs.add(item.getId());
     }
-//    Validate
+//    Check if the ID exists
     if (IDTextFieldValidation.validate(
         idTextField,
         idErrorLabel,

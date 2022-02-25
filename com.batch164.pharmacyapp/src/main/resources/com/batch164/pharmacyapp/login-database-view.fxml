@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.LoginDatabaseController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #e96151;">
+         <children>
+            <Label layoutX="28.0" layoutY="5.0" prefHeight="62.0" prefWidth="267.0" text="Get Well Pharmacy" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="welcomeLabel" layoutX="663.0" layoutY="24.0" text="Welcome, guest! Please login to the database." textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutY="70.0" prefHeight="729.0" prefWidth="1350.0">
+         <children>
+            <BorderPane layoutX="147.0" layoutY="39.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="984.0">
+               <left>
+                  <AnchorPane prefHeight="584.0" prefWidth="431.0" style="-fx-background-color: #339933;" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="99.0" layoutY="56.0" prefHeight="227.0" prefWidth="233.0">
+                           <children>
+                              <Circle fill="#5ed179" layoutX="117.0" layoutY="114.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+                              <Line endX="74.0" layoutX="136.0" layoutY="122.0" startX="-109.0" stroke="WHITE" strokeWidth="2.0" />
+                              <Label layoutX="35.0" layoutY="123.0" prefHeight="37.0" prefWidth="175.0" text="Get Well Pharmacy" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="62.0" fitWidth="65.0" layoutX="87.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <VBox layoutX="65.0" layoutY="330.0" spacing="10.0">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Address" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="911 Nguyen Chi Thanh street" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Phone No" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="0236.488.026" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Website" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="https://www.getwellpharmacy.com" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Email" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="getwell@gmail.com" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox layoutX="80.0" layoutY="510.0">
+                           <children>
+                              <Label text="Developed by Batch 164 - Aptech Danang." textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="584.0" prefWidth="553.0" style="-fx-background-color: #ebeff5;" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefWidth="554.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/database_login.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="520.0" text="First step: Database Login. " textFill="#ddd5d5">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="27.0" layoutY="130.0" prefHeight="26.0" prefWidth="520.0" text="Please enter your username and password." textFill="#ddd5d5">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="85.0" layoutY="202.0" spacing="10.0">
+                           <children>
+                              <HBox>
+                                 <VBox.margin>
+                                    <Insets bottom="-10.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label fx:id="errorMessageLabel" alignment="CENTER" prefHeight="29.0" prefWidth="372.0" textFill="#e94545" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefWidth="382.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Username">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="userNameTextField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" promptText="Enter the username here.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefWidth="382.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" minWidth="75.0" text="Password">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" />
+                                 </children>
+                              </HBox>
+                              <VBox spacing="15.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButton_Click" prefHeight="31.0" prefWidth="385.0" style="-fx-background-color: #e96151;" text="Login" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#resetButton_Click" prefHeight="31.0" prefWidth="385.0" style="-fx-background-color: #e96151;" text="Reset" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </right>
+            </BorderPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

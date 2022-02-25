@@ -17,14 +17,12 @@ public class DatabaseConnection
    * @throws SQLException
    * @throws IOException
    */
-  public static Connection getConnection()
+  public static Connection getConnection(String user, String password)
       throws SQLException, IOException
   {
     Properties props = new Properties();
     String drivers;
     String url;
-    String user;
-    String password;
 
     try (InputStream in = Files.newInputStream(Paths.get("database.properties")))
     {
@@ -43,4 +41,37 @@ public class DatabaseConnection
 
     return DriverManager.getConnection(url, user, password);
   }
+
+//  /**
+//   * Gets a connection from the properties specified in the file database.properties.
+//   * @return The database connection.
+//   * @throws SQLException
+//   * @throws IOException
+//   */
+//  public static Connection getConnection()
+//      throws SQLException, IOException
+//  {
+//    Properties props = new Properties();
+//    String drivers;
+//    String url;
+//    String user;
+//    String password;
+//
+//    try (InputStream in = Files.newInputStream(Paths.get("database.properties")))
+//    {
+//      props.load(in);
+//    }
+//
+//    drivers = props.getProperty("jdbc.drivers");
+//    if (drivers != null)
+//    {
+//      System.setProperty("jdbc.drivers", drivers);
+//    }
+//
+//    url = props.getProperty("jdbc.url");
+//    user = props.getProperty("jdbc.user");
+//    password = props.getProperty("jdbc.password");
+//
+//    return DriverManager.getConnection(url, user, password);
+//  }
 }

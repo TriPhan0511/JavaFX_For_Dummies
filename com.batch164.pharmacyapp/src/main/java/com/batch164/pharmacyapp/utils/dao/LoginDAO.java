@@ -14,11 +14,12 @@ public class LoginDAO
   /**
    * Get all information of an employee then
    * create an Employee object and return that object.
+   * @param connection A database connection.
    * @param id A string represents the employee's id.
    * @param password A string represents the employee's password.
    * @return An Employee object.
    */
-  public static Employee login(String id, String password)
+  public static Employee login(Connection connection, String id, String password)
   {
     Employee tempEmployee = null;
     String tempID;
@@ -30,8 +31,7 @@ public class LoginDAO
     String tempPhoneNumber;
     String tempAddress;
     String sql = "{ call usp_Login(?,?) }";
-    try (Connection connection = DatabaseConnection.getConnection();
-         CallableStatement statement = connection.prepareCall(sql))
+    try (CallableStatement statement = connection.prepareCall(sql))
     {
       statement.setString(1, id);
       statement.setString(2, password);
@@ -61,10 +61,6 @@ public class LoginDAO
       }
     }
     catch (SQLException e)
-    {
-      e.printStackTrace();
-    }
-    catch (IOException e)
     {
       e.printStackTrace();
     }
