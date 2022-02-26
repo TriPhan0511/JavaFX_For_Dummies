@@ -39,6 +39,7 @@ public class PharmacyApplication extends Application
 //      Set scene for the primary stage
       primaryStage.setScene(scene);
 
+
 //      Fix the dimension of the primary stage
       primaryStage.setMinWidth(1350);
       primaryStage.setMaxWidth(1350);

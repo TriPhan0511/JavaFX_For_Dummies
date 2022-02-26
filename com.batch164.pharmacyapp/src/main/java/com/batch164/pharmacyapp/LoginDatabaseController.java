@@ -3,6 +3,7 @@ package com.batch164.pharmacyapp;
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
+import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
@@ -61,10 +62,11 @@ public class LoginDatabaseController
       try
       {
         connection = DatabaseConnection.getConnection(
-            databaseUserName, databasePassword);
+                      databaseUserName, databasePassword);
       } catch (SQLException e)
       {
-        e.printStackTrace();
+//        e.printStackTrace();
+        System.out.println("Failure connection.");
       }
       if (connection != null) // Go to the "login-system-view" scene
       {
@@ -84,6 +86,7 @@ public class LoginDatabaseController
       else
       {
         errorMessageLabel.setText("Login failed. Please try again.");
+        passwordField.setText("");
       }
     }
   }

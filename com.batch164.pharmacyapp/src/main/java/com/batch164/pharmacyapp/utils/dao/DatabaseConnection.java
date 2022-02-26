@@ -14,8 +14,8 @@ public class DatabaseConnection
   /**
    * Gets a connection from the properties specified in the file database.properties.
    * @return The database connection.
-   * @throws SQLException
-   * @throws IOException
+   * @throws SQLException Throws an exception which type is SQLException.
+   * @throws IOException Throws an exception which type is IOException.
    */
   public static Connection getConnection(String user, String password)
       throws SQLException, IOException
@@ -29,49 +29,14 @@ public class DatabaseConnection
       props.load(in);
     }
 
+//    Get drivers and url from the file database.properties
     drivers = props.getProperty("jdbc.drivers");
     if (drivers != null)
     {
       System.setProperty("jdbc.drivers", drivers);
     }
-
     url = props.getProperty("jdbc.url");
-    user = props.getProperty("jdbc.user");
-    password = props.getProperty("jdbc.password");
 
     return DriverManager.getConnection(url, user, password);
   }
-
-//  /**
-//   * Gets a connection from the properties specified in the file database.properties.
-//   * @return The database connection.
-//   * @throws SQLException
-//   * @throws IOException
-//   */
-//  public static Connection getConnection()
-//      throws SQLException, IOException
-//  {
-//    Properties props = new Properties();
-//    String drivers;
-//    String url;
-//    String user;
-//    String password;
-//
-//    try (InputStream in = Files.newInputStream(Paths.get("database.properties")))
-//    {
-//      props.load(in);
-//    }
-//
-//    drivers = props.getProperty("jdbc.drivers");
-//    if (drivers != null)
-//    {
-//      System.setProperty("jdbc.drivers", drivers);
-//    }
-//
-//    url = props.getProperty("jdbc.url");
-//    user = props.getProperty("jdbc.user");
-//    password = props.getProperty("jdbc.password");
-//
-//    return DriverManager.getConnection(url, user, password);
-//  }
 }

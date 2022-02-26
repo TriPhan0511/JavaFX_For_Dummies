@@ -4,11 +4,11 @@ import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
+import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +16,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
-import java.util.ResourceBundle;
 
 public class LoginSystemController
 {
@@ -78,7 +76,8 @@ public class LoginSystemController
     }
     else
     {
-//      Get supervisorID of the current employee.
+//      Get supervisorID of the current employee,
+//      then indicate which next scene we will go to:
 //      1. If the supervisorID is null, it means the current employee is a manager,
 //          so we go to the  "manager-view" scene.
 
@@ -91,8 +90,6 @@ public class LoginSystemController
 //          2.2 If the supervisor ID of the current employee's supervisor is not null,
 //              it means the current employee is a staff,
 //              so we go to the "staff-view" scene.
-
-
       FXMLLoader loader;
       Parent root;
       String tempSupervisorID =
@@ -100,12 +97,14 @@ public class LoginSystemController
       if (tempSupervisorID == null)
       {
 //        Go to the "manager-view" scene
-        loader = new FXMLLoader(
-            getClass().getResource("manager-view.fxml"));
-        root = loader.load();
-        Scene managerScene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(managerScene);
+        SceneHandler.switchScene("manager-view.fxml", event);
+
+//        loader = new FXMLLoader(
+//            getClass().getResource("manager-view.fxml"));
+//        root = loader.load();
+//        Scene managerScene = new Scene(root);
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.setScene(managerScene);
       }
       else
       {
@@ -114,22 +113,26 @@ public class LoginSystemController
         if (tempHigherSupervisorID == null)
         {
 //          Go to the "supervisor-view" scene
-          loader = new FXMLLoader(
-              getClass().getResource("supervisor-view.fxml"));
-          root = loader.load();
-          Scene supervisorScene = new Scene(root);
-          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          stage.setScene(supervisorScene);
+          SceneHandler.switchScene("supervisor-view.fxml", event);
+
+//          loader = new FXMLLoader(
+//              getClass().getResource("supervisor-view.fxml"));
+//          root = loader.load();
+//          Scene supervisorScene = new Scene(root);
+//          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//          stage.setScene(supervisorScene);
         }
         else
         {
 //          Go to the "staff-view" scene
-          loader = new FXMLLoader(
-              getClass().getResource("staff-view.fxml"));
-          root = loader.load();
-          Scene staffScene = new Scene(root);
-          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          stage.setScene(staffScene);
+          SceneHandler.switchScene("staff-view.fxml", event);
+
+//          loader = new FXMLLoader(
+//              getClass().getResource("staff-view.fxml"));
+//          root = loader.load();
+//          Scene staffScene = new Scene(root);
+//          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//          stage.setScene(staffScene);
         }
       }
     }
