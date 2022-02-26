@@ -202,7 +202,7 @@
                                     <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" />
                                  </children>
                               </HBox>
-                              <VBox spacing="10.0">
+                              <VBox spacing="15.0">
                                  <children>
                                     <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButton_Click" prefHeight="31.0" prefWidth="385.0" style="-fx-background-color: #e96151;" text="Login" textFill="WHITE">
                                        <font>
@@ -215,6 +215,9 @@
                                        </font>
                                     </Button>
                                  </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </VBox>

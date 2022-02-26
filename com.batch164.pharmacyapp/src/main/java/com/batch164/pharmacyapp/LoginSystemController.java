@@ -2,6 +2,7 @@ package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
+import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
@@ -44,8 +45,9 @@ public class LoginSystemController
   private Label errorMessageLabel;
 
   //  Database Connection
-  Connection connection;
-
+  private Connection connection;
+//  The below method will be called in LoginDatabaseController
+//  to set database connection for the connection class field.
   public void setConnection(Connection connection)
   {
     this.connection = connection;
@@ -59,20 +61,80 @@ public class LoginSystemController
       String tempID = idTextField.getText().trim();
       String tempPassword = passwordField.getText().trim();
       Employee tempEmployee = LoginDAO.login(connection, tempID, tempPassword);
-      if (tempEmployee == null)
+      goToNextScene(tempEmployee, event, errorMessageLabel, passwordField);
+    }
+  }
+
+  //  Helper method
+  private void goToNextScene(Employee tempEmployee,
+                             ActionEvent event,
+                             Label errorMessageLabel,
+                             PasswordField passwordField) throws IOException
+  {
+    if (tempEmployee == null)
+    {
+      errorMessageLabel.setText("Login failed. Please try again.");
+      passwordField.setText("");
+    }
+    else
+    {
+//      Get supervisorID of the current employee.
+//      1. If the supervisorID is null, it means the current employee is a manager,
+//          so we go to the  "manager-view" scene.
+
+//      2. If the supervisorID is not null,
+//          we continue get supervisorID of the current employee's supervisor.
+//          And we have two cases:
+//          2.1 If the supervisorID of the current employee's supervisor is null,
+//              it means the current employee is a supervisor,
+//              so we go to the "supervisor-view" scene.
+//          2.2 If the supervisor ID of the current employee's supervisor is not null,
+//              it means the current employee is a staff,
+//              so we go to the "staff-view" scene.
+
+
+      FXMLLoader loader;
+      Parent root;
+      String tempSupervisorID =
+          EmployeeDAO.getSupervisorID(connection, tempEmployee.getId());
+      if (tempSupervisorID == null)
       {
-        errorMessageLabel.setText("Login failed. Please try again.");
-        passwordField.setText("");
-      } else // Should go to another scene base on tempEmployee
+//        Go to the "manager-view" scene
+        loader = new FXMLLoader(
+            getClass().getResource("manager-view.fxml"));
+        root = loader.load();
+        Scene managerScene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(managerScene);
+      }
+      else
       {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, tempEmployee.toString());
-        alert.show();
-        errorMessageLabel.setText("");
-        idTextField.setText("");
-        passwordField.setText("");
+        String tempHigherSupervisorID =
+            EmployeeDAO.getSupervisorID(connection, tempSupervisorID);
+        if (tempHigherSupervisorID == null)
+        {
+//          Go to the "supervisor-view" scene
+          loader = new FXMLLoader(
+              getClass().getResource("supervisor-view.fxml"));
+          root = loader.load();
+          Scene supervisorScene = new Scene(root);
+          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+          stage.setScene(supervisorScene);
+        }
+        else
+        {
+//          Go to the "staff-view" scene
+          loader = new FXMLLoader(
+              getClass().getResource("staff-view.fxml"));
+          root = loader.load();
+          Scene staffScene = new Scene(root);
+          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+          stage.setScene(staffScene);
+        }
       }
     }
   }
+
   @FXML
   private void resetButton_Click(ActionEvent event)
   {

@@ -30,6 +30,9 @@ public class LoginDAO
     String tempEmail;
     String tempPhoneNumber;
     String tempAddress;
+    String tempStoreID;
+    String tempSupervisorID = null;
+    Employee tempSupervisor = null;
     String sql = "{ call usp_Login(?,?) }";
     try (CallableStatement statement = connection.prepareCall(sql))
     {
@@ -39,9 +42,9 @@ public class LoginDAO
       {
         while (resultSet.next())
         {
-          tempID = resultSet.getString("employee_id");
-          tempFirstName = resultSet.getString("first_name");
-          tempLastName = resultSet.getString("last_name");
+          tempID = resultSet.getString("employee_id").trim();
+          tempFirstName = resultSet.getString("first_name").trim();
+          tempLastName = resultSet.getString("last_name").trim();
           tempGenderString = resultSet.getString("gender");
           if (tempGenderString.equalsIgnoreCase("m"))
           {
@@ -51,9 +54,12 @@ public class LoginDAO
           {
             tempGenderType = GenderType.FEMALE;
           }
-          tempEmail = resultSet.getString("email");
-          tempPhoneNumber = resultSet.getString("phone_number");
-          tempAddress = resultSet.getString("address");
+          tempEmail = resultSet.getString("email").trim();
+          tempPhoneNumber = resultSet.getString("phone_number").trim();
+          tempAddress = resultSet.getString("address").trim();
+          tempStoreID = resultSet.getString("store_id").trim();
+          tempSupervisorID = resultSet.getString("supervisor_id");
+
           tempEmployee = new Employee(tempID, tempFirstName,
               tempLastName, tempGenderType,
               tempEmail, tempPhoneNumber, tempAddress);
@@ -62,7 +68,10 @@ public class LoginDAO
     }
     catch (SQLException e)
     {
-      e.printStackTrace();
+      for (Throwable t : e)
+      {
+        t.printStackTrace();
+      }
     }
     return tempEmployee;
   }
