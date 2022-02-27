@@ -5,19 +5,16 @@ import com.batch164.pharmacyapp.model.Customer;
 import com.batch164.pharmacyapp.model.GenderType;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
+import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.IDTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
-import com.batch164.pharmacyapp.utils.validation.Validation;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -26,7 +23,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -138,9 +137,61 @@ public class CustomerController implements Initializable
   TableColumn<Customer, String> addressColumn;
   @FXML
   TableColumn<Customer, String> zipCodeColumn;
+//  ------------------------------------------------------------
 
-  //  Database connection (Not initialize yet)
-  Connection connection;
+  //  Class fields
+  private Connection connection;
+  //  Class methods
+//  The below method will be called at LoginDatabaseController (NOT YET)
+//  to set database connection for the connection class field.
+  public void setConnection(Connection connection)
+  {
+    this.connection = connection;
+  }
+
+////  Declare a temporary list to contain newly added customer
+//  ObservableList<Customer> addedObservableList = FXCollections.observableArrayList();
+
+  //  Declare a list to contain all employee from "customer" table in database
+  List<Customer> originalListOfCustomers = new ArrayList<>();
+
+  //  Declare a list to contain all employee's id from "customer" table in the database
+  List<String> originalListOfIDs = new ArrayList<>();
+
+  //  Declare a list to contain all employee's ids of the employee who be deleted.
+  List<String> deletedListOfIDs = new ArrayList<>();
+
+  //  Declare a list to contain all employees who be deleted.
+  List<Customer> deletedListOfEmployees = new ArrayList<>();
+//  -------------------------------------------------------------------------
+
+  //  Helper method
+//  private boolean isExisted(Customer item, List<Customer> originalListOfCustomers)
+//  {
+//    if (originalListOfCustomers.contains(item))
+//    {
+//      return true;
+//    }
+//    return false;
+//  }
+
+  private boolean isExisted(String id, List<String> originalListOfIDs)
+  {
+    if (originalListOfIDs.contains(id))
+    {
+      return true;
+    }
+    return false;
+  }
+
+//  private boolean isExisted(Customer item, List<String> originalListOfIDs)
+//  {
+//    if (originalListOfIDs.contains(item.getId()))
+//    {
+//      return true;
+//    }
+//    return false;
+//  }
 
 //  Override the initialize method which
 //  will be called after the constructor calling.
@@ -148,6 +199,37 @@ public class CustomerController implements Initializable
   public void initialize(URL url,
          ResourceBundle resourceBundle)
   {
+//    Temporary connection
+//    (Because I can not get connection from StaffController)
+    try
+    {
+      connection = DatabaseConnection.getConnection2();
+    }
+    catch (SQLException e)
+    {
+      for (Throwable t : e)
+      {
+        t.printStackTrace();
+      }
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+
+//    Get records from "customer" table in the database and add them to the
+    for (Customer item : CustomerDAO.getCustomers(connection))
+    {
+      originalListOfCustomers.add(item);
+    }
+
+//    Get all of employee's ids from "customer" table in the database and add them to the
+    for (Customer item : CustomerDAO.getCustomers(connection))
+    {
+      originalListOfIDs.add(item.getId());
+    }
+
+//    Customer TableView
 //    Set data for the customer TableView
     customerTableView.setItems(CustomerDAO.getCustomers(connection));
 
@@ -202,13 +284,84 @@ public class CustomerController implements Initializable
   @FXML
   private void saveButton_Click()
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
+////    Way 1:
+////    Delete all records in the "customer" table in the database
+////    Then add new records from the customer tableview to the "customer" table in the database
+//    CustomerDAO.deleteAllRecordsInCustomerTable(connection);
+//    CustomerDAO.saveCustomersToDatabase(customerTableView.getItems(), connection);
+
+////    Way 2:
+////    Check each item in the customer table's collection list:
+////      1. If the item's id exists in the originalListOfIDs:
+////          Update the item to the "customer" table
+////      2. If the item's id does not exist in the originalListOfIDs:
+////          Insert the item to the "customer" table
+//    for (Customer item : customerTableView.getItems())
+//    {
+//      if (isExisted(item.getId(), originalListOfIDs))
+//      {
+//        CustomerDAO.updateEmployee(item, connection);
+//      }
+//      else
+//      {
+//        CustomerDAO.insertACustomerToDatabase(item, connection);
+//      }
+//    }
+
+//    Way 3:
+//    1. Check each item's id in deletedListOfIDs:
+//      If it does not exist in the customer table's collection list:
+//        Delete the item from the "customer" table in the database.
+//    2. Check each item in the customer table's collection list:
+//      2.1 If the item's id exists in the originalListOfIDs:
+//            Update the item to the "customer" table.
+//      2.2 If the item's id does not exist in the originalListOfIDs:
+//            Insert the item to the "customer" table.
+
+//    Step 1:
+//    Get list of IDs in the table's collection list
+    List<String> idsInTable = new ArrayList<>();
+    for (Customer item : customerTableView.getItems())
+    {
+      idsInTable.add(item.getId());
+    }
+
+//    Check
+    for (String id : deletedListOfIDs)
+    {
+      if (!isExisted(id, idsInTable))
+      {
+        CustomerDAO.deleteACustomerBasedOnID(id, connection);
+      }
+    }
+
+//    Step 2:
+    for (Customer item : customerTableView.getItems())
+    {
+      if (isExisted(item.getId(), originalListOfIDs))
+      {
+        System.out.println("existed");
+        CustomerDAO.updateEmployee(item, connection);
+      }
+      else
+      {
+        System.out.println("NOT existed");
+        CustomerDAO.insertACustomerToDatabase(item, connection);
+      }
+    }
+
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved");
     alert.show();
   }
 
-//  Action Event handler of the add button and the text fields
+
+
+
+
+
+
+
+  //  Action Event handler of the add button and the text fields
   @FXML
   private void addButton_Click()
   {
@@ -225,6 +378,12 @@ public class CustomerController implements Initializable
 //      Then, add the newly created Customer object to
 //      the customer table's collection list.
       customerTableView.getItems().add(tempCustomer);
+
+////      Add the newly created Customer object to
+////      the temporary list
+////      TODO
+//      addedObservableList.add(tempCustomer);
+
 //      Finally, clear all the text fields
       TextFieldHandler.clearTextFields(idTextField,
           firstNameTextField, lastNameTextField,
@@ -259,6 +418,19 @@ public class CustomerController implements Initializable
       Optional<ButtonType> response = alert.showAndWait();
       if (response.isPresent() && response.get() == ButtonType.YES)
       {
+//        Add selected items' id to the deletedListOfIDs
+        for (Customer item : selectedItems)
+        {
+          deletedListOfIDs.add(item.getId());
+        }
+
+//        Add selected items to the deletedListOfCustomers
+        for (Customer item : selectedItems)
+        {
+          deletedListOfEmployees.add(item);
+        }
+
+//        Delete the selected item from customer table's collection list.
         customerTableView.getItems().removeAll(selectedItems);
       }
     }
@@ -317,6 +489,13 @@ public class CustomerController implements Initializable
     Customer tempCustomer = cellEditEvent.getRowValue();
     tempCustomer.setZipCode(cellEditEvent.getNewValue());
   }
+
+
+
+
+
+
+//  Helper method
 
 
 //  ----------------- Belows are helper methods -----------------------------

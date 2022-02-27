@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #339933;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy_management.pharmacy_manager.controller.StockDetailController">
+    <top>
+        <Pane prefHeight="46.0" prefWidth="1000.0" style="-fx-background-color: #003300;" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="48.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@Pharmacy.jpg" />
+            </ImageView>
+            <Label layoutX="45.0" layoutY="2.0" prefHeight="24.0" prefWidth="136.0" text="The Better Life" textFill="#0b9923">
+                <font>
+                    <Font name="System Bold Italic" size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="20.0" prefHeight="19.0" prefWidth="78.0" text="Pharmacy" textAlignment="CENTER" textFill="#0b9923">
+                <font>
+                    <Font name="System Bold Italic" size="16.0" />
+                </font>
+            </Label>
+            <MenuBar layoutX="193.0" layoutY="-1.0" prefHeight="48.0" prefWidth="34.0" style="-fx-background-color: transparent;">
+                <Menu mnemonicParsing="false">
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                </Menu>
+            </MenuBar>
+            <ImageView fitHeight="51.0" fitWidth="34.0" layoutX="910.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@profile.png" />
+            </ImageView>
+            <Label fx:id="lblSetUseS" layoutX="750.0" layoutY="5.0" prefHeight="39.0" prefWidth="160.0" textFill="#b4a1a1">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+            <Button fx:id="logoutEmpButton" layoutX="954.0" layoutY="5.0" mnemonicParsing="false"  prefHeight="34.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+                <graphic>
+
+                    <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@log out.jpg" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <TextField layoutX="297.0" layoutY="2.0" prefHeight="41.0" prefWidth="445.0" />
+            <Label fx:id="lblStore" layoutX="183.0" layoutY="-1.0" prefHeight="50.0" prefWidth="110.0" textFill="#b4a1a1">
+                <font>
+                    <Font name="System Bold Italic" size="20.0" />
+                </font></Label>
+        </Pane>
+    </top>
+    <left>
+        <Pane prefHeight="454.0" prefWidth="99.0" BorderPane.alignment="CENTER">
+            <Button fx:id="btnSta" layoutX="8.0" layoutY="27.0" mnemonicParsing="false"   prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Employee">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnSup" layoutX="8.0" layoutY="84.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Supplier">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnCat" layoutX="8.0" layoutY="143.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Category">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnPro" layoutX="8.0" layoutY="202.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Product">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnImp" layoutX="8.0" layoutY="260.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Import Order">
+                <font>
+                    <Font name="System Bold" size="10.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnCus" layoutX="8.0" layoutY="317.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Customer">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnSal" layoutX="8.0" layoutY="373.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #669933;-fx-border-color: black" text="Sales Order">
+                <font>
+                    <Font name="System Bold" size="10.0" />
+                </font>
+            </Button>
+        </Pane>
+    </left>
+    <center>
+        <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane fx:id="uiPane" layoutX="3.0" layoutY="27.0" prefHeight="394.0" prefWidth="808.0" style="-fx-background-color: #ccffff;" />
+            <Label layoutX="338.0" layoutY="419.0" prefHeight="32.0" prefWidth="198.0" text="Batch 164 Aptech_Softech - Group 2" />
+            <Pane fx:id="employeePane" layoutX="3.0" layoutY="27.0" prefHeight="394.0" prefWidth="890.0" style="-fx-background-color: #ccffff;">
+                <Label layoutX="16.0" layoutY="102.0" prefHeight="24.0" prefWidth="106.0" text="Import Oder_Id" />
+                <TextField fx:id="txtEmployeeFirstname" layoutX="16.0" layoutY="127.0" prefHeight="25.0" prefWidth="207.0" />
+                <Label layoutX="19.0" layoutY="157.0" prefHeight="24.0" prefWidth="87.0" text="Product Name" />
+                <TextField fx:id="txtEmployeeLastname" layoutX="39.0" layoutY="195.0" prefHeight="25.0" prefWidth="207.0" />
+                <Label fx:id="genderLabel" layoutX="38.0" layoutY="213.0" prefHeight="24.0" prefWidth="46.0" text="Gender" />
+                <Label layoutX="46.0" layoutY="226.0" prefHeight="24.0" prefWidth="44.0" text="Email" />
+                <TextField fx:id="txtEmployeeEmail" layoutX="95.0" layoutY="226.0" prefHeight="25.0" prefWidth="160.0" />
+                <Label layoutX="1.0" layoutY="271.0" prefHeight="24.0" prefWidth="92.0" text="Phone Number" />
+                <TextField fx:id="txtEmployeePhonenumber" layoutX="95.0" layoutY="270.0" prefHeight="25.0" prefWidth="160.0" />
+                <Label layoutX="15.0" layoutY="52.0" prefHeight="24.0" prefWidth="35.0" text="Date" />
+                <TextField fx:id="txtEmployeeId" layoutX="15.0" layoutY="74.0" prefHeight="25.0" prefWidth="209.0" />
+                <Label layoutX="27.0" layoutY="317.0" prefHeight="24.0" prefWidth="48.0" text="Address" />
+                <TextField fx:id="txtEmployeeAddress" layoutX="95.0" layoutY="316.0" prefHeight="25.0" prefWidth="160.0" />
+                <Button fx:id="btnBack" layoutX="828.0" layoutY="1.0" mnemonicParsing="false"   prefHeight="28.0" prefWidth="57.0" style="-fx-border-color: black;">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@back.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+                <Button fx:id="btnAdd" layoutX="4.0" layoutY="361.0" mnemonicParsing="false"   prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: #ffffcc;-fx-border-color: black" text="Add +" />
+                <Button fx:id="btnCancel" layoutX="184.0" layoutY="360.0" mnemonicParsing="false"   prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #ff99ff;-fx-border-color: black" text="Cancel " />
+                <Label layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="359.0" text="Import System Pharmacy">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="genderCombobox" layoutX="95.0" layoutY="244.0"  prefHeight="25.0" prefWidth="160.0" promptText="Gender" style="-fx-background-color: white;" />
+                <TableView fx:id="tableEmployee" layoutX="260.0" layoutY="58.0" prefHeight="329.0" prefWidth="512.0">
+                    <columns>
+                        <TableColumn fx:id="columnId" prefWidth="111.39999389648438" text="ID" />
+                        <TableColumn fx:id="columnFisrtname" prefWidth="106.99996948242188" text="Product Name" />
+                        <TableColumn fx:id="columnLastname" prefWidth="46.199981689453125" text="Unit" />
+                        <TableColumn fx:id="columnGender" prefWidth="79.5999755859375" text="Price" />
+                        <TableColumn fx:id="columnEmail" prefWidth="110.0" text="Expiration Date" />
+                        <TableColumn fx:id="columnPhone" prefWidth="112.4000244140625" text="Category Name" />
+                        <TableColumn fx:id="columnAdderss" prefWidth="57.39996337890625" text="Quantity" />
+                    </columns>
+                </TableView>
+                <Button fx:id="btnDelete" layoutX="88.0" layoutY="361.0" mnemonicParsing="false"   prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #ff0033; -fx-border-color: black;" text="Delete" />
+                <Label fx:id="lblValidateId" layoutX="95.0" layoutY="87.0" prefHeight="17.0" prefWidth="160.0" textFill="#d90d0d" />
+                <Label fx:id="lblValidateEmail" layoutX="95.0" layoutY="251.0" prefHeight="17.0" prefWidth="160.0" textFill="#e40a0a" />
+                <Label fx:id="lblValidatePhone" layoutX="96.0" layoutY="298.0" prefHeight="20.0" prefWidth="159.0" textFill="#e10c0c" />
+                <Label fx:id="lblValidate" layoutX="95.0" layoutY="339.0" prefHeight="22.0" prefWidth="160.0" textFill="#ec0c0c" />
+                <Button fx:id="btnUpdate" layoutX="740.0" layoutY="33.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="147.0" style="-fx-background-color: #990033; -fx-border-color: black;" text="Update" textFill="#8e7a7a">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Button>
+                <Label fx:id="lblNotification" layoutX="413.0" layoutY="30.0" prefHeight="29.0" prefWidth="321.0" textFill="#504c89">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </Pane>
+            <Pane fx:id="supplierPane" layoutX="-204.0" layoutY="27.0" prefHeight="392.0" prefWidth="741.0" style="-fx-background-color: #ccffff;" visible="false">
+                <Label layoutX="21.0" layoutY="103.0" prefHeight="24.0" prefWidth="64.0" text="Fisrt Name" />
+                <TextField layoutX="96.0" layoutY="102.0" prefHeight="25.0" prefWidth="150.0" />
+                <Label layoutX="21.0" layoutY="136.0" prefHeight="24.0" prefWidth="64.0" text="Last Name" />
+                <TextField layoutX="96.0" layoutY="135.0" prefHeight="25.0" prefWidth="150.0" />
+                <Label layoutX="21.0" layoutY="170.0" prefHeight="24.0" prefWidth="64.0" text="Pass Word" />
+                <TextField layoutX="96.0" layoutY="169.0" prefHeight="25.0" prefWidth="151.0" />
+                <Label layoutX="38.0" layoutY="200.0" prefHeight="24.0" prefWidth="46.0" text="Gender" />
+                <TextField layoutX="96.0" layoutY="199.0" prefHeight="25.0" prefWidth="150.0" />
+                <Label layoutX="48.0" layoutY="230.0" prefHeight="24.0" prefWidth="44.0" text="Email" />
+                <TextField layoutX="96.0" layoutY="230.0" prefHeight="25.0" prefWidth="151.0" />
+                <Label layoutX="4.0" layoutY="263.0" prefHeight="24.0" prefWidth="92.0" text="Phone Number" />
+                <TextField layoutX="96.0" layoutY="262.0" prefHeight="25.0" prefWidth="154.0" />
+                <Label layoutX="12.0" layoutY="324.0" prefHeight="24.0" prefWidth="72.0" text="Lock (1 or 0)" />
+                <TextField layoutX="96.0" layoutY="324.0" prefHeight="25.0" prefWidth="153.0" />
+                <Label layoutX="3.0" layoutY="354.0" prefHeight="24.0" prefWidth="82.0" text="Suppervisor_id" />
+                <TextField layoutX="96.0" layoutY="354.0" prefHeight="25.0" prefWidth="153.0" />
+                <Label layoutX="13.0" layoutY="72.0" prefHeight="24.0" prefWidth="75.0" text="Employee_id" />
+                <TextField layoutX="96.0" layoutY="71.0" prefHeight="25.0" prefWidth="148.0" />
+                <Label layoutX="31.0" layoutY="294.0" prefHeight="24.0" prefWidth="48.0" text="Address" />
+                <TextField layoutX="96.0" layoutY="293.0" prefHeight="25.0" prefWidth="154.0" />
+                <Button layoutX="365.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="157.0" style="-fx-background-color: #3366cc;-fx-border-color: black" text="Show Emplyee">
+                    <font>
+                        <Font size="20.0" />
+                    </font></Button>
+                <Button layoutX="448.0" layoutY="307.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #ffffcc;-fx-border-color: black" text="Add +" />
+                <Button layoutX="447.0" layoutY="346.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="80.0" style="-fx-background-color: #ff99ff;-fx-border-color: black" text="Cancel " />
+                <Label layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="359.0" text="Employee Management">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+            </Pane>
+            <Pane fx:id="showEmplyeepane" layoutX="3.0" layoutY="27.0" prefHeight="394.0" prefWidth="532.0" style="-fx-background-color: #ccffff;" visible="false" />
+        </Pane>
+    </center>
+</BorderPane>

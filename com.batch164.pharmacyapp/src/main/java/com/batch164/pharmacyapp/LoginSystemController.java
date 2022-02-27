@@ -1,14 +1,17 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
+import com.batch164.pharmacyapp.utils.dao.StoreDAO;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,11 +19,13 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
+import java.util.ResourceBundle;
 
-public class LoginSystemController
+public class LoginSystemController implements Initializable
 {
-  //  Common  fields and methods
+  //  ------- Belows are the common fields and methods for every scene ----------
   @FXML
   private Button exitButton;
   @FXML
@@ -30,7 +35,7 @@ public class LoginSystemController
     stage.close();
   }
 
-  //  Individual fields and methods
+  //  ------- Belows are the individual fields and methods for staff scene ----------
   @FXML
   private TextField idTextField;
   @FXML
@@ -42,15 +47,6 @@ public class LoginSystemController
   @FXML
   private Label errorMessageLabel;
 
-  //  Database Connection
-  private Connection connection;
-//  The below method will be called in LoginDatabaseController
-//  to set database connection for the connection class field.
-  public void setConnection(Connection connection)
-  {
-    this.connection = connection;
-  }
-
   @FXML
   private void loginButton_Click(ActionEvent event) throws IOException
   {
@@ -59,9 +55,48 @@ public class LoginSystemController
       String tempID = idTextField.getText().trim();
       String tempPassword = passwordField.getText().trim();
       Employee tempEmployee = LoginDAO.login(connection, tempID, tempPassword);
+
+//      Get reference to StaffController
+      FXMLLoader loader;
+      loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
+      loader.load();
+      StaffController staffController = loader.getController();
+
+//      TODO
+////      Set current employee for next scene
+//      staffController.setCurrentEmployee(tempEmployee);
+////
+////      Set current store for next scene
+//      Store tempStore = StoreDAO.getStoreBasedOnEmployeeID(
+//          tempEmployee.getId(), connection);
+//      staffController.setCurrentStore(tempStore);
+
+////      Set content for the welcome label
+//      staffController.setWelcomeLabel();
+
+//      Go to next scene
       goToNextScene(tempEmployee, event, errorMessageLabel, passwordField);
     }
   }
+
+  @FXML
+  private void resetButton_Click(ActionEvent event)
+  {
+    TextFieldHandler.clearTextFields(idTextField, passwordField);
+  }
+//  ---------------------------------------------------------------------------------------
+
+//  Class fields
+  private Connection connection;
+
+//  Class methods
+//  The below method will be called at LoginDatabaseController
+//  to set database connection for the connection class field.
+  public void setConnection(Connection connection)
+  {
+    this.connection = connection;
+  }
+
 
   //  Helper method
   private void goToNextScene(Employee tempEmployee,
@@ -98,13 +133,6 @@ public class LoginSystemController
       {
 //        Go to the "manager-view" scene
         SceneHandler.switchScene("manager-view.fxml", event);
-
-//        loader = new FXMLLoader(
-//            getClass().getResource("manager-view.fxml"));
-//        root = loader.load();
-//        Scene managerScene = new Scene(root);
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(managerScene);
       }
       else
       {
@@ -114,35 +142,17 @@ public class LoginSystemController
         {
 //          Go to the "supervisor-view" scene
           SceneHandler.switchScene("supervisor-view.fxml", event);
-
-//          loader = new FXMLLoader(
-//              getClass().getResource("supervisor-view.fxml"));
-//          root = loader.load();
-//          Scene supervisorScene = new Scene(root);
-//          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//          stage.setScene(supervisorScene);
         }
         else
         {
 //          Go to the "staff-view" scene
           SceneHandler.switchScene("staff-view.fxml", event);
-
-//          loader = new FXMLLoader(
-//              getClass().getResource("staff-view.fxml"));
-//          root = loader.load();
-//          Scene staffScene = new Scene(root);
-//          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//          stage.setScene(staffScene);
         }
       }
     }
   }
 
-  @FXML
-  private void resetButton_Click(ActionEvent event)
-  {
-    TextFieldHandler.clearTextFields(idTextField, passwordField);
-  }
+
 
   //  Helper method
   private boolean isValidTextFields()
@@ -160,6 +170,13 @@ public class LoginSystemController
     }
     passwordField.setText("");
     return false;
+  }
+
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle)
+  {
+
   }
 }
 

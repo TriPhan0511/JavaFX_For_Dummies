@@ -39,4 +39,32 @@ public class DatabaseConnection
 
     return DriverManager.getConnection(url, user, password);
   }
+
+//  Temporary connection
+  public static Connection getConnection2()
+      throws SQLException, IOException
+  {
+    Properties props = new Properties();
+    String drivers;
+    String url;
+    String user;
+    String password;
+
+    try (InputStream in = Files.newInputStream(Paths.get("database2.properties")))
+    {
+      props.load(in);
+    }
+
+//    Get drivers and url from the file database.properties
+    drivers = props.getProperty("jdbc.drivers");
+    if (drivers != null)
+    {
+      System.setProperty("jdbc.drivers", drivers);
+    }
+    url = props.getProperty("jdbc.url");
+    user = props.getProperty("jdbc.user");
+    password = props.getProperty("jdbc.password");
+
+    return DriverManager.getConnection(url, user, password);
+  }
 }

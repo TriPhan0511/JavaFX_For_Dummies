@@ -21,17 +21,13 @@ public class PharmacyApplication extends Application
   {
     try
     {
-//      Database Login scene
+////      Database Login scene
+//      FXMLLoader loader = new FXMLLoader(
+//          getClass().getResource("login-database-view.fxml"));
+
+//      Customer scene
       FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("login-database-view.fxml"));
-
-////      System Login scene
-//      FXMLLoader loader = new FXMLLoader(
-//          getClass().getResource("login-system-view.fxml"));
-
-////      Customer scene
-//      FXMLLoader loader = new FXMLLoader(
-//          getClass().getResource("customer-view.fxml"));
+          getClass().getResource("customer-view.fxml"));
 
       Parent root = loader.load();
       Scene scene = new Scene(root);

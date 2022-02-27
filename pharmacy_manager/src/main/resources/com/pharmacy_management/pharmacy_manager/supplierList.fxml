@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #339933;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy_management.pharmacy_manager.controller.SupplierController">
+    <top>
+        <Pane prefHeight="46.0" prefWidth="1000.0" style="-fx-background-color: #003300;" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="48.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@Pharmacy.jpg" />
+            </ImageView>
+            <Label layoutX="45.0" layoutY="2.0" prefHeight="24.0" prefWidth="136.0" text="The Better Life" textFill="#0b9923">
+                <font>
+                    <Font name="System Bold Italic" size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="20.0" prefHeight="19.0" prefWidth="78.0" text="Pharmacy" textAlignment="CENTER" textFill="#0b9923">
+                <font>
+                    <Font name="System Bold Italic" size="16.0" />
+                </font>
+            </Label>
+            <MenuBar layoutX="193.0" layoutY="-1.0" prefHeight="48.0" prefWidth="34.0" style="-fx-background-color: transparent;">
+                <Menu mnemonicParsing="false">
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                </Menu>
+            </MenuBar>
+            <ImageView fitHeight="51.0" fitWidth="34.0" layoutX="910.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@profile.png" />
+            </ImageView>
+            <Label fx:id="userEmpLabel" layoutX="750.0" layoutY="5.0" prefHeight="39.0" prefWidth="160.0" textFill="#b4a1a1">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+            <Button fx:id="logoutEmpButton" layoutX="954.0" layoutY="5.0" mnemonicParsing="false" onAction="#setLogOutButton" prefHeight="34.0" prefWidth="38.0" style="-fx-background-color: transparent;-fx-border-color: black">
+                <graphic>
+
+                    <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@log out.jpg" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <TextField layoutX="297.0" layoutY="2.0" prefHeight="41.0" prefWidth="445.0" />
+            <Label fx:id="store_idEmpLabel" layoutX="183.0" layoutY="-1.0" prefHeight="50.0" prefWidth="110.0" textFill="#b4a1a1">
+                <font>
+                    <Font name="System Bold Italic" size="20.0" />
+                </font></Label>
+        </Pane>
+    </top>
+    <center>
+        <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Label layoutX="338.0" layoutY="419.0" prefHeight="32.0" prefWidth="198.0" text="Batch 164 Aptech_Softech - Group 2" />
+            <Pane fx:id="employeePane" layoutX="61.0" layoutY="30.0" prefHeight="394.0" prefWidth="904.0" style="-fx-background-color: #ccffff;">
+                <Button fx:id="backButton" layoutX="828.0" layoutY="1.0" mnemonicParsing="false" onAction="#setBackButton"  prefHeight="28.0" prefWidth="57.0" style="-fx-border-color: black;">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@back.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+                <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="246.0" text="Employee List" textFill="#2b293e">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TableView  layoutX="8.0" layoutY="58.0" prefHeight="329.0" prefWidth="884.0">
+                    <columns>
+                        <TableColumn  prefWidth="61.79998779296875" text="ID" />
+                        <TableColumn  prefWidth="68.20001220703125" text="First Name" />
+                        <TableColumn  prefWidth="140.60000610351562" text="Last Name" />
+                        <TableColumn  prefWidth="87.39999389648438" text="Gender" />
+                        <TableColumn  prefWidth="146.39996337890625" text="Email" />
+                        <TableColumn  prefWidth="111.5999755859375" text="Phone" />
+                        <TableColumn  prefWidth="261.60003662109375" text="Address" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="searchEmpTextfield" layoutX="149.0" layoutY="30.0" prefHeight="29.0" prefWidth="509.0" promptText="Search " />
+            </Pane>
+        </Pane>
+    </center>
+</BorderPane>
