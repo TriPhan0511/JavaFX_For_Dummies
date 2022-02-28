@@ -1,7 +1,6 @@
 module com.triphan.javafxtutorials {
   requires javafx.controls;
   requires javafx.fxml;
-
   requires java.sql;
 
   opens com.triphan.javafxtutorials to javafx.fxml;
@@ -26,5 +25,11 @@ module com.triphan.javafxtutorials {
 
   opens com.triphan.login_form_sample_2 to javafx.fxml;
   exports com.triphan.login_form_sample_2;
+
+  opens com.triphan.searchbar to javafx.fxml;
+  exports com.triphan.searchbar;
+
+  opens com.triphan.searchbar_and_tableview to javafx.fxml;
+  exports com.triphan.searchbar_and_tableview;
 
 }

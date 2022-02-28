@@ -9,6 +9,7 @@ import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.IDTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -39,7 +40,6 @@ public class CustomerController implements Initializable
   private Button logoutButton;
   @FXML
   private Button profileButton;
-
   @FXML
   private Label welcomeLabel;
 
@@ -64,10 +64,30 @@ public class CustomerController implements Initializable
   @FXML
   private void exitButton_Click(ActionEvent event)
   {
+    if (isDataChanged)
+    {
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+          "Dou you want to save the changes?",
+          ButtonType.YES, ButtonType.NO);
+      Optional<ButtonType> response = alert.showAndWait();
+      if (response.isPresent() && response.get() == ButtonType.YES)
+      {
+        saveToDatabase(customerTableView, deletedListOfIDs,
+            originalListOfIDs, connection);
+      }
+    }
     Stage stage = (Stage) ((Node) event.getSource()).
         getScene().getWindow();
     stage.close();
   }
+
+//  @FXML
+//  private void exitButton_Click(ActionEvent event)
+//  {
+//    Stage stage = (Stage) ((Node) event.getSource()).
+//        getScene().getWindow();
+//    stage.close();
+//  }
 
 //  ------- Belows are the individual fields and methods for customer scene ----------
 
@@ -137,6 +157,79 @@ public class CustomerController implements Initializable
   TableColumn<Customer, String> addressColumn;
   @FXML
   TableColumn<Customer, String> zipCodeColumn;
+
+//  Event handlers for columns
+  @FXML
+  private void firstNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setFirstName(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
+
+  @FXML
+  private void lastNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setLastName(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
+
+  @FXML
+  private void emailColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setEmail(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
+
+  @FXML
+  private void phoneNumberNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setPhoneNumber(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
+
+  @FXML
+  private void addressNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setAddress(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
+
+  @FXML
+  private void zipCodeNameColumn_OnEditCommit(Event event)
+  {
+    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
+    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
+    Customer tempCustomer = cellEditEvent.getRowValue();
+    tempCustomer.setZipCode(cellEditEvent.getNewValue());
+
+//    Finally, notify the data has changed.
+    isDataChanged = true;
+  }
 //  ------------------------------------------------------------
 
   //  Class fields
@@ -149,11 +242,9 @@ public class CustomerController implements Initializable
     this.connection = connection;
   }
 
-////  Declare a temporary list to contain newly added customer
-//  ObservableList<Customer> addedObservableList = FXCollections.observableArrayList();
-
-  //  Declare a list to contain all employee from "customer" table in database
-  List<Customer> originalListOfCustomers = new ArrayList<>();
+  //  Declare a ObservableList object to contain all Customer objects fetched from the database.
+  //  (via CustomerDAO.getCustomers())
+  ObservableList<Customer> customerObservableList;
 
   //  Declare a list to contain all employee's id from "customer" table in the database
   List<String> originalListOfIDs = new ArrayList<>();
@@ -161,43 +252,15 @@ public class CustomerController implements Initializable
   //  Declare a list to contain all employee's ids of the employee who be deleted.
   List<String> deletedListOfIDs = new ArrayList<>();
 
-  //  Declare a list to contain all employees who be deleted.
-  List<Customer> deletedListOfEmployees = new ArrayList<>();
+  //  Declare a flag to notify when the data is changed
+  private boolean isDataChanged = false;
+
 //  -------------------------------------------------------------------------
 
-  //  Helper method
-//  private boolean isExisted(Customer item, List<Customer> originalListOfCustomers)
-//  {
-//    if (originalListOfCustomers.contains(item))
-//    {
-//      return true;
-//    }
-//    return false;
-//  }
 
-  private boolean isExisted(String id, List<String> originalListOfIDs)
-  {
-    if (originalListOfIDs.contains(id))
-    {
-      return true;
-    }
-    return false;
-  }
 
-//  private boolean isExisted(Customer item, List<String> originalListOfIDs)
-//  {
-//    if (originalListOfIDs.contains(item.getId()))
-//    {
-//      return true;
-//    }
-//    return false;
-//  }
-
-//  Override the initialize method which
-//  will be called after the constructor calling.
   @Override
-  public void initialize(URL url,
-         ResourceBundle resourceBundle)
+  public void initialize(URL url, ResourceBundle resourceBundle)
   {
 //    Temporary connection
 //    (Because I can not get connection from StaffController)
@@ -217,21 +280,26 @@ public class CustomerController implements Initializable
       e.printStackTrace();
     }
 
-//    Get records from "customer" table in the database and add them to the
-    for (Customer item : CustomerDAO.getCustomers(connection))
-    {
-      originalListOfCustomers.add(item);
-    }
+// Initialize the customerObservableList
+    customerObservableList = CustomerDAO.getCustomers(connection);
 
 //    Get all of employee's ids from "customer" table in the database and add them to the
-    for (Customer item : CustomerDAO.getCustomers(connection))
+//    Way 2:
+    for (Customer item : customerObservableList)
     {
       originalListOfIDs.add(item.getId());
     }
+////    Way 1:
+//    for (Customer item : CustomerDAO.getCustomers(connection))
+//    {
+//      originalListOfIDs.add(item.getId());
+//    }
 
-//    Customer TableView
 //    Set data for the customer TableView
-    customerTableView.setItems(CustomerDAO.getCustomers(connection));
+//    Way 2:
+    customerTableView.setItems(customerObservableList);
+////    Way 1:
+//    customerTableView.setItems(CustomerDAO.getCustomers(connection));
 
 //    Set Multiple Selection Mode for the customer TableView
     customerTableView.getSelectionModel().
@@ -281,83 +349,34 @@ public class CustomerController implements Initializable
 //  ----------------- Belows are Event handlers -----------------------------
 
 //  Action Event handler of the save button
-  @FXML
-  private void saveButton_Click()
+@FXML
+private void saveButton_Click()
+{
+  if (isDataChanged)
   {
-////    Way 1:
-////    Delete all records in the "customer" table in the database
-////    Then add new records from the customer tableview to the "customer" table in the database
-//    CustomerDAO.deleteAllRecordsInCustomerTable(connection);
-//    CustomerDAO.saveCustomersToDatabase(customerTableView.getItems(), connection);
-
-////    Way 2:
-////    Check each item in the customer table's collection list:
-////      1. If the item's id exists in the originalListOfIDs:
-////          Update the item to the "customer" table
-////      2. If the item's id does not exist in the originalListOfIDs:
-////          Insert the item to the "customer" table
-//    for (Customer item : customerTableView.getItems())
-//    {
-//      if (isExisted(item.getId(), originalListOfIDs))
-//      {
-//        CustomerDAO.updateEmployee(item, connection);
-//      }
-//      else
-//      {
-//        CustomerDAO.insertACustomerToDatabase(item, connection);
-//      }
-//    }
-
-//    Way 3:
-//    1. Check each item's id in deletedListOfIDs:
-//      If it does not exist in the customer table's collection list:
-//        Delete the item from the "customer" table in the database.
-//    2. Check each item in the customer table's collection list:
-//      2.1 If the item's id exists in the originalListOfIDs:
-//            Update the item to the "customer" table.
-//      2.2 If the item's id does not exist in the originalListOfIDs:
-//            Insert the item to the "customer" table.
-
-//    Step 1:
-//    Get list of IDs in the table's collection list
-    List<String> idsInTable = new ArrayList<>();
-    for (Customer item : customerTableView.getItems())
-    {
-      idsInTable.add(item.getId());
-    }
-
-//    Check
-    for (String id : deletedListOfIDs)
-    {
-      if (!isExisted(id, idsInTable))
-      {
-        CustomerDAO.deleteACustomerBasedOnID(id, connection);
-      }
-    }
-
-//    Step 2:
-    for (Customer item : customerTableView.getItems())
-    {
-      if (isExisted(item.getId(), originalListOfIDs))
-      {
-        System.out.println("existed");
-        CustomerDAO.updateEmployee(item, connection);
-      }
-      else
-      {
-        System.out.println("NOT existed");
-        CustomerDAO.insertACustomerToDatabase(item, connection);
-      }
-    }
-
+    saveToDatabase(customerTableView, deletedListOfIDs,
+        originalListOfIDs, connection);
     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved");
     alert.show();
+
+//    Set the flag isDataChanged to false
+    isDataChanged = false;
   }
+  else
+  {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Nothing has changed.");
+    alert.show();
+  }
+}
 
-
-
-
-
+//  @FXML
+//  private void saveButton_Click()
+//  {
+//    saveToDatabase(customerTableView, deletedListOfIDs,
+//        originalListOfIDs, connection);
+//    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved");
+//    alert.show();
+//  }
 
 
 
@@ -376,19 +395,16 @@ public class CustomerController implements Initializable
           phoneNumberTextField, addressTextField,
           zipCodeTextField);
 //      Then, add the newly created Customer object to
-//      the customer table's collection list.
+//      the customer table's data.
       customerTableView.getItems().add(tempCustomer);
-
-////      Add the newly created Customer object to
-////      the temporary list
-////      TODO
-//      addedObservableList.add(tempCustomer);
-
-//      Finally, clear all the text fields
+//      Then, clear all the text fields
       TextFieldHandler.clearTextFields(idTextField,
           firstNameTextField, lastNameTextField,
           emailTextField, phoneNumberTextField,
           addressTextField, zipCodeTextField);
+
+//      Finally, notify the data has changed.
+      isDataChanged = true;
     }
   }
 
@@ -424,83 +440,102 @@ public class CustomerController implements Initializable
           deletedListOfIDs.add(item.getId());
         }
 
-//        Add selected items to the deletedListOfCustomers
-        for (Customer item : selectedItems)
-        {
-          deletedListOfEmployees.add(item);
-        }
-
-//        Delete the selected item from customer table's collection list.
+//        Delete the selected item from customer table's data.
         customerTableView.getItems().removeAll(selectedItems);
+
+//        Finally, notify the data has changed.
+        isDataChanged = true;
       }
     }
   }
 
-  @FXML
-  private void firstNameColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setFirstName(cellEditEvent.getNewValue());
-  }
-
-  @FXML
-  private void lastNameColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setLastName(cellEditEvent.getNewValue());
-  }
-
-  @FXML
-  private void emailColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setEmail(cellEditEvent.getNewValue());
-  }
-
-  @FXML
-  private void phoneNumberNameColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setPhoneNumber(cellEditEvent.getNewValue());
-  }
-
-  @FXML
-  private void addressNameColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setAddress(cellEditEvent.getNewValue());
-  }
-
-  @FXML
-  private void zipCodeNameColumn_OnEditCommit(Event event)
-  {
-    TableColumn.CellEditEvent<Customer, String> cellEditEvent;
-    cellEditEvent = (TableColumn.CellEditEvent<Customer, String>) event;
-    Customer tempCustomer = cellEditEvent.getRowValue();
-    tempCustomer.setZipCode(cellEditEvent.getNewValue());
-  }
-
-
-
-
-
-
-//  Helper method
-
-
 //  ----------------- Belows are helper methods -----------------------------
 
-//  This method create a Customer object from user's input
+////  This method used to save data to the database (Way 2)
+////  DO NOT DELETE
+////  Way 2: CASE: DO NOT USE THE "Delete" BUTTON
+//  private void saveToDatabase2(TableView<Customer> customerTableView,
+//                               List<String> originalListOfIDs,
+//                               Connection connection)
+//  {
+//    //    Way 2: CASE: DO NOT USE THE "Delete" BUTTON
+////    Check each item in the customer table's collection list:
+////      1. If the item's id exists in the originalListOfIDs:
+////          Update the item to the "customer" table
+////      2. If the item's id does not exist in the originalListOfIDs:
+////          Insert the item to the "customer" table
+//    for (Customer item : customerTableView.getItems())
+//    {
+//      if (isExisted(item.getId(), originalListOfIDs))
+//      {
+//        CustomerDAO.updateEmployee(item, connection);
+//      }
+//      else
+//      {
+//        CustomerDAO.insertACustomerToDatabase(item, connection);
+//      }
+//    }
+//  }
+
+  //  This method used to save data to the database (Way 1)
+//  CASE : Use the Delete button.
+  private void saveToDatabase(TableView<Customer> customerTableView,
+                              List<String> deletedListOfIDs,
+                              List<String> originalListOfIDs,
+                              Connection connection)
+  {
+    //    Way 1:
+//    1. Check each item's id in deletedListOfIDs:
+//      If it DOES NOT exist in a list contains all ids in the table's data.
+//        Delete the item from the "customer" table in the database.
+//    2. Check each item in the customer table's data:
+//      2.1 If the item's id exists in the originalListOfIDs:
+//            Update the item to the "customer" table.
+//      2.2 If the item's id does not exist in the originalListOfIDs:
+//            Insert the item to the "customer" table.
+
+//    Step 1:
+//    Get list of IDs in the table's collection list
+    List<String> idsInTable = new ArrayList<>();
+    for (Customer item : customerTableView.getItems())
+    {
+      idsInTable.add(item.getId());
+    }
+
+//    Check
+    for (String id : deletedListOfIDs)
+    {
+      if (!isExisted(id, idsInTable))
+      {
+        CustomerDAO.deleteACustomerBasedOnID(id, connection);
+      }
+    }
+
+//    Step 2:
+    for (Customer item : customerTableView.getItems())
+    {
+      if (isExisted(item.getId(), originalListOfIDs))
+      {
+        CustomerDAO.updateEmployee(item, connection);
+      }
+      else
+      {
+        CustomerDAO.insertACustomerToDatabase(item, connection);
+      }
+    }
+  }
+
+  //  This method checks whether an id exists in a list or not.
+  private boolean isExisted(String id, List<String> originalListOfIDs)
+  {
+    if (originalListOfIDs.contains(id))
+    {
+      return true;
+    }
+    return false;
+  }
+
+//  This method creates a Customer object from user's input
   private Customer createACustomer(
       TextField idTextField, TextField firstNameTextField,
       TextField lastNameTextField, RadioButton maleRadioButton,

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triphan.searchbar_and_tableview.SearchBarAndTableViewController">
+   <children>
+      <TableView fx:id="productTableView" layoutX="51.0" layoutY="74.0" prefHeight="502.0" prefWidth="1020.0">
+        <columns>
+          <TableColumn fx:id="productIDTableColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="brandTableColumn" prefWidth="115.0" text="Brand" />
+            <TableColumn fx:id="modelNumberTableColumn" prefWidth="137.0" text="Model Number" />
+            <TableColumn fx:id="modelYearTableColumn" prefWidth="122.0" text="Model Year" />
+            <TableColumn fx:id="productNameTableColumn" prefWidth="337.0" text="Product Name" />
+            <TableColumn fx:id="descriptionTableColumn" prefWidth="333.0" text="Description" />
+        </columns>
+      </TableView>
+      <Label layoutX="51.0" layoutY="41.0" text="Search Product">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="keywordsTextField" layoutX="180.0" layoutY="37.0" prefHeight="25.0" prefWidth="891.0" promptText="Keywords..." />
+   </children>
+</AnchorPane>
