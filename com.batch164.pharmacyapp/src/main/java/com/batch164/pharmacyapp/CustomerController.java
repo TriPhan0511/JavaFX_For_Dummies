@@ -14,8 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -32,7 +35,6 @@ import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable
 {
-
 //  ------- Belows are the common fields and methods for every scene ----------
   @FXML
   private Button exitButton;
@@ -81,60 +83,55 @@ public class CustomerController implements Initializable
     stage.close();
   }
 
-//  @FXML
-//  private void exitButton_Click(ActionEvent event)
-//  {
-//    Stage stage = (Stage) ((Node) event.getSource()).
-//        getScene().getWindow();
-//    stage.close();
-//  }
+//  ----------------------------------------------------------------------------------
 
 //  ------- Belows are the individual fields and methods for customer scene ----------
 
 //  Buttons
   @FXML
-  Button saveButton;
-
+  private Button saveButton;
   @FXML
-  Button addButton;
+  private Button addButton;
   @FXML
-  Button deleteButton;
+  private Button deleteButton;
+  @FXML
+  private Button goBackButton;
 
 //  Text fields
   @FXML
-  TextField idTextField;
+  private TextField idTextField;
   @FXML
-  TextField firstNameTextField;
+  private TextField firstNameTextField;
   @FXML
-  TextField lastNameTextField;
+  private TextField lastNameTextField;
   @FXML
-  RadioButton maleRadioButton;
+  private RadioButton maleRadioButton;
   @FXML
-  RadioButton femaleRadioButton;
+  private RadioButton femaleRadioButton;
   @FXML
-  TextField emailTextField;
+  private TextField emailTextField;
   @FXML
-  TextField phoneNumberTextField;
+  private TextField phoneNumberTextField;
   @FXML
-  TextField addressTextField;
+  private TextField addressTextField;
   @FXML
-  TextField zipCodeTextField;
+  private TextField zipCodeTextField;
 
 //  Labels
   @FXML
-  Label idErrorLabel;
+  private Label idErrorLabel;
   @FXML
-  Label firstNameErrorLabel;
+  private Label firstNameErrorLabel;
   @FXML
-  Label lastNameErrorLabel;
+  private Label lastNameErrorLabel;
   @FXML
-  Label emailErrorLabel;
+  private Label emailErrorLabel;
   @FXML
-  Label phoneNumberErrorLabel;
+  private Label phoneNumberErrorLabel;
   @FXML
-  Label addressErrorLabel;
+  private Label addressErrorLabel;
   @FXML
-  Label zipCodeErrorLabel;
+  private Label zipCodeErrorLabel;
 
   //  Tableview
   @FXML
@@ -142,21 +139,21 @@ public class CustomerController implements Initializable
 
   //  Table Columns
   @FXML
-  TableColumn<Customer, String> idColumn;
+  private TableColumn<Customer, String> idColumn;
   @FXML
-  TableColumn<Customer, String> firstNameColumn;
+  private TableColumn<Customer, String> firstNameColumn;
   @FXML
-  TableColumn<Customer, String> lastNameColumn;
+  private TableColumn<Customer, String> lastNameColumn;
   @FXML
-  TableColumn<Customer, String> genderColumn;
+  private TableColumn<Customer, String> genderColumn;
   @FXML
-  TableColumn<Customer, String> emailColumn;
+  private TableColumn<Customer, String> emailColumn;
   @FXML
-  TableColumn<Customer, String> phoneNumberColumn;
+  private TableColumn<Customer, String> phoneNumberColumn;
   @FXML
-  TableColumn<Customer, String> addressColumn;
+  private TableColumn<Customer, String> addressColumn;
   @FXML
-  TableColumn<Customer, String> zipCodeColumn;
+  private TableColumn<Customer, String> zipCodeColumn;
 
 //  Event handlers for columns
   @FXML
@@ -235,7 +232,11 @@ public class CustomerController implements Initializable
   //  Class fields
   private Connection connection;
   //  Class methods
-//  The below method will be called at LoginDatabaseController (NOT YET)
+
+//  !IMPORTANT
+//  (NOT YET, WE HAVE TO INITIALIZE THE DATABASE CONNECTION IN THE initialize method,
+//  via DatabaseConnection.getConnection2)
+//  The below method will be called at LoginDatabaseController
 //  to set database connection for the connection class field.
   public void setConnection(Connection connection)
   {
@@ -262,8 +263,8 @@ public class CustomerController implements Initializable
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle)
   {
-//    Temporary connection
-//    (Because I can not get connection from StaffController)
+//    Initialize the database connection
+//    (via DatabaseConnection.getConnection2 method)
     try
     {
       connection = DatabaseConnection.getConnection2();
@@ -369,17 +370,6 @@ private void saveButton_Click()
   }
 }
 
-//  @FXML
-//  private void saveButton_Click()
-//  {
-//    saveToDatabase(customerTableView, deletedListOfIDs,
-//        originalListOfIDs, connection);
-//    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved");
-//    alert.show();
-//  }
-
-
-
   //  Action Event handler of the add button and the text fields
   @FXML
   private void addButton_Click()
@@ -406,6 +396,16 @@ private void saveButton_Click()
 //      Finally, notify the data has changed.
       isDataChanged = true;
     }
+  }
+
+  @FXML
+  private void goBackButton_Click(ActionEvent event) throws IOException
+  {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
+    Parent root = loader.load();
+    Scene staffScene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(staffScene);
   }
 
 //  Action Event handler of the delete button

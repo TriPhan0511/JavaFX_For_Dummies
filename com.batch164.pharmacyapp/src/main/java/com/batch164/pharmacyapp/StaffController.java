@@ -59,24 +59,15 @@ public class StaffController implements Initializable
     stage.close();
   }
 
-  //  ------- Belows are the individual fields and methods for staff scene ----------
+//  ---------------------------------------------------------------------------------------
+
+//  ------- Belows are the individual fields and methods for staff scene ----------
   @FXML
   private Button sellingButton;
   @FXML
   private Button customerManagementButton;
   @FXML
   private Button productSearchingButton;
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle)
-  {
-
-  }
-
-  public Connection getConnection()
-  {
-    return connection;
-  }
 
   @FXML
   void customerManagementButton_Click(ActionEvent event) throws IOException
@@ -112,6 +103,13 @@ public class StaffController implements Initializable
 
 //  ---------------------------------------------------------------------------------------
 
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle)
+  {
+
+  }
+//  ---------------------------------------------------------------------------------------
+
   //  Class fields
   private Connection connection;
 
@@ -122,7 +120,19 @@ public class StaffController implements Initializable
   {
     this.connection = connection;
   }
+  public Connection getConnection()
+  {
+    return connection;
+  }
 //  ---------------------------------------------------------------------------------------
+
+
+
+
+
+//  ---------------------------------------------------------------------------------------
+
+
 
 ////  Get the current employee
 //  private Employee currentEmployee = null;

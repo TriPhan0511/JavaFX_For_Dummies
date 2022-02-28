@@ -49,11 +49,17 @@
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="saveButton" layoutX="1133.0" layoutY="4.0" mnemonicParsing="false" onAction="#saveButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #44d61c;" text="Save" textFill="WHITE">
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
@@ -176,6 +182,14 @@
                   </Label>
                </children>
             </HBox>
+            <Button fx:id="goBackButton" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#goBackButton_Click" prefHeight="62.0" prefWidth="309.0" style="-fx-background-color: #cfd8e8;" text="Back to the Staff Screen" textFill="#1d3ceb">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </children>

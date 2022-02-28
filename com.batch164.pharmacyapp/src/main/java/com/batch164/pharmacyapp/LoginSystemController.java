@@ -3,6 +3,7 @@ package com.batch164.pharmacyapp;
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
+import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
 import com.batch164.pharmacyapp.utils.dao.StoreDAO;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginSystemController implements Initializable
@@ -46,6 +48,47 @@ public class LoginSystemController implements Initializable
   private Button resetButton;
   @FXML
   private Label errorMessageLabel;
+  //  ------------------------------------------------------------------------------------------
+
+  //  Class fields
+  private Connection connection;
+
+  //  !IMPORTANT
+//  (NOT YET, WE HAVE TO INITIALIZE THE DATABASE CONNECTION IN THE initialize method,
+//  via DatabaseConnection.getConnection2)
+//  Class methods
+//  The below method will be called at LoginDatabaseController
+//  to set database connection for the connection class field.
+  public void setConnection(Connection connection)
+  {
+    this.connection = connection;
+  }
+
+//  ------------------------------------------------------------------------------------------
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle)
+  {
+//    Initialize the database connection
+//    (via DatabaseConnection.getConnection2 method)
+    try
+    {
+      connection = DatabaseConnection.getConnection2();
+    }
+    catch (SQLException e)
+    {
+      for (Throwable t : e)
+      {
+        t.printStackTrace();
+      }
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+//  ------------------------------------------------------------------------------------------
 
   @FXML
   private void loginButton_Click(ActionEvent event) throws IOException
@@ -84,18 +127,9 @@ public class LoginSystemController implements Initializable
   {
     TextFieldHandler.clearTextFields(idTextField, passwordField);
   }
-//  ---------------------------------------------------------------------------------------
+//  ------------------------------------------------------------------------------------------
 
-//  Class fields
-  private Connection connection;
 
-//  Class methods
-//  The below method will be called at LoginDatabaseController
-//  to set database connection for the connection class field.
-  public void setConnection(Connection connection)
-  {
-    this.connection = connection;
-  }
 
 
   //  Helper method
@@ -152,8 +186,6 @@ public class LoginSystemController implements Initializable
     }
   }
 
-
-
   //  Helper method
   private boolean isValidTextFields()
   {
@@ -170,13 +202,6 @@ public class LoginSystemController implements Initializable
     }
     passwordField.setText("");
     return false;
-  }
-
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle)
-  {
-
   }
 }
 

@@ -43,29 +43,35 @@
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="70.0" prefHeight="725.0" prefWidth="1350.0">
          <children>
-            <HBox layoutX="619.0" layoutY="27.0">
+            <HBox layoutX="574.0" layoutY="29.0">
                <children>
                   <Label text="Staff Screen" textFill="#e96151">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <AnchorPane layoutY="73.0" prefHeight="597.0" prefWidth="1350.0">
                <children>
-                  <Button fx:id="sellingButton" layoutX="502.0" layoutY="44.0" mnemonicParsing="false" onAction="#sellingButton_Click" prefHeight="202.0" prefWidth="346.0" style="-fx-background-color: #669900;" text="Selling" textFill="WHITE">
+                  <Button fx:id="sellingButton" layoutX="457.0" layoutY="44.0" mnemonicParsing="false" onAction="#sellingButton_Click" prefHeight="202.0" prefWidth="436.0" style="-fx-background-color: #669900;" text="Selling" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="36.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="customerManagementButton" layoutX="235.0" layoutY="321.0" mnemonicParsing="false" onAction="#customerManagementButton_Click" prefHeight="202.0" prefWidth="436.0" style="-fx-background-color: #669900;" text="Customer Management" textFill="WHITE">
                      <font>
@@ -74,6 +80,9 @@
                      <effect>
                         <DropShadow />
                      </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="productSearchingButton" layoutX="721.0" layoutY="321.0" mnemonicParsing="false" onAction="#productSearchingButton_Click" prefHeight="202.0" prefWidth="436.0" style="-fx-background-color: #669900;" text="Product Searching" textFill="WHITE">
                      <font>
@@ -82,6 +91,9 @@
                      <effect>
                         <DropShadow />
                      </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
