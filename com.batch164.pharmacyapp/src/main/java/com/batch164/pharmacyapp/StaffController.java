@@ -64,10 +64,17 @@ public class StaffController implements Initializable
 //  ------- Belows are the individual fields and methods for staff scene ----------
   @FXML
   private Button sellingButton;
+
   @FXML
   private Button customerManagementButton;
+
   @FXML
   private Button productSearchingButton;
+  @FXML
+  void productSearchingButton_Click(ActionEvent event) throws IOException
+  {
+    SceneHandler.switchScene("product-searching-view.fxml", event);
+  }
 
   @FXML
   void customerManagementButton_Click(ActionEvent event) throws IOException
@@ -83,11 +90,7 @@ public class StaffController implements Initializable
     stage.setScene(customerScene);
   }
 
-  @FXML
-  void productSearchingButton_Click(ActionEvent event)
-  {
 
-  }
 
   @FXML
   void saveButton_Click(ActionEvent event)

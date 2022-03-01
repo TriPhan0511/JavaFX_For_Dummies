@@ -7,5 +7,6 @@ module com.batch164.pharmacyapp {
   exports com.batch164.pharmacyapp;
 
   opens com.batch164.pharmacyapp.model to javafx.base;
+  opens com.batch164.pharmacyapp.model.composite to javafx.base;
 
 }

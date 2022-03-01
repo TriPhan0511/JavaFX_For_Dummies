@@ -6,6 +6,7 @@ import com.batch164.pharmacyapp.model.GenderType;
 import com.batch164.pharmacyapp.utils.TextFieldHandler;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
+import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.IDTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
@@ -231,8 +232,6 @@ public class CustomerController implements Initializable
 
   //  Class fields
   private Connection connection;
-  //  Class methods
-
 //  !IMPORTANT
 //  (NOT YET, WE HAVE TO INITIALIZE THE DATABASE CONNECTION IN THE initialize method,
 //  via DatabaseConnection.getConnection2)
@@ -309,6 +308,7 @@ public class CustomerController implements Initializable
 //    Set properties from the table's collection to the columns.
 //    And create text fields in table columns (for editing purpose)
 
+//    Set data for the columns
 //    Note: The ID property should not be changed.
     idColumn.setCellValueFactory(
         new PropertyValueFactory<Customer, String>("id"));
@@ -401,11 +401,13 @@ private void saveButton_Click()
   @FXML
   private void goBackButton_Click(ActionEvent event) throws IOException
   {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
-    Parent root = loader.load();
-    Scene staffScene = new Scene(root);
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.setScene(staffScene);
+    SceneHandler.switchScene("staff-view.fxml", event);
+
+//    FXMLLoader loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
+//    Parent root = loader.load();
+//    Scene staffScene = new Scene(root);
+//    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//    stage.setScene(staffScene);
   }
 
 //  Action Event handler of the delete button

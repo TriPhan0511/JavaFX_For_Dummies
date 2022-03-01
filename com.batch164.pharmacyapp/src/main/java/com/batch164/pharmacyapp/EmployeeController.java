@@ -1,12 +1,14 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class EmployeeController
@@ -45,6 +47,15 @@ public class EmployeeController
     Stage stage = (Stage) ((Node) event.getSource()).
         getScene().getWindow();
     stage.close();
+  }
+
+  @FXML
+  private Button goBackButton;
+  @FXML
+  void goBackButton_Click(ActionEvent event) throws IOException
+  {
+    SceneHandler.switchScene("manager-view.fxml", event);
+
   }
 
 //  ----------------------------------------------------------------------------------
@@ -136,16 +147,19 @@ public class EmployeeController
   @FXML
   private Button deleteButton;
   @FXML
-  void deleteButton_Click(ActionEvent event) {
+  void deleteButton_Click(ActionEvent event)
+  {
 
   }
 
-  @FXML
-  private Button goBackButton;
-  @FXML
-  void goBackButton_Click(ActionEvent event) {
-
-  }
+//  @FXML
+//  private Button goBackButton;
+//  @FXML
+//  void goBackButton_Click(ActionEvent event) throws IOException
+//  {
+//    SceneHandler.switchScene("manager-view.fxml", event);
+//
+//  }
 
   @FXML
   private Button saveButton;
@@ -206,7 +220,4 @@ public class EmployeeController
   private RadioButton lockRadioButton;
   @FXML
   private ToggleGroup lockStatusToggleGroup;
-
-
-
 }
