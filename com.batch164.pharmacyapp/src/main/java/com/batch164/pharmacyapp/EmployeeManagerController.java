@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeController implements Initializable
+public class EmployeeManagerController implements Initializable
 {
   //  ------- Belows are the common fields and methods for every scene ----------
   @FXML
@@ -58,14 +58,6 @@ public class EmployeeController implements Initializable
     stage.close();
   }
 
-//  @FXML
-//  private void exitButton_Click(ActionEvent event)
-//  {
-//    Stage stage = (Stage) ((Node) event.getSource()).
-//        getScene().getWindow();
-//    stage.close();
-//  }
-
   @FXML
   private Button goBackButton;
   @FXML
@@ -77,7 +69,7 @@ public class EmployeeController implements Initializable
 
 //  ------- Belows are the individual fields and methods for this scene ----------
 
-//  Table
+  //  Table
   @FXML
   private TableView<Employee> employeeTableView;
   @FXML
@@ -97,7 +89,7 @@ public class EmployeeController implements Initializable
     }
   }
 
-//  Columns
+  //  Columns
   @FXML
   private TableColumn<Employee, String> idColumn;
   @FXML
@@ -254,7 +246,7 @@ public class EmployeeController implements Initializable
     }
   }
 
-//  Labels
+  //  Labels
   @FXML
   private Label addressErrorLabel;
   @FXML
@@ -272,7 +264,7 @@ public class EmployeeController implements Initializable
   @FXML
   private Label supervisorIDErrorLabel;
 
-//  TextFields
+  //  TextFields
   @FXML
   private TextField addressTextField;
   @FXML
@@ -286,7 +278,7 @@ public class EmployeeController implements Initializable
   @FXML
   private TextField phoneNumberTextField;
 
-//  RadioButtons and ToggleGroup
+  //  RadioButtons and ToggleGroup
   @FXML
   private RadioButton maleRadioButton;
   @FXML
@@ -320,21 +312,21 @@ public class EmployeeController implements Initializable
 
 //------------------------------------------------------------------------------------------------------
 
-//  Another class fields
+  //  Another class fields
 //  Database connection
   private Connection connection;
-//  Declare a variable that hols the data for the table
+  //  Declare a variable that hols the data for the table
   ObservableList<Employee> employeeObservableList;
-//  Declare a variable that hols the data for the storeIDComboBox
+  //  Declare a variable that hols the data for the storeIDComboBox
   ObservableList<String> storeIDStringObservableList;
 
-//  Declare a variable that hols the data for the supervisorIDComboBox
+  //  Declare a variable that hols the data for the supervisorIDComboBox
   ObservableList<String> supervisorIDObservableList;
 
-//  Declare a list to contain all employee's id from "customer" table in the database
+  //  Declare a list to contain all employee's id from "customer" table in the database
   List<String> originalListOfIDs = new ArrayList<>();
 
-//  Declare a flag to notify when the data is changed
+  //  Declare a flag to notify when the data is changed
   private boolean isDataChanged = false;
 
   //  Declare
@@ -396,7 +388,7 @@ public class EmployeeController implements Initializable
 
 //  ----------------- Belows are helper methods -----------------------------
 
-//  Helper method
+  //  Helper method
 //  This method check whether a string is contained within a list or not.
 //  If the string is contained within a list, return the index of that string within the list
 //  Otherwise, return -1.
@@ -412,7 +404,7 @@ public class EmployeeController implements Initializable
     return -1;
   }
 
-//  Helper method
+  //  Helper method
   private void setInformationForFields(
       Employee selectedEmployee, TextField idTextField,
       TextField firstNameTextField, TextField lastNameTextField,
@@ -474,21 +466,21 @@ public class EmployeeController implements Initializable
     }
   }
 
-//  Helper method
+  //  Helper method
   private void addANewRow(TableView<Employee> employeeTableView,
                           Employee tempEmployee)
   {
     employeeTableView.getItems().add(tempEmployee);
   }
 
-//  Helper method
+  //  Helper method
   private void updateARow(TableView<Employee> employeeTableView,
                           int index, Employee tempEmployee)
   {
     employeeTableView.getItems().set(index, tempEmployee);
   }
 
-//  Helper method
+  //  Helper method
 //  This method validates all the text fields on the scene
   private boolean isValidTextFieldsForUpdating(
       TextField firstNameTextField, Label firstNameErrorLabel,
@@ -557,17 +549,17 @@ public class EmployeeController implements Initializable
 //    If all the text fields is valid, return true, otherwise return false
     if (
         firstNameErrorLabel.getText().equals("")
-        && lastNameErrorLabel.getText().equals("")
-        && emailErrorLabel.getText().equals("")
-        && phoneNumberErrorLabel.getText().equals("")
-        && addressErrorLabel.getText().equals(""))
+            && lastNameErrorLabel.getText().equals("")
+            && emailErrorLabel.getText().equals("")
+            && phoneNumberErrorLabel.getText().equals("")
+            && addressErrorLabel.getText().equals(""))
     {
       return true;
     }
     return false;
   }
 
-//  Helper method
+  //  Helper method
 //  This method validates all the fields on the scene
   private boolean isValidFieldsForAdding(
       TableView<Employee> employeeTableView,
@@ -676,7 +668,7 @@ public class EmployeeController implements Initializable
     return false;
   }
 
-//  Helper method
+  //  Helper method
 //  This method creates an Employee object from user's input
   private Employee createAnEmployeeFromUserInput(
       TextField idTextField,
@@ -686,7 +678,7 @@ public class EmployeeController implements Initializable
       TextField addressTextField,RadioButton unlockRadioButton,
       ComboBox<String> storeIDComboBox, ComboBox<String> supervisorIDComboBox,
       Connection connection
-      )
+  )
   {
     String tempID;
     String tempFirstName;
@@ -788,16 +780,16 @@ public class EmployeeController implements Initializable
     }
   }
 
-//  Helper method
+  //  Helper method
 //  This method checks whether an id exists in a list or not.
-private boolean isExisted(String id, List<String> originalListOfIDs)
-{
-  if (originalListOfIDs.contains(id))
+  private boolean isExisted(String id, List<String> originalListOfIDs)
   {
-    return true;
+    if (originalListOfIDs.contains(id))
+    {
+      return true;
+    }
+    return false;
   }
-  return false;
-}
 }
 
 

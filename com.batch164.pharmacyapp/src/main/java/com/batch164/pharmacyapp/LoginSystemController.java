@@ -39,38 +39,53 @@ public class LoginSystemController implements Initializable
   private TextField idTextField;
   @FXML
   private PasswordField passwordField;
+
+  @FXML
+  private Label errorMessageLabel;
+
   @FXML
   private Button loginButton;
   @FXML
+  private void loginButton_Click(ActionEvent event) throws IOException
+  {
+    if (isValidTextFields())
+    {
+      String tempID = idTextField.getText().trim();
+      String tempPassword = passwordField.getText().trim();
+      Employee tempEmployee = LoginDAO.login(connection, tempID, tempPassword);
+
+//      Get reference to StaffController
+      FXMLLoader loader;
+      loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
+      loader.load();
+      StaffController staffController = loader.getController();
+
+
+//      Go to next scene
+      goToNextScene(tempEmployee, event, errorMessageLabel, passwordField);
+    }
+  }
+
+  @FXML
   private Button resetButton;
   @FXML
-  private Label errorMessageLabel;
+  private void resetButton_Click(ActionEvent event)
+  {
+    Clearing.clearTextFields(idTextField, passwordField);
+  }
+
   //  ------------------------------------------------------------------------------------------
 
   //  Class fields
   private Connection connection;
-
-  //  !IMPORTANT
-//  (NOT YET, WE HAVE TO INITIALIZE THE DATABASE CONNECTION IN THE initialize method,
-//  via DatabaseConnection.getConnection2)
-//  Class methods
-//  The below method will be called at LoginDatabaseController
-//  to set database connection for the connection class field.
-  public void setConnection(Connection connection)
-  {
-    this.connection = connection;
-  }
 
 //  ------------------------------------------------------------------------------------------
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle)
   {
-//    Initialize the database connection
-//    (via DatabaseConnection.getConnection2 method)
     try
     {
-//      connection = DatabaseConnection.getConnection2();
       connection = DatabaseConnection.getConnection();
     }
     catch (SQLException e)
@@ -87,48 +102,6 @@ public class LoginSystemController implements Initializable
   }
 
 //  ------------------------------------------------------------------------------------------
-
-  @FXML
-  private void loginButton_Click(ActionEvent event) throws IOException
-  {
-    if (isValidTextFields())
-    {
-      String tempID = idTextField.getText().trim();
-      String tempPassword = passwordField.getText().trim();
-      Employee tempEmployee = LoginDAO.login(connection, tempID, tempPassword);
-
-//      Get reference to StaffController
-      FXMLLoader loader;
-      loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
-      loader.load();
-      StaffController staffController = loader.getController();
-
-//      TODO
-////      Set current employee for next scene
-//      staffController.setCurrentEmployee(tempEmployee);
-////
-////      Set current store for next scene
-//      Store tempStore = StoreDAO.getStoreBasedOnEmployeeID(
-//          tempEmployee.getId(), connection);
-//      staffController.setCurrentStore(tempStore);
-
-////      Set content for the welcome label
-//      staffController.setWelcomeLabel();
-
-//      Go to next scene
-      goToNextScene(tempEmployee, event, errorMessageLabel, passwordField);
-    }
-  }
-
-  @FXML
-  private void resetButton_Click(ActionEvent event)
-  {
-    Clearing.clearTextFields(idTextField, passwordField);
-  }
-//  ------------------------------------------------------------------------------------------
-
-
-
 
   //  Helper method
   private void goToNextScene(Employee tempEmployee,

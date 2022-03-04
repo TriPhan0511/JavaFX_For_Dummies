@@ -226,8 +226,6 @@ public class EmployeeDAO
       {
         statement.setInt(8, 0);
       }
-//      Testing
-      System.out.println("store id(2): " + tempEmployee.getStore().getStoreID());
       statement.setString(9, tempEmployee.getStore().getStoreID());
       if (tempEmployee.getSupervisor() != null)
       {

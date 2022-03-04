@@ -32,4 +32,7 @@ module com.triphan.javafxtutorials {
   opens com.triphan.searchbar_and_tableview to javafx.fxml;
   exports com.triphan.searchbar_and_tableview;
 
+  opens com.triphan.data_transfering_between_controllers to javafx.fxml;
+  exports com.triphan.data_transfering_between_controllers;
+
 }

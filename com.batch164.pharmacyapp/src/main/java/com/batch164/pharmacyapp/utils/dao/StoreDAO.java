@@ -111,7 +111,7 @@ public class StoreDAO
     {
       while (resultSet.next())
       {
-        tempID = resultSet.getString("store_id");
+        tempID = resultSet.getString("store_id").trim();
         list.add(tempID);
       }
     }

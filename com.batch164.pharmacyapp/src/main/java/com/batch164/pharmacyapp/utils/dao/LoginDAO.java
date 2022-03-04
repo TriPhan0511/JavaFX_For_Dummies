@@ -57,8 +57,8 @@ public class LoginDAO
           tempEmail = resultSet.getString("email").trim();
           tempPhoneNumber = resultSet.getString("phone_number").trim();
           tempAddress = resultSet.getString("address").trim();
-          tempStoreID = resultSet.getString("store_id").trim();
-          tempSupervisorID = resultSet.getString("supervisor_id");
+//          tempStoreID = resultSet.getString("store_id").trim();
+//          tempSupervisorID = resultSet.getString("supervisor_id");
 
           tempEmployee = new Employee(tempID, tempFirstName,
               tempLastName, tempGenderType,

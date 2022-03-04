@@ -60,22 +60,17 @@ public class LoginDatabaseController
 //      Initialize a connection to the database
       String databaseUserName = userNameTextField.getText().trim();
       String databasePassword = passwordField.getText().trim();
-
       String databaseURL = databaseNameTextField.getText().trim();
       try
       {
-//        First, create a file named "database.properties"
+//        Create a file named "database.properties"
         FileHandler.writeToFile("database.properties",
             databaseURL, databaseUserName, databasePassword);
+//        Get database connection
         connection = DatabaseConnection.getConnection();
-
-
-//        connection = DatabaseConnection.getConnection(
-//                      databaseUserName, databasePassword);
       }
       catch (SQLException e)
       {
-//        e.printStackTrace();
         System.out.println("Failure connection.");
       }
       if (connection != null) // Go to the "login-system-view" scene
@@ -83,12 +78,6 @@ public class LoginDatabaseController
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("login-system-view.fxml"));
         Parent root = loader.load();
-
-//        Set database connection for LoginSystemController (!IMPORTANT)
-        LoginSystemController loginSystemController = loader.getController();
-        loginSystemController.setConnection(connection);
-
-//        Switch scene
         Scene loginSystemScene = new Scene(root);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setScene(loginSystemScene);
