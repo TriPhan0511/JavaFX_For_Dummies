@@ -122,7 +122,6 @@ public class CustomerDAO
 
   public static void updateEmployee(Customer tempCustomer, Connection connection)
   {
-    System.out.println("updateEmployee METHOD");
     String sql = "{ call usp_Update_A_Customer(?,?,?,?,?,?,?,?) }";
     try (CallableStatement statement = connection.prepareCall(sql))
     {

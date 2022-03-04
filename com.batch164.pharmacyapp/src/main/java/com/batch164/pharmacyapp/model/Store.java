@@ -87,9 +87,20 @@ public class Store
   public String toString()
   {
     StringBuilder builder = new StringBuilder();
+    builder.append(storeName);
+    builder.append("(");
     builder.append(storeID);
+    builder.append(")");
     return builder.toString();
   }
+
+//  @Override
+//  public String toString()
+//  {
+//    StringBuilder builder = new StringBuilder();
+//    builder.append(storeID);
+//    return builder.toString();
+//  }
 }
 
 

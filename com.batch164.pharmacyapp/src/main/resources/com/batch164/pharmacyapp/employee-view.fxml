@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
@@ -26,25 +27,6 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="welcomeLabel" layoutX="905.0" layoutY="25.0" text="Welcome,  &lt;name of the employee&gt;!" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button fx:id="logoutButton" layoutX="1272.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoutButton_Click" style="-fx-background-color: #e96151;" text="Log out" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="profileButton" layoutX="1197.0" layoutY="19.0" mnemonicParsing="false" onAction="#profileButton_Click" style="-fx-background-color: #e96151;" text="Profile" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
             <Button fx:id="exitButton" layoutX="1488.0" layoutY="5.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
@@ -75,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="755.0" layoutY="16.0" prefHeight="30.0" prefWidth="418.0" text="Manage Employee (Create, Update, Delete)" textFill="#e96151">
+                  <Label layoutX="800.0" layoutY="19.0" text="Manage Employee" textFill="#e96151">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -96,19 +78,19 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idTextField" layoutX="106.0" layoutY="70.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="68.0" />
+                        <TextField fx:id="idTextField" layoutX="106.0" layoutY="70.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="68.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="135.0" prefWidth="80.0" text="First name">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstNameTextField" layoutX="106.0" layoutY="131.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="firstNameTextField" layoutX="106.0" layoutY="131.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="201.0" prefWidth="80.0" text="Last name">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lastNameTextField" layoutX="102.0" layoutY="197.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="lastNameTextField" layoutX="102.0" layoutY="197.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="259.0" prefWidth="80.0" text="Gender">
                            <font>
                               <Font name="Arial" size="12.0" />
@@ -125,25 +107,48 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailTextField" layoutX="109.0" layoutY="319.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="emailTextField" layoutX="109.0" layoutY="319.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="386.0" prefWidth="80.0" text="Phone number">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="phoneNumberTextField" layoutX="110.0" layoutY="382.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="phoneNumberTextField" layoutX="110.0" layoutY="382.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="450.0" prefWidth="80.0" text="Address">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addressTextField" layoutX="111.0" layoutY="446.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="addressTextField" layoutX="111.0" layoutY="446.0" onAction="#addOrUpdateButton_Click" prefHeight="25.0" prefWidth="190.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="516.0" prefWidth="80.0" text="Lock Status">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addButton" layoutX="234.0" layoutY="695.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#addButton_Click" style="-fx-background-color: #297ed9;" text="Add" textFill="WHITE">
+                        <RadioButton fx:id="unlockRadioButton" layoutX="114.0" layoutY="515.0" mnemonicParsing="false" selected="true" text="Unlock">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="lockStatusToggleGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="lockRadioButton" layoutX="202.0" layoutY="515.0" mnemonicParsing="false" text="Lock" toggleGroup="$lockStatusToggleGroup" />
+                        <Label alignment="CENTER_RIGHT" layoutX="17.0" layoutY="597.0" prefWidth="80.0" text="Store's ID">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="storeIDComboBox" layoutX="111.0" layoutY="592.0" onAction="#storeIDComboBox_Change" prefHeight="25.0" prefWidth="190.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="17.0" layoutY="665.0" prefWidth="80.0" text="Supervisor' ID">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="supervisorIDComboBox" layoutX="111.0" layoutY="660.0" prefHeight="25.0" prefWidth="190.0" />
+                        <Button fx:id="addOrUpdateButton" layoutX="187.0" layoutY="711.0" maxWidth="116.0" minWidth="70.0" mnemonicParsing="false" onAction="#addOrUpdateButton_Click" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: #297ed9;" text="Add / Update" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="resetButton" layoutX="90.0" layoutY="711.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#resetButton_Click" style="-fx-background-color: #34b4eb;" text="Reset" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -154,48 +159,26 @@
                         <Label fx:id="emailErrorLabel" layoutX="110.0" layoutY="294.0" textFill="#e15f42" />
                         <Label fx:id="phoneNumberErrorLabel" layoutX="111.0" layoutY="357.0" textFill="#e15f42" />
                         <Label fx:id="addressErrorLabel" layoutX="112.0" layoutY="421.0" textFill="#e15f42" />
-                        <Label fx:id="zipCodeErrorLabel" layoutX="112.0" layoutY="487.0" textFill="#e15f42" />
-                        <Label alignment="CENTER_RIGHT" layoutX="17.0" layoutY="581.0" prefWidth="80.0" text="Supervisor' ID">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="supervisorIDTextField" layoutX="108.0" layoutY="577.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
-                        <Label alignment="CENTER_RIGHT" layoutX="17.0" layoutY="647.0" prefWidth="80.0" text="Store's ID">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="storeIDTextField" layoutX="108.0" layoutY="643.0" onAction="#addButton_Click" prefHeight="25.0" prefWidth="190.0" />
-                        <RadioButton fx:id="unlockRadioButton" layoutX="114.0" layoutY="515.0" mnemonicParsing="false" selected="true" text="Unlock">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="lockStatusToggleGroup" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="lockRadioButton" layoutX="202.0" layoutY="515.0" mnemonicParsing="false" text="Lock" toggleGroup="$lockStatusToggleGroup" />
+                        <Label fx:id="storeIDErrorLabel" layoutX="109.0" layoutY="561.0" textFill="#e15f42" />
+                        <Label fx:id="supervisorIDErrorLabel" layoutX="109.0" layoutY="635.0" textFill="#e15f42" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="1355.0">
                      <children>
-                        <TableView fx:id="customerTableView" editable="true" layoutX="14.0" layoutY="73.0" prefHeight="674.0" prefWidth="1153.0">
+                        <TableView fx:id="employeeTableView" editable="true" layoutX="14.0" layoutY="73.0" onMouseClicked="#employeeTableView_Click" prefHeight="674.0" prefWidth="1153.0">
                           <columns>
                             <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="firstNameColumn" onEditCommit="#firstNameColumn_OnEditCommit" prefWidth="94.0" text="First Name" />
-                              <TableColumn fx:id="lastNameColumn" onEditCommit="#lastNameColumn_OnEditCommit" prefWidth="131.0" text="Last Name" />
-                              <TableColumn fx:id="genderColumn" prefWidth="65.0" text="Gender" />
-                              <TableColumn fx:id="emailColumn" onEditCommit="#emailColumn_OnEditCommit" prefWidth="132.0" text="Email" />
-                              <TableColumn fx:id="phoneNumberColumn" onEditCommit="#phoneNumberNameColumn_OnEditCommit" prefWidth="117.0" text="Phone Number" />
-                              <TableColumn fx:id="addressColumn" minWidth="0.0" onEditCommit="#addressNameColumn_OnEditCommit" prefWidth="204.0" text="Address" />
-                              <TableColumn fx:id="lockStatusColumn" minWidth="0.0" onEditCommit="#lockStatusColumn_OnEditCommit" prefWidth="99.0" text="Lock Status" />
-                              <TableColumn fx:id="supervisorIDColumn" minWidth="0.0" onEditCommit="#supervisorIDColumn_OnEditCommit" prefWidth="122.0" text="Supervisor's ID" />
-                              <TableColumn fx:id="storeIDColumn" minWidth="0.0" onEditCommit="#storeIDColumn_OnEditCommit" prefWidth="107.0" text="Store's ID" />
+                            <TableColumn fx:id="firstNameColumn" prefWidth="72.0" text="First Name" />
+                              <TableColumn fx:id="lastNameColumn" prefWidth="83.0" text="Last Name" />
+                              <TableColumn fx:id="genderColumn" prefWidth="68.0" text="Gender" />
+                              <TableColumn fx:id="emailColumn" prefWidth="168.0" text="Email" />
+                              <TableColumn fx:id="phoneNumberColumn" prefWidth="97.0" text="Phone Number" />
+                              <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="135.0" text="Address" />
+                              <TableColumn fx:id="lockStatusColumn" minWidth="0.0" prefWidth="69.0" text="Lock Status" />
+                              <TableColumn fx:id="supervisorColumn" minWidth="0.0" prefWidth="179.0" text="Supervisor" />
+                              <TableColumn fx:id="storeColumn" minWidth="0.0" prefWidth="200.0" text="Store" />
                           </columns>
                         </TableView>
-                        <Button fx:id="deleteButton" layoutX="910.0" layoutY="23.0" maxHeight="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#deleteButton_Click" style="-fx-background-color: #d61c54;" text="Delete" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
                      </children>
                   </AnchorPane>
               </items>

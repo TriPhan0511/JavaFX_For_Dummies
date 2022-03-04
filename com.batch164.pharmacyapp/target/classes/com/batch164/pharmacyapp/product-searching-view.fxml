@@ -59,9 +59,9 @@
                <children>
                   <HBox alignment="CENTER" layoutX="209.0" layoutY="60.0" spacing="10.0">
                      <children>
-                        <Label text="Search Product">
+                        <Label text="Search Product" textFill="#eb5c17">
                            <font>
-                              <Font name="Arial" size="14.0" />
+                              <Font name="Arial Italic" size="14.0" />
                            </font>
                         </Label>
                         <TextField fx:id="keywordsTextField" prefHeight="25.0" prefWidth="824.0" promptText="Keywords...">

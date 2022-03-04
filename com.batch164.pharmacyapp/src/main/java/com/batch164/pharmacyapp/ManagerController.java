@@ -18,15 +18,20 @@ public class ManagerController
 
   //  ------- Belows are the common fields and methods for every scene ----------
   @FXML
-  private Button exitButton;
-  @FXML
-  private Button logoutButton;
-  @FXML
-  private Button profileButton;
-
-  @FXML
   private Label welcomeLabel;
 
+  @FXML
+  private Button exitButton;
+  @FXML
+  private void exitButton_Click(ActionEvent event)
+  {
+    Stage stage = (Stage) ((Node) event.getSource()).
+        getScene().getWindow();
+    stage.close();
+  }
+
+  @FXML
+  private Button logoutButton;
   @FXML
   void logoutButton_Click(ActionEvent event)
   {
@@ -37,6 +42,8 @@ public class ManagerController
   }
 
   @FXML
+  private Button profileButton;
+  @FXML
   void profileButton_Click(ActionEvent event)
   {
 //    TODO
@@ -44,21 +51,11 @@ public class ManagerController
         "Under construction. Coming soon!");
     alert.show();
   }
-
-  @FXML
-  private void exitButton_Click(ActionEvent event)
-  {
-    Stage stage = (Stage) ((Node) event.getSource()).
-        getScene().getWindow();
-    stage.close();
-  }
-
 //  ---------------------------------------------------------------------------------------
 
   //  ------- Belows are the individual fields and methods for staff scene ----------
   @FXML
   private Button employeeManagementButton;
-
   @FXML
   private void employeeManagementButton_Click(ActionEvent event) throws IOException
   {

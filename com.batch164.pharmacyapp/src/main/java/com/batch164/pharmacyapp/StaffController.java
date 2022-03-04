@@ -67,15 +67,6 @@ public class StaffController implements Initializable
 
   @FXML
   private Button customerManagementButton;
-
-  @FXML
-  private Button productSearchingButton;
-  @FXML
-  void productSearchingButton_Click(ActionEvent event) throws IOException
-  {
-    SceneHandler.switchScene("product-searching-view.fxml", event);
-  }
-
   @FXML
   void customerManagementButton_Click(ActionEvent event) throws IOException
   {
@@ -90,7 +81,13 @@ public class StaffController implements Initializable
     stage.setScene(customerScene);
   }
 
-
+  @FXML
+  private Button productSearchingButton;
+  @FXML
+  void productSearchingButton_Click(ActionEvent event) throws IOException
+  {
+    SceneHandler.switchScene("product-searching-view.fxml", event);
+  }
 
   @FXML
   void saveButton_Click(ActionEvent event)
@@ -128,14 +125,6 @@ public class StaffController implements Initializable
     return connection;
   }
 //  ---------------------------------------------------------------------------------------
-
-
-
-
-
-//  ---------------------------------------------------------------------------------------
-
-
 
 ////  Get the current employee
 //  private Employee currentEmployee = null;

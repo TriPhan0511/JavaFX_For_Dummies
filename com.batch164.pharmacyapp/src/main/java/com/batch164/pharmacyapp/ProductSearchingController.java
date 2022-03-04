@@ -110,7 +110,8 @@ public class ProductSearchingController implements Initializable
 //    (via DatabaseConnection.getConnection2 method)
     try
     {
-      connection = DatabaseConnection.getConnection2();
+//      connection = DatabaseConnection.getConnection2();
+      connection = DatabaseConnection.getConnection();
     }
     catch (SQLException e)
     {

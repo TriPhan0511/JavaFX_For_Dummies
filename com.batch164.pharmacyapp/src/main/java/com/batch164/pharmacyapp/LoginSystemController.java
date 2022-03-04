@@ -1,12 +1,10 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.Store;
-import com.batch164.pharmacyapp.utils.TextFieldHandler;
+import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
-import com.batch164.pharmacyapp.utils.dao.StoreDAO;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
@@ -15,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -73,7 +70,8 @@ public class LoginSystemController implements Initializable
 //    (via DatabaseConnection.getConnection2 method)
     try
     {
-      connection = DatabaseConnection.getConnection2();
+//      connection = DatabaseConnection.getConnection2();
+      connection = DatabaseConnection.getConnection();
     }
     catch (SQLException e)
     {
@@ -125,7 +123,7 @@ public class LoginSystemController implements Initializable
   @FXML
   private void resetButton_Click(ActionEvent event)
   {
-    TextFieldHandler.clearTextFields(idTextField, passwordField);
+    Clearing.clearTextFields(idTextField, passwordField);
   }
 //  ------------------------------------------------------------------------------------------
 

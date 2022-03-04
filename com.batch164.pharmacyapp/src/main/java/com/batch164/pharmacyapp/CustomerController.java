@@ -3,23 +3,19 @@ package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Customer;
 import com.batch164.pharmacyapp.model.GenderType;
-import com.batch164.pharmacyapp.utils.TextFieldHandler;
+import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.EmailTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.IDTextFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -266,7 +262,8 @@ public class CustomerController implements Initializable
 //    (via DatabaseConnection.getConnection2 method)
     try
     {
-      connection = DatabaseConnection.getConnection2();
+//      connection = DatabaseConnection.getConnection2();
+      connection = DatabaseConnection.getConnection();
     }
     catch (SQLException e)
     {
@@ -283,23 +280,14 @@ public class CustomerController implements Initializable
 // Initialize the customerObservableList
     customerObservableList = CustomerDAO.getCustomers(connection);
 
-//    Get all of employee's ids from "customer" table in the database and add them to the
-//    Way 2:
+//    Get all of customer's ids from "customer" table in the database and add them to the
     for (Customer item : customerObservableList)
     {
       originalListOfIDs.add(item.getId());
     }
-////    Way 1:
-//    for (Customer item : CustomerDAO.getCustomers(connection))
-//    {
-//      originalListOfIDs.add(item.getId());
-//    }
 
 //    Set data for the customer TableView
-//    Way 2:
     customerTableView.setItems(customerObservableList);
-////    Way 1:
-//    customerTableView.setItems(CustomerDAO.getCustomers(connection));
 
 //    Set Multiple Selection Mode for the customer TableView
     customerTableView.getSelectionModel().
@@ -388,7 +376,7 @@ private void saveButton_Click()
 //      the customer table's data.
       customerTableView.getItems().add(tempCustomer);
 //      Then, clear all the text fields
-      TextFieldHandler.clearTextFields(idTextField,
+      Clearing.clearTextFields(idTextField,
           firstNameTextField, lastNameTextField,
           emailTextField, phoneNumberTextField,
           addressTextField, zipCodeTextField);
@@ -569,6 +557,7 @@ private void saveButton_Click()
     return tempCustomer;
   }
 
+//  Helper method
 //  This method validates all the text fields on the scene
   private boolean isValidTextFields()
   {

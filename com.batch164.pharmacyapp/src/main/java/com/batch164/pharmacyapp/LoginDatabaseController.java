@@ -1,10 +1,8 @@
 package com.batch164.pharmacyapp;
 
-import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.utils.TextFieldHandler;
+import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
-import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
-import com.batch164.pharmacyapp.utils.dao.LoginDAO;
+import com.batch164.pharmacyapp.utils.filehandler.FileHandler;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +31,9 @@ public class LoginDatabaseController
 
   //  Individual fields and methods
   @FXML
+  private TextField databaseNameTextField;
+
+  @FXML
   private TextField userNameTextField;
   @FXML
   private PasswordField passwordField;
@@ -59,11 +60,20 @@ public class LoginDatabaseController
 //      Initialize a connection to the database
       String databaseUserName = userNameTextField.getText().trim();
       String databasePassword = passwordField.getText().trim();
+
+      String databaseURL = databaseNameTextField.getText().trim();
       try
       {
-        connection = DatabaseConnection.getConnection(
-                      databaseUserName, databasePassword);
-      } catch (SQLException e)
+//        First, create a file named "database.properties"
+        FileHandler.writeToFile("database.properties",
+            databaseURL, databaseUserName, databasePassword);
+        connection = DatabaseConnection.getConnection();
+
+
+//        connection = DatabaseConnection.getConnection(
+//                      databaseUserName, databasePassword);
+      }
+      catch (SQLException e)
       {
 //        e.printStackTrace();
         System.out.println("Failure connection.");
@@ -94,7 +104,7 @@ public class LoginDatabaseController
   @FXML
   private void resetButton_Click(ActionEvent event)
   {
-    TextFieldHandler.clearTextFields(userNameTextField, passwordField);
+    Clearing.clearTextFields(userNameTextField, passwordField);
   }
 
   //  Helper method

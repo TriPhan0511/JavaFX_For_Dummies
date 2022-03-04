@@ -25,9 +25,9 @@ public class PharmacyApplication extends Application
 //      FXMLLoader loader = new FXMLLoader(
 //          getClass().getResource("login-database-view.fxml"));
 
-//      Login System scene
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("login-system-view.fxml"));
+////      Login System scene
+//      FXMLLoader loader = new FXMLLoader(
+//          getClass().getResource("login-system-view.fxml"));
 
 ////      Employee scene
 //      FXMLLoader loader = new FXMLLoader(
@@ -36,6 +36,11 @@ public class PharmacyApplication extends Application
 ////      Customer scene
 //      FXMLLoader loader = new FXMLLoader(
 //          getClass().getResource("customer-view.fxml"));
+
+//      Manager scene
+      FXMLLoader loader = new FXMLLoader(
+          getClass().getResource("manager-view.fxml"));
+
 
       Parent root = loader.load();
       Scene scene = new Scene(root);
