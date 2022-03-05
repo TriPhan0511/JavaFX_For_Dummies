@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.LoginDatabaseController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #e96151;">
+      <AnchorPane layoutY="-1.0" prefHeight="71.0" prefWidth="1350.0" style="-fx-background-color: #65519c;">
          <children>
             <Label layoutX="28.0" layoutY="5.0" prefHeight="62.0" prefWidth="267.0" text="Get Well Pharmacy" textFill="WHITE">
                <font>
@@ -213,7 +213,10 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" />
+                                    <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" promptText="Enter the password here.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></PasswordField>
                                  </children>
                               </HBox>
                               <VBox spacing="15.0">

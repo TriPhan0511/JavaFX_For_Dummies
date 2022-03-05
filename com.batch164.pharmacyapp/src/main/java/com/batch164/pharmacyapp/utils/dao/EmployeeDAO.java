@@ -295,6 +295,31 @@ public class EmployeeDAO
       }
     }
   }
+
+  public static String getPasswordBaseOnEmployeeID(String employeeID, Connection connection)
+  {
+    String tempPassword = "";
+    String sql = "{ call usp_Get_Password_Base_On_Employee_ID(?) }";
+    try (CallableStatement statement = connection.prepareCall(sql))
+    {
+      statement.setString(1, employeeID);
+      try (ResultSet resultSet = statement.executeQuery())
+      {
+        while (resultSet.next())
+        {
+          tempPassword = resultSet.getString("password").trim();
+        }
+      }
+    }
+    catch (SQLException e)
+    {
+      for (Throwable t : e)
+      {
+        t.printStackTrace();
+      }
+    }
+    return tempPassword;
+  }
 }
 
 

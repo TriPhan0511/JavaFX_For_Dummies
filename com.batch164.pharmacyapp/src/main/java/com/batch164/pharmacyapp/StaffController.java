@@ -1,6 +1,7 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.MyController;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import javafx.event.ActionEvent;
@@ -20,37 +21,43 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-public class StaffController implements Initializable
+public class StaffController implements MyController
 {
-  //  ------- Belows are the common fields and methods for every scene ----------
-  @FXML
-  private Button exitButton;
-  @FXML
-  private Button logoutButton;
-  @FXML
-  private Button profileButton;
-
   @FXML
   private Label welcomeLabel;
-
   @FXML
-  void logoutButton_Click(ActionEvent event)
+  private Label currentStoreLabel;
+
+  private Employee currentUser;
+  private Store currentStore;
+
+  @Override
+  public void setCurrentUser(Employee currentUser)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentUser = currentUser;
   }
 
-  @FXML
-  void profileButton_Click(ActionEvent event)
+  @Override
+  public void setCurrentStore(Store currentStore)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentStore = currentStore;
   }
 
+  @Override
+  public void displayWelcomeMessage()
+  {
+    welcomeLabel.setText("Welcome, " + currentUser.getFullName() + " (staff)!");
+  }
+
+  @Override
+  public void displayCurrentStore()
+  {
+    currentStoreLabel.setText("You are in " + currentStore.getStoreName() + ".");
+  }
+//  -------------------------------------------------------------------------------------------------
+
+  @FXML
+  private Button exitButton;
   @FXML
   private void exitButton_Click(ActionEvent event)
   {
@@ -59,26 +66,50 @@ public class StaffController implements Initializable
     stage.close();
   }
 
+  @FXML
+  private Button logoutButton;
+  @FXML
+  private void logoutButton_Click(ActionEvent event)
+  {
+    try
+    {
+      SceneHandler.switchScene("login-system-view.fxml", event);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private Button changePassword;
+  @FXML
+  private void changePassword_Click()
+  {
+//    TODO
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Under construction!");
+    alert.show();
+  }
+
 //  ---------------------------------------------------------------------------------------
 
-//  ------- Belows are the individual fields and methods for staff scene ----------
+//  ------- Belows are the individual fields and methods for this scene ----------
   @FXML
   private Button sellingButton;
+  @FXML
+  void sellingButton_Click(ActionEvent event)
+  {
+//    TODO
+  }
 
   @FXML
   private Button customerManagementButton;
   @FXML
   void customerManagementButton_Click(ActionEvent event) throws IOException
   {
-//    Go to "customer-view" scene
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("customer-view.fxml"));
-    Parent root = loader.load();
-//    CustomerController customerController = loader.getController();
-//    customerController.setConnection(connection);
-    Scene customerScene = new Scene(root);
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.setScene(customerScene);
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
 
   @FXML
@@ -86,61 +117,10 @@ public class StaffController implements Initializable
   @FXML
   void productSearchingButton_Click(ActionEvent event) throws IOException
   {
-    SceneHandler.switchScene("product-searching-view.fxml", event);
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("product-searching-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
-
-  @FXML
-  void saveButton_Click(ActionEvent event)
-  {
-
-  }
-
-  @FXML
-  void sellingButton_Click(ActionEvent event)
-  {
-
-  }
-
-//  ---------------------------------------------------------------------------------------
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle)
-  {
-
-  }
-//  ---------------------------------------------------------------------------------------
-
-  //  Class fields
-  private Connection connection;
-
-  //  Class methods
-//  The below method will be called at LoginDatabaseController
-//  to set database connection for the connection class field.
-  public void setConnection(Connection connection)
-  {
-    this.connection = connection;
-  }
-  public Connection getConnection()
-  {
-    return connection;
-  }
-//  ---------------------------------------------------------------------------------------
-
-////  Get the current employee
-//  private Employee currentEmployee = null;
-////  This method will be called at LoginSystemController
-//  public void setCurrentEmployee(Employee tempEmployee)
-//  {
-//    this.currentEmployee = tempEmployee;
-//  }
-//
-////  Get the current store
-//  private Store currentStore = null;
-////  This method will be called at LoginSystemController
-//  public void setCurrentStore(Store tempStore)
-//  {
-//    this.currentStore = tempStore;
-//  }
 }
 
 

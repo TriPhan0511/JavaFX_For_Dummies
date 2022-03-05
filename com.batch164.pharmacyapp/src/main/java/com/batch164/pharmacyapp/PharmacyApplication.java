@@ -21,17 +21,15 @@ public class PharmacyApplication extends Application
   {
     try
     {
-//      Login Database scene
+////      Login Database scene
+//      FXMLLoader loader = new FXMLLoader(
+//          getClass().getResource("login-database-view.fxml"));
+
+//      Login System scene
       FXMLLoader loader = new FXMLLoader(
-          getClass().getResource("login-database-view.fxml"));
+          getClass().getResource("login-system-view.fxml"));
 
-////      Login System scene
-//      FXMLLoader loader = new FXMLLoader(
-//          getClass().getResource("login-system-view.fxml"));
 
-////      Employee scene
-//      FXMLLoader loader = new FXMLLoader(
-//          getClass().getResource("employee-view.fxml"));
 
 ////      Customer scene
 //      FXMLLoader loader = new FXMLLoader(
@@ -40,6 +38,10 @@ public class PharmacyApplication extends Application
 ////      Manager scene
 //      FXMLLoader loader = new FXMLLoader(
 //          getClass().getResource("manager-view.fxml"));
+
+////      Password changing scene
+//      FXMLLoader loader = new FXMLLoader(
+//          getClass().getResource("password-changing-view.fxml"));
 
 
       Parent root = loader.load();

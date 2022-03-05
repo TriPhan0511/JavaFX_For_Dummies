@@ -1,33 +1,58 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import javafx.collections.ObservableList;
+import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.Store;
+import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ManagerController
+public class ManagerController implements MyController
 {
 
-  //  ------- Belows are the common fields and methods for every scene ----------
+//  ------- Belows are the common fields and methods for every scene ----------
   @FXML
   private Label welcomeLabel;
+  @FXML
+  private Label currentStoreLabel;
+
+  private Employee currentUser;
+  private Store currentStore;
+
+  @Override
+  public void setCurrentUser(Employee currentUser)
+  {
+    this.currentUser = currentUser;
+  }
+
+  @Override
+  public void setCurrentStore(Store currentStore)
+  {
+    this.currentStore = currentStore;
+  }
+
+  @Override
   public void displayWelcomeMessage()
   {
-    welcomeLabel.setText("Welcome, " + currentUser.getFullName());
+    welcomeLabel.setText("Welcome, " + currentUser.getFullName() + " (manager)!");
   }
+
+  @Override
+  public void displayCurrentStore()
+  {
+    currentStoreLabel.setText("You are in " + currentStore.getStoreName() + ".");
+  }
+//  -------------------------------------------------------------------------------------------------
+
 
   @FXML
   private Button exitButton;
@@ -42,24 +67,28 @@ public class ManagerController
   @FXML
   private Button logoutButton;
   @FXML
-  void logoutButton_Click(ActionEvent event)
+  private void logoutButton_Click(ActionEvent event)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    try
+    {
+      SceneHandler.switchScene("login-system-view.fxml", event);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @FXML
-  private Button profileButton;
+  private Button changePassword;
   @FXML
-  void profileButton_Click(ActionEvent event)
+  private void changePassword_Click(ActionEvent event) throws IOException // Should create a new utility method?
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("password-changing-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
+
 //  ---------------------------------------------------------------------------------------
 
   //  ------- Belows are the individual fields and methods for staff scene ----------
@@ -70,31 +99,8 @@ public class ManagerController
   {
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("employee-manager-view.fxml"));
-//    FXMLLoader loader = new FXMLLoader(
-//        getClass().getResource("employee-view.fxml"));
-    Parent root = loader.load();
-    Scene employeeScene = new Scene(root);
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.setScene(employeeScene);
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
-
-//------------------------------------------------------------------------------------------------------
-
-//  Another class fields
-
-  private Employee currentUser;
-
-  public Employee getCurrentUser()
-  {
-    return currentUser;
-  }
-
-  public void setCurrentUser(Employee currentUser)
-  {
-    this.currentUser = currentUser;
-  }
-  //  ----------------------------------------------------------------------------------------
-
 }
 
 

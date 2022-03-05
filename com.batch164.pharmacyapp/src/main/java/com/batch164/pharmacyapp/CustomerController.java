@@ -1,8 +1,7 @@
 
 package com.batch164.pharmacyapp;
 
-import com.batch164.pharmacyapp.model.Customer;
-import com.batch164.pharmacyapp.model.GenderType;
+import com.batch164.pharmacyapp.model.*;
 import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.CustomerDAO;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
@@ -14,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -30,36 +30,44 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class CustomerController implements Initializable
+public class CustomerController implements Initializable, MyController
 {
 //  ------- Belows are the common fields and methods for every scene ----------
   @FXML
-  private Button exitButton;
-  @FXML
-  private Button logoutButton;
-  @FXML
-  private Button profileButton;
-  @FXML
   private Label welcomeLabel;
-
   @FXML
-  void logoutButton_Click(ActionEvent event)
+  private Label currentStoreLabel;
+
+  private Employee currentUser;
+  private Store currentStore;
+
+  @Override
+  public void setCurrentUser(Employee currentUser)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentUser = currentUser;
   }
 
-  @FXML
-  void profileButton_Click(ActionEvent event)
+  @Override
+  public void setCurrentStore(Store currentStore)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentStore = currentStore;
   }
 
+  @Override
+  public void displayWelcomeMessage()
+  {
+    welcomeLabel.setText("Welcome, " + currentUser.getFullName() + " (staff)!");
+  }
+
+  @Override
+  public void displayCurrentStore()
+  {
+    currentStoreLabel.setText("You are in " + currentStore.getStoreName() + ".");
+  }
+//  -------------------------------------------------------------------------------------------------
+
+  @FXML
+  private Button exitButton;
   @FXML
   private void exitButton_Click(ActionEvent event)
   {
@@ -389,13 +397,11 @@ private void saveButton_Click()
   @FXML
   private void goBackButton_Click(ActionEvent event) throws IOException
   {
-    SceneHandler.switchScene("staff-view.fxml", event);
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("staff-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
 
-//    FXMLLoader loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
-//    Parent root = loader.load();
-//    Scene staffScene = new Scene(root);
-//    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//    stage.setScene(staffScene);
+//    SceneHandler.switchScene("staff-view.fxml", event);
   }
 
 //  Action Event handler of the delete button

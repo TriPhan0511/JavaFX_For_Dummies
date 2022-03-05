@@ -99,14 +99,9 @@ public class LoginDatabaseController
   //  Helper method
   private boolean isValidTextFields()
   {
-    if (!TextFieldValidation.isBlank(
-        userNameTextField,
-        errorMessageLabel,
-        "User name is required.")
-        && !TextFieldValidation.isBlank(
-            passwordField,
-            errorMessageLabel,
- "Password is required."))
+    if (!TextFieldValidation.isBlank(userNameTextField, errorMessageLabel, "User name is required.")
+        && !TextFieldValidation.isBlank(passwordField, errorMessageLabel,"Password is required.")
+    )
     {
       return true;
     }

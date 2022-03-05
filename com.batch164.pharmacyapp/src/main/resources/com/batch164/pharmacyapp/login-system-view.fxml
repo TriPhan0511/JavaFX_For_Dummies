@@ -199,7 +199,10 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" />
+                                    <PasswordField fx:id="passwordField" onAction="#loginButton_Click" prefHeight="30.0" prefWidth="296.0" promptText="Enter the password here.">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></PasswordField>
                                  </children>
                               </HBox>
                               <VBox spacing="15.0">

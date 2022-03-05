@@ -64,16 +64,6 @@ public class Employee extends Person
     builder.append(")");
     return builder.toString();
   }
-
-//  @Override
-//  public String toString()
-//  {
-//    StringBuilder builder = new StringBuilder();
-//    builder.append(super.toString());
-//    builder.append("-");
-//    builder.append(isLocked());
-//    return builder.toString();
-//  }
 }
 
 

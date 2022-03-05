@@ -49,7 +49,7 @@
          <children>
             <AnchorPane prefHeight="62.0" prefWidth="1600.0">
                <children>
-                  <Button fx:id="goBackButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#goBackButton_Click" prefHeight="47.0" prefWidth="389.0" style="-fx-background-color: #cfd8e8;" text="Back to the Manager Screen 2" textFill="#1d3ceb">
+                  <Button fx:id="goBackButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#goBackButton_Click" prefHeight="47.0" prefWidth="389.0" style="-fx-background-color: #cfd8e8;" text="Back to the Manager Screen" textFill="#1d3ceb">
                      <font>
                         <Font name="Arial Bold Italic" size="24.0" />
                      </font>
@@ -191,5 +191,15 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="welcomeLabel" layoutX="649.0" layoutY="11.0" text="Welcome, &lt;name of the employee&gt;!" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentStoreLabel" layoutX="649.0" layoutY="41.0" text="You are in &lt;name of current store&gt;" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

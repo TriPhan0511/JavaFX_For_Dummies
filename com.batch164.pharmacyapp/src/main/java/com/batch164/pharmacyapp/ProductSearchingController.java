@@ -1,5 +1,8 @@
 package com.batch164.pharmacyapp;
 
+import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.model.composite.CompositeStock;
 import com.batch164.pharmacyapp.utils.dao.CompositeStockDAO;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
@@ -9,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -21,36 +25,43 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ProductSearchingController implements Initializable
+public class ProductSearchingController implements Initializable, MyController
 {
-  //  ------- Belows are the common fields and methods for every scene ----------
-  @FXML
-  private Button exitButton;
-  @FXML
-  private Button logoutButton;
-  @FXML
-  private Button profileButton;
   @FXML
   private Label welcomeLabel;
-
   @FXML
-  void logoutButton_Click(ActionEvent event)
+  private Label currentStoreLabel;
+
+  private Employee currentUser;
+  private Store currentStore;
+
+  @Override
+  public void setCurrentUser(Employee currentUser)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentUser = currentUser;
   }
 
-  @FXML
-  void profileButton_Click(ActionEvent event)
+  @Override
+  public void setCurrentStore(Store currentStore)
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION,
-        "Under construction. Coming soon!");
-    alert.show();
+    this.currentStore = currentStore;
   }
 
+  @Override
+  public void displayWelcomeMessage()
+  {
+    welcomeLabel.setText("Welcome, " + currentUser.getFullName() + " (staff)!");
+  }
+
+  @Override
+  public void displayCurrentStore()
+  {
+    currentStoreLabel.setText("You are in " + currentStore.getStoreName() + ".");
+  }
+//  -------------------------------------------------------------------------------------------------
+
+  @FXML
+  private Button exitButton;
   @FXML
   private void exitButton_Click(ActionEvent event)
   {
@@ -64,8 +75,9 @@ public class ProductSearchingController implements Initializable
   @FXML
   void goBackButton_Click(ActionEvent event) throws IOException
   {
-    SceneHandler.switchScene("staff-view.fxml", event);
-
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("staff-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
 
 //  ----------------------------------------------------------------------------------

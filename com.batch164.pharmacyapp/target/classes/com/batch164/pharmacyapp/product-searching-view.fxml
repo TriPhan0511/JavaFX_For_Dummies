@@ -23,25 +23,6 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="welcomeLabel" layoutX="663.0" layoutY="24.0" text="Welcome,  &lt;name of the employee&gt;!" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button fx:id="logoutButton" layoutX="1030.0" layoutY="18.0" mnemonicParsing="false" onAction="#logoutButton_Click" style="-fx-background-color: #e96151;" text="Log out" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="profileButton" layoutX="955.0" layoutY="18.0" mnemonicParsing="false" onAction="#profileButton_Click" style="-fx-background-color: #e96151;" text="Profile" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
             <Button fx:id="exitButton" layoutX="1246.0" layoutY="4.0" mnemonicParsing="false" onAction="#exitButton_Click" prefHeight="62.0" prefWidth="98.0" style="-fx-background-color: #8578eb;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold Italic" size="24.0" />
@@ -108,5 +89,15 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="welcomeLabel" layoutX="649.0" layoutY="11.0" text="Welcome, &lt;name of the employee&gt;!" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentStoreLabel" layoutX="649.0" layoutY="41.0" text="You are in &lt;name of current store&gt;" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,10 +1,12 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
+import com.batch164.pharmacyapp.utils.dao.StoreDAO;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -50,19 +53,21 @@ public class LoginSystemController implements Initializable
   {
     if (isValidTextFields())
     {
-      String tempID = idTextField.getText().trim();
-      String tempPassword = passwordField.getText().trim();
-      Employee tempEmployee = LoginDAO.login(connection, tempID, tempPassword);
-
-//      Get reference to StaffController
-      FXMLLoader loader;
-      loader = new FXMLLoader(getClass().getResource("staff-view.fxml"));
-      loader.load();
-      StaffController staffController = loader.getController();
-
-
-//      Go to next scene
-      goToNextScene(tempEmployee, event, errorMessageLabel, passwordField);
+//      Base on the user's input, fetch an employee from the database.
+//      If the fetched employee is null, display the error message.
+//      Otherwise, go to the next scene.
+      String inputID = idTextField.getText().trim();
+      String inputPassword = passwordField.getText().trim();
+      Employee currentUser = LoginDAO.login(connection, inputID, inputPassword);
+      if (currentUser == null)
+      {
+        errorMessageLabel.setText("Login failed. Please try again.");
+        passwordField.setText("");
+      }
+      else
+      {
+        goToNextScene(currentUser, event, connection);
+      }
     }
   }
 
@@ -74,12 +79,12 @@ public class LoginSystemController implements Initializable
     Clearing.clearTextFields(idTextField, passwordField);
   }
 
-  //  ------------------------------------------------------------------------------------------
+  //  -----------------------------------------------------------------------------------------------
 
   //  Class fields
   private Connection connection;
 
-//  ------------------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------------------------------
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle)
@@ -103,57 +108,70 @@ public class LoginSystemController implements Initializable
 
 //  ------------------------------------------------------------------------------------------
 
-  //  Helper method
-  private void goToNextScene(Employee tempEmployee,
-                             ActionEvent event,
-                             Label errorMessageLabel,
-                             PasswordField passwordField) throws IOException
+//  Helper method
+//  Indicate the current user is a manager, or a supervisor, or a staff:
+//  Get supervisorID of the current employee:
+//  1. If the supervisorID is null, it means the current employee is a manager,
+//      so we go to the  "manager-view" scene.
+//  2. If the supervisorID is not null,
+//      we continue get supervisorID of the current employee's supervisor.
+//      And we have two cases:
+//      2.1 If the supervisorID of the current employee's supervisor is null,
+//        it means the current employee is a supervisor,
+//        so we go to the "supervisor-view" scene.
+//      2.2 If the supervisor ID of the current employee's supervisor is not null,
+//        it means the current employee is a staff,
+//        so we go to the "staff-view" scene.
+  private int indicateRoleOfUser(Employee currentUser)
   {
-    if (tempEmployee == null)
+    String tempSupervisorID =
+        EmployeeDAO.getSupervisorID(connection, currentUser.getId());
+    if (tempSupervisorID == null) // The current user is a manager
     {
-      errorMessageLabel.setText("Login failed. Please try again.");
-      passwordField.setText("");
+      return 0;
     }
     else
     {
-//      Get supervisorID of the current employee,
-//      then indicate which next scene we will go to:
-//      1. If the supervisorID is null, it means the current employee is a manager,
-//          so we go to the  "manager-view" scene.
+      String tempHigherSupervisorID =
+          EmployeeDAO.getSupervisorID(connection, tempSupervisorID);
+      if (tempHigherSupervisorID == null) // The current user is a supervisor
+      {
+        return 1;
+      }
+      else // The current user is a staff
+      {
+        return 2;
+      }
+    }
+  }
 
-//      2. If the supervisorID is not null,
-//          we continue get supervisorID of the current employee's supervisor.
-//          And we have two cases:
-//          2.1 If the supervisorID of the current employee's supervisor is null,
-//              it means the current employee is a supervisor,
-//              so we go to the "supervisor-view" scene.
-//          2.2 If the supervisor ID of the current employee's supervisor is not null,
-//              it means the current employee is a staff,
-//              so we go to the "staff-view" scene.
-      FXMLLoader loader;
-      Parent root;
-      String tempSupervisorID =
-          EmployeeDAO.getSupervisorID(connection, tempEmployee.getId());
-      if (tempSupervisorID == null)
-      {
-//        Go to the "manager-view" scene
-        SceneHandler.switchScene("manager-view.fxml", event);
-      }
-      else
-      {
-        String tempHigherSupervisorID =
-            EmployeeDAO.getSupervisorID(connection, tempSupervisorID);
-        if (tempHigherSupervisorID == null)
-        {
-//          Go to the "supervisor-view" scene
-          SceneHandler.switchScene("supervisor-view.fxml", event);
-        }
-        else
-        {
-//          Go to the "staff-view" scene
-          SceneHandler.switchScene("staff-view.fxml", event);
-        }
-      }
+  //  Helper method
+  private void goToNextScene(
+      Employee currentUser, ActionEvent event,
+      Connection connection) throws IOException
+  {
+//    Get the store which the current user belongs to
+    Store currentStore = StoreDAO.getStoreBasedOnEmployeeID(
+        currentUser.getId(), connection);
+
+    FXMLLoader loader;
+    if (indicateRoleOfUser(currentUser) == 0) // The current use is a manager
+    {
+      loader = new FXMLLoader(
+          getClass().getResource("manager-view.fxml"));
+      SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
+    }
+    else if (indicateRoleOfUser(currentUser) == 1) // The current use is a supervisor
+    {
+      loader = new FXMLLoader(
+          getClass().getResource("supervisor-view.fxml"));
+      SceneHandler.setInformationAndSwitchScene(loader, currentStore,currentUser,event);
+    }
+    else if (indicateRoleOfUser(currentUser) == 2) // The current use is a staff
+    {
+      loader = new FXMLLoader(
+          getClass().getResource("staff-view.fxml"));
+      SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
     }
   }
 

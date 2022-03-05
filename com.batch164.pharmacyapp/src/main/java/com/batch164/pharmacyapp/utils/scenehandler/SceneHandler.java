@@ -2,6 +2,7 @@ package com.batch164.pharmacyapp.utils.scenehandler;
 
 import com.batch164.pharmacyapp.PharmacyApplication;
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.MyController;
 import com.batch164.pharmacyapp.model.Store;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,45 @@ public class SceneHandler
 
     welcomeLabel.setText(builder.toString());
   }
+
+  public static void setInformationAndSwitchScene(
+      FXMLLoader loader, Store currentStore,
+      Employee currentUser, ActionEvent event) throws IOException
+  {
+    Parent root = loader.load();
+
+    MyController controller = loader.getController();
+    controller.setCurrentUser(currentUser);
+    controller.displayWelcomeMessage();
+
+    controller.setCurrentStore(currentStore);
+    controller.displayCurrentStore();
+
+
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+  }
+
+//  public static void setInformationAndSwitchScene(
+//      FXMLLoader loader, MyController controller, Store currentStore,
+//      Employee currentUser, ActionEvent event) throws IOException
+//  {
+//    Parent root = loader.load();
+//
+//    controller = loader.getController();
+//    controller.setCurrentUser(currentUser);
+//    controller.displayWelcomeMessage();
+//
+//    controller.setCurrentStore(currentStore);
+//    controller.displayCurrentStore();
+//
+//
+//    Scene scene = new Scene(root);
+//    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//    stage.setScene(scene);
+//  }
+
 }
 
 
