@@ -82,7 +82,7 @@ public class ManagerController implements MyController
   @FXML
   private Button changePassword;
   @FXML
-  private void changePassword_Click(ActionEvent event) throws IOException // Should create a new utility method?
+  private void changePassword_Click(ActionEvent event) throws IOException
   {
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("password-changing-view.fxml"));

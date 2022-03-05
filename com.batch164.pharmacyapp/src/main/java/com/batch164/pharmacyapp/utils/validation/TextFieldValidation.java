@@ -78,16 +78,6 @@ public class TextFieldValidation
     }
   }
 
-////  Check whether content of a text field is a valid ID
-//  public static boolean isValidID(
-//      TextField textField,
-//      Label errorMessageLabel,
-//      String errorMessage)
-//  {
-////    TODO
-//    return true;
-//  }
-
   //  Check whether content of a text field is an existed email or not
   public static boolean isExistedEmail(
       TextField textField,
@@ -131,6 +121,23 @@ public class TextFieldValidation
   )
   {
     if (textField.getText().trim().length() > limitSize)
+    {
+      errorLabel.setText(errorMessage);
+      return true;
+    }
+    return false;
+  }
+
+  //  Check whether size of content of a text field
+//  is shorter than a specific number or not
+  public static boolean isTooShort(
+      TextField textField,
+      Label errorLabel,
+      String errorMessage,
+      int limitSize
+  )
+  {
+    if (textField.getText().trim().length() < limitSize)
     {
       errorLabel.setText(errorMessage);
       return true;

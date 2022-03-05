@@ -84,11 +84,11 @@ public class StaffController implements MyController
   @FXML
   private Button changePassword;
   @FXML
-  private void changePassword_Click()
+  private void changePassword_Click(ActionEvent event) throws IOException
   {
-//    TODO
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Under construction!");
-    alert.show();
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("password-changing-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
   }
 
 //  ---------------------------------------------------------------------------------------

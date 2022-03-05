@@ -5,6 +5,24 @@ import javafx.scene.control.PasswordField;
 
 public class PasswordFieldValidation
 {
+  public static boolean areNotSame(PasswordField field1,
+                                PasswordField field2,
+                                Label errorLabel,
+                                String errorMessage)
+  {
+    String password1 = field1.getText().trim();
+    String password2 = field2.getText().trim();
+    if (!password1.equals(password2))
+    {
+      return true;
+    }
+    else
+    {
+      errorLabel.setText(errorMessage);
+      return false;
+    }
+  }
+
   public static boolean areSame(PasswordField field1,
                                 PasswordField field2,
                                 Label errorLabel,

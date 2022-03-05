@@ -320,6 +320,28 @@ public class EmployeeDAO
     }
     return tempPassword;
   }
+
+  public static boolean updatePassword(Employee currentUser, String newPassword, Connection connection)
+  {
+    String sql = "{ call usp_Change_Password(?,?) }";
+    try (CallableStatement statement = connection.prepareCall(sql))
+    {
+      statement.setString(1, currentUser.getId());
+      statement.setString(2, newPassword);
+      if (statement.executeUpdate() == 1)
+      {
+        return true;
+      }
+    }
+    catch (SQLException e)
+    {
+      for (Throwable t : e)
+      {
+        t.printStackTrace();
+      }
+    }
+    return false;
+  }
 }
 
 
