@@ -29,8 +29,6 @@ public class PharmacyApplication extends Application
       FXMLLoader loader = new FXMLLoader(
           getClass().getResource("login-system-view.fxml"));
 
-
-
 ////      Customer scene
 //      FXMLLoader loader = new FXMLLoader(
 //          getClass().getResource("customer-view.fxml"));

@@ -1,8 +1,10 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
+import com.batch164.pharmacyapp.model.RoleType;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.Clearing;
+import com.batch164.pharmacyapp.utils.EmployeeUtils;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
 import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.dao.LoginDAO;
@@ -27,7 +29,14 @@ import java.util.ResourceBundle;
 
 public class LoginSystemController implements Initializable
 {
-  //  ------- Belows are the common fields and methods for every scene ----------
+  @FXML
+  private TextField idTextField;
+  @FXML
+  private PasswordField passwordField;
+
+  @FXML
+  private Label errorMessageLabel;
+
   @FXML
   private Button exitButton;
   @FXML
@@ -36,15 +45,6 @@ public class LoginSystemController implements Initializable
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     stage.close();
   }
-
-  //  ------- Belows are the individual fields and methods for staff scene ----------
-  @FXML
-  private TextField idTextField;
-  @FXML
-  private PasswordField passwordField;
-
-  @FXML
-  private Label errorMessageLabel;
 
   @FXML
   private Button loginButton;
@@ -106,45 +106,6 @@ public class LoginSystemController implements Initializable
     }
   }
 
-//  ------------------------------------------------------------------------------------------
-
-//  Helper method
-//  Indicate the current user is a manager, or a supervisor, or a staff:
-//  Get supervisorID of the current employee:
-//  1. If the supervisorID is null, it means the current employee is a manager,
-//      so we go to the  "manager-view" scene.
-//  2. If the supervisorID is not null,
-//      we continue get supervisorID of the current employee's supervisor.
-//      And we have two cases:
-//      2.1 If the supervisorID of the current employee's supervisor is null,
-//        it means the current employee is a supervisor,
-//        so we go to the "supervisor-view" scene.
-//      2.2 If the supervisor ID of the current employee's supervisor is not null,
-//        it means the current employee is a staff,
-//        so we go to the "staff-view" scene.
-  private int indicateRoleOfUser(Employee currentUser)
-  {
-    String tempSupervisorID =
-        EmployeeDAO.getSupervisorID(connection, currentUser.getId());
-    if (tempSupervisorID == null) // The current user is a manager
-    {
-      return 0;
-    }
-    else
-    {
-      String tempHigherSupervisorID =
-          EmployeeDAO.getSupervisorID(connection, tempSupervisorID);
-      if (tempHigherSupervisorID == null) // The current user is a supervisor
-      {
-        return 1;
-      }
-      else // The current user is a staff
-      {
-        return 2;
-      }
-    }
-  }
-
   //  Helper method
   private void goToNextScene(
       Employee currentUser, ActionEvent event,
@@ -155,19 +116,19 @@ public class LoginSystemController implements Initializable
         currentUser.getId(), connection);
 
     FXMLLoader loader;
-    if (indicateRoleOfUser(currentUser) == 0) // The current use is a manager
+    if (EmployeeUtils.indicateRoleOfUser(currentUser, connection) == RoleType.MANAGER)
     {
       loader = new FXMLLoader(
           getClass().getResource("manager-view.fxml"));
       SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
     }
-    else if (indicateRoleOfUser(currentUser) == 1) // The current use is a supervisor
+    else if (EmployeeUtils.indicateRoleOfUser(currentUser, connection) == RoleType.SUPERVISOR)
     {
       loader = new FXMLLoader(
           getClass().getResource("supervisor-view.fxml"));
       SceneHandler.setInformationAndSwitchScene(loader, currentStore,currentUser,event);
     }
-    else if (indicateRoleOfUser(currentUser) == 2) // The current use is a staff
+    else if (EmployeeUtils.indicateRoleOfUser(currentUser, connection) == RoleType.STAFF)
     {
       loader = new FXMLLoader(
           getClass().getResource("staff-view.fxml"));
