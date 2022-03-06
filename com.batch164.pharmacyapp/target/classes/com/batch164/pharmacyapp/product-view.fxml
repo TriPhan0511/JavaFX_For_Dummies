@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.EmployeeSupervisorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.batch164.pharmacyapp.ProductController">
    <children>
       <AnchorPane prefHeight="71.0" prefWidth="1600.0" style="-fx-background-color: #e96151;">
          <children>
@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="800.0" layoutY="19.0" text="Employee Management" textFill="#e96151">
+                  <Label layoutX="800.0" layoutY="19.0" text="Product Management" textFill="#e96151">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -68,7 +68,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Label layoutX="81.0" layoutY="17.0" text="Customer Information" textFill="#0773b8">
+                        <Label layoutX="81.0" layoutY="17.0" text="Product Information" textFill="#0773b8">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>

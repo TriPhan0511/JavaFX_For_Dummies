@@ -2,7 +2,7 @@ package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
 import com.batch164.pharmacyapp.model.GenderType;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.Clearing;
 import com.batch164.pharmacyapp.utils.dao.DatabaseConnection;
@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeManagerController implements Initializable, MyController
+public class EmployeeManagerController implements Initializable, InformationDisplayable
 {
 //  ------- Belows are the common fields and methods for every scene ----------
   @FXML

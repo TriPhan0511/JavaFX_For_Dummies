@@ -1,3 +1,4 @@
+
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
@@ -33,7 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeSupervisorController implements Initializable, InformationDisplayable
+public class ProductController implements Initializable, InformationDisplayable
 {
   @FXML
   private Label welcomeLabel;
@@ -82,6 +83,8 @@ public class EmployeeSupervisorController implements Initializable, InformationD
       if (response.isPresent() && response.get() == ButtonType.YES)
       {
         saveToDatabase(employeeTableView, addedIDs, updatedIDs, connection);
+//    Set the flag isDataChanged to false
+        isDataChanged = false;
       }
     }
 
@@ -195,9 +198,9 @@ public class EmployeeSupervisorController implements Initializable, InformationD
               supervisorIDComboBox, connection);
           updateARow(employeeTableView, index, tempEmployee);
 
-//          Add employee's id to the updatedIDs list
+//        Add employee's id to the updatedIDs list
           updatedIDs.add(tempEmployee.getId());
-//          Notify the data has changed.
+//        Notify the data has changed.
           isDataChanged = true;
         }
 //        Reset text fields and combo boxes
@@ -227,10 +230,10 @@ public class EmployeeSupervisorController implements Initializable, InformationD
 
 //        Add employee's id to the addedIDs list
         addedIDs.add(tempEmployee.getId());
-//        Notify the data has changed.
-        isDataChanged = true;
 //        Reset text fields and combo boxes
         resetButton_Click();
+//        Notify the data has changed.
+        isDataChanged = true;
       }
     }
   }
@@ -255,6 +258,8 @@ public class EmployeeSupervisorController implements Initializable, InformationD
         EmployeeDAO.getSupervisorIDsBaseOnStoreID(
             connection, currentStoreID);
     supervisorIDComboBox.setItems(supervisorIDObservableList);
+////    Set first value for supervisorIDComboBox
+//    supervisorIDComboBox.setValue("");
   }
 
   @FXML

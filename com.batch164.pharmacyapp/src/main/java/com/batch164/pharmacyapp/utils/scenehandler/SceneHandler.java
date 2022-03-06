@@ -2,7 +2,7 @@ package com.batch164.pharmacyapp.utils.scenehandler;
 
 import com.batch164.pharmacyapp.PharmacyApplication;
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.Store;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +44,7 @@ public class SceneHandler
   {
     Parent root = loader.load();
 
-    MyController controller = loader.getController();
+    InformationDisplayable controller = loader.getController();
     controller.setCurrentUser(currentUser);
     controller.displayWelcomeMessage();
 
@@ -58,7 +58,7 @@ public class SceneHandler
   }
 
 //  public static void setInformationAndSwitchScene(
-//      FXMLLoader loader, MyController controller, Store currentStore,
+//      FXMLLoader loader, InformationDisplayable controller, Store currentStore,
 //      Employee currentUser, ActionEvent event) throws IOException
 //  {
 //    Parent root = loader.load();

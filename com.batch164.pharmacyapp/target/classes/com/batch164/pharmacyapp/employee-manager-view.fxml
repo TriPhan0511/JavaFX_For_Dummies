@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="800.0" layoutY="19.0" text="Manage Employee" textFill="#e96151">
+                  <Label layoutX="800.0" layoutY="19.0" text="Employee Management" textFill="#e96151">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

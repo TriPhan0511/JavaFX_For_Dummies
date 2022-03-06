@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class CustomerController implements Initializable, MyController
+public class CustomerController implements Initializable, InformationDisplayable
 {
 //  ------- Belows are the common fields and methods for every scene ----------
   @FXML

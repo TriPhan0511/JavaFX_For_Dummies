@@ -1,27 +1,21 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 
-public class SupervisorController implements MyController
+public class SupervisorController implements InformationDisplayable
 {
 
   //  ------- Belows are the common fields and methods for every scene ----------
@@ -95,7 +89,7 @@ public class SupervisorController implements MyController
 
 //  ---------------------------------------------------------------------------------------
 
-  //  ------- Belows are the individual fields and methods for staff scene ----------
+  //  ------- Belows are the individual fields and methods for this scene ----------
   @FXML
   private Button employeeManagementButton;
   @FXML
@@ -104,6 +98,58 @@ public class SupervisorController implements MyController
     FXMLLoader loader = new FXMLLoader(
         getClass().getResource("employee-supervisor-view.fxml"));
     SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
+  }
+
+  @FXML
+  private Button supplierManagementButton;
+  @FXML
+  private void supplierManagementButton_Click(ActionEvent event) throws IOException
+  {
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("supplier-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
+  }
+
+  @FXML
+  private Button categoryManagementButton;
+  @FXML
+  private void categoryManagementButton_Click(ActionEvent event) throws IOException
+  {
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("category-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
+  }
+
+  @FXML
+  private Button productManagementButton;
+  @FXML
+  private void productManagementButton_Click(ActionEvent event) throws IOException
+  {
+    FXMLLoader loader = new FXMLLoader(
+        getClass().getResource("product-view.fxml"));
+    SceneHandler.setInformationAndSwitchScene(loader, currentStore, currentUser, event);
+  }
+
+  @FXML
+  private Button customerSearchingButton;
+  @FXML
+  private void customerSearchingButton_Click(ActionEvent event)
+  {
+//    TODO
+    Alert alert = new Alert(Alert.AlertType.INFORMATION,
+        "Under construction.\nComing soon!");
+    alert.show();
+  }
+
+  @FXML
+  private Button salesOrderSearchingButton;
+  @FXML
+  private void salesOrderSearchingButton_Click(ActionEvent event)
+  {
+//    TODO
+    Alert alert = new Alert(Alert.AlertType.INFORMATION,
+        "Under construction.\nComing soon!");
+    alert.show();
   }
 }
 

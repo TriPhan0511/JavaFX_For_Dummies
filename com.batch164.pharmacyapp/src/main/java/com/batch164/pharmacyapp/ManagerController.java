@@ -1,22 +1,20 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManagerController implements MyController
+public class ManagerController implements InformationDisplayable
 {
 
 //  ------- Belows are the common fields and methods for every scene ----------

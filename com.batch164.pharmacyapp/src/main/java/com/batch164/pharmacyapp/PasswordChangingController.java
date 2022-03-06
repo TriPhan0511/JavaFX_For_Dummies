@@ -1,7 +1,7 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.RoleType;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.utils.Clearing;
@@ -11,7 +11,6 @@ import com.batch164.pharmacyapp.utils.dao.EmployeeDAO;
 import com.batch164.pharmacyapp.utils.scenehandler.SceneHandler;
 import com.batch164.pharmacyapp.utils.validation.PasswordFieldValidation;
 import com.batch164.pharmacyapp.utils.validation.TextFieldValidation;
-import com.batch164.pharmacyapp.utils.validation.Validation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +28,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class PasswordChangingController implements Initializable, MyController
+public class PasswordChangingController implements Initializable, InformationDisplayable
 {
   @FXML
   private Label welcomeLabel;

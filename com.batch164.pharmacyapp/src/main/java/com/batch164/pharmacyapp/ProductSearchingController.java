@@ -1,7 +1,7 @@
 package com.batch164.pharmacyapp;
 
 import com.batch164.pharmacyapp.model.Employee;
-import com.batch164.pharmacyapp.model.MyController;
+import com.batch164.pharmacyapp.model.InformationDisplayable;
 import com.batch164.pharmacyapp.model.Store;
 import com.batch164.pharmacyapp.model.composite.CompositeStock;
 import com.batch164.pharmacyapp.utils.dao.CompositeStockDAO;
@@ -25,7 +25,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ProductSearchingController implements Initializable, MyController
+public class ProductSearchingController implements Initializable, InformationDisplayable
 {
   @FXML
   private Label welcomeLabel;
